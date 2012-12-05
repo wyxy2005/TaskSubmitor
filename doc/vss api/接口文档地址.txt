@@ -1,0 +1,1 @@
+http://msdn.microsoft.com/zh-cn/library/microsoft.visualstudio.sourcesafe.interop.ivssitem.get(VS.80).aspx

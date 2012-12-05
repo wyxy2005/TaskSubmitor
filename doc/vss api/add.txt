@@ -1,0 +1,44 @@
+using System;
+using Microsoft.VisualStudio.SourceSafe.Interop;
+
+public class IVSSTest
+{
+    public static void Main()
+    {
+        string testFolder = "$/TestFolder";
+        string testFile = @"C:\VSSTestWF\TestFolder\fileAdd.txt";
+    
+        // Create a VSSDatabase object.
+        IVSSDatabase vssDatabase = new VSSDatabase();
+
+        // Open a VSS database using network name 
+        // for automatic user login.
+        vssDatabase.Open(@"C:\VSSTestDB\srcsafe.ini", 
+                         Environment.UserName, ""); 
+
+        // Create a VSSItem specifying the desired folder.
+        VSSItem vssFolder = vssDatabase.get_VSSItem(testFolder, false);
+
+        // Display folder contents prior to adding a file.
+        DisplayFolderContent(vssFolder);
+
+        // Add a file to the project.
+        VSSItem vssTestFile = vssFolder.Add(testFile, "Adding a new file", 0);
+
+        // Display folder contents after adding a file.
+        DisplayFolderContent(vssFolder);
+
+        // Destroy the new file.
+        vssTestFile.Destroy();
+
+        // Display folder contents after destroying the new file.
+        DisplayFolderContent(vssFolder);
+    }
+
+    private static void DisplayFolderContent(IVSSItem vssFolder)
+    {
+        Console.Write("\n{0} contains:", vssFolder.Spec);
+        foreach(VSSItem vssItem in vssFolder.get_Items(false))
+            Console.Write(" {0}", vssItem.Name);
+    }
+}

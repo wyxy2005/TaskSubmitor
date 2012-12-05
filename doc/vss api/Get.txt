@@ -1,0 +1,31 @@
+using System;
+using Microsoft.VisualStudio.SourceSafe.Interop;
+
+public class IVSSTest
+{
+    public static void Main()
+    {
+        // Create a VSSDatabase object.
+        IVSSDatabase vssDatabase = new VSSDatabase();
+
+        // Open a VSS database using network name 
+        // for automatic user login.
+        vssDatabase.Open(@"C:\VSSTestDB\srcsafe.ini", 
+                         Environment.UserName, ""); 
+
+        IVSSItem vssFile = 
+                 vssDatabase.get_VSSItem("$/TestFolder/test.txt", false);
+
+        // Get a file into a specified folder.
+        string testFile = @"C:\1\test.txt";
+        vssFile.Get(ref testFile, 0);
+
+        // Get a file into a working folder.
+        testFile = null;
+        vssFile.Get(ref testFile, 0);
+        Console.WriteLine("The Get operation is completed");
+    }
+}
+
+//===================================================================
+
