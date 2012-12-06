@@ -22,6 +22,14 @@ namespace VssTask
 
         //TODO:需要加入log4net来记录每一步的操作日志
 
+        public string SrcSafeIni { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+
+        public VssOperator()
+        {
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -36,38 +44,32 @@ namespace VssTask
         }
 
         /// <summary>
-        /// Add file 命令的接口实现
+        /// Add file 命令的接口实现，省掉注释comment
         /// </summary>
         /// <param name="vssWorkFolder">vss上的目录，文件需要添加到的vss目录</param>
         /// <param name="localFile">本地需要添加的文件，完整路径和名称</param>
         public void AddFile(string vssWorkFolder,string localFile)
         {
-            //string testFolder = "$/TestFolder";
-            //string testFile = @"C:\VSSTestWF\TestFolder\fileAdd.txt";
+            AddFile(vssWorkFolder, localFile, "Adding a new file");
+        }
 
-            // Create a VSSDatabase object.
+        /// <summary>
+        /// Add file 命令的接口核心实现
+        /// </summary>
+        /// <param name="vssWorkFolder"></param>
+        /// <param name="localFile"></param>
+        /// <param name="comment"></param>
+        public void AddFile(string vssWorkFolder, string localFile,string comment)
+        {
+            //TODO：添加判断文件是否存在
+
             IVSSDatabase vssDatabase = new VSSDatabase();
-
-            // Open a VSS database using network name 
-            // for automatic user login.
-            vssDatabase.Open(this.srcsafeIni,this.username, this.password);
-
-            // Create a VSSItem specifying the desired folder.
+            vssDatabase.Open(this.srcsafeIni, this.username, this.password);
             VSSItem vssFolder = vssDatabase.get_VSSItem(vssWorkFolder, false);
-
-            // Display folder contents prior to adding a file.
             DisplayFolderContent(vssFolder);
-
-            // Add a file to the project.
-            VSSItem vssTestFile = vssFolder.Add(localFile, "Adding a new file", 0);
-
-            // Display folder contents after adding a file.
+            VSSItem vssTestFile = vssFolder.Add(localFile, comment, 0);
             DisplayFolderContent(vssFolder);
-
-            // Destroy the new file.
             vssTestFile.Destroy();
-
-            // Display folder contents after destroying the new file.
             DisplayFolderContent(vssFolder);
         }
 
@@ -229,6 +231,7 @@ namespace VssTask
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine(e.Message);
                     existProject = false;
                 }
                 if (!existProject) //不存在
@@ -280,10 +283,23 @@ namespace VssTask
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
 
+        public bool IsCheckOut(string vssFilePath)
+        {
+            IVSSDatabase vssDatabase = new VSSDatabase();
+            vssDatabase.Open(this.srcsafeIni, this.username, this.password);
+            IVSSItem vssFile = vssDatabase.get_VSSItem(vssFilePath, false);
+
+            if ((VSSFileStatus)vssFile.IsCheckedOut ==
+               VSSFileStatus.VSSFILE_CHECKEDOUT)
+                return true;
+            else
+                return false;
+        }
         /// <summary>
         /// 
         /// </summary>
