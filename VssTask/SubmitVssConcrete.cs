@@ -33,6 +33,7 @@ namespace VssTask
             this.vssOperator = new VssOperator();
             this.vssOperator.Username = this.username;
             this.vssOperator.Password = this.password;
+            this.vssOperator.SrcSafeIni = this.srcUrl;
         }
        
         /// <summary>
@@ -100,7 +101,18 @@ namespace VssTask
         protected override void UpdateDayRecordFile()
         {
             /*应用更新记录表名称*/
-            string file = @"201212/20121206/个险/个险代码更新_17点.xls";
+            string channl = "个险";
+            string file = DateTime.Now.Date.ToString("yyyyMM") + VSS_SLASH +
+                DateTime.Now.Date.ToString("yyyyMMdd") + VSS_SLASH + channl + VSS_SLASH;
+            if (DateTime.Now.Hour < 11)
+                file += channl + "代码更新_11点.xls";
+            else if (DateTime.Now.Hour < 17)
+                file += channl + "代码更新_17点.xls";
+            else
+            {
+                //第二天11点
+            }
+            //string file = @"201212/20121206/个险/个险代码更新_17点.xls";
             string dayRecordVssPath = base.RecordVssRoot.TrimEnd(pathSplit) + VSS_SLASH + file;                
             if (this.vssOperator.IsCheckOut(dayRecordVssPath))
             {
@@ -108,11 +120,11 @@ namespace VssTask
             }
             else
             {
-                string localTempFile = base.RecordTempRoot.TrimEnd(pathSplit) + LOCAL_SLASH + file;
+                string localTempFile = base.RecordTempRoot.TrimEnd(pathSplit) + LOCAL_SLASH + file.Replace(VSS_SLASH,LOCAL_SLASH);
                 //使用vss get checkout，然后修改xls文件，然后check in
-                this.vssOperator.CheckOut(dayRecordVssPath, localTempFile, "");
-                ModifyRecordFile(localTempFile);
-                this.vssOperator.CheckIn(localTempFile, dayRecordVssPath, "");
+                //this.vssOperator.CheckOut(dayRecordVssPath, localTempFile, "");
+                ModifyRecordFile(localTempFile, this.RecordLocalPath);
+                //this.vssOperator.CheckIn(localTempFile, dayRecordVssPath, "");
 
             }
         }
@@ -234,12 +246,17 @@ namespace VssTask
         /// 填写应用程序更新记录表
         /// </summary>
         /// <param name="fileName"></param>
-        private void ModifyRecordFile(string fileName)
+        private void ModifyRecordFile(string writeFile,string readFile)
         {
             //TODO:程序修改应用更新记录表文件
             //从本地的修改列表文件读取内容
             //写入需要更新的文件末尾
             //excel文件的读写操作
+            ExcelOperator excel = new ExcelOperator();
+            excel.ReadFilePath = readFile;
+            excel.WriteFilePath = writeFile;
+            excel.CopyData();
+            
         }
 
 

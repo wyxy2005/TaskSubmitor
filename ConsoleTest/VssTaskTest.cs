@@ -57,7 +57,7 @@ namespace ConsoleTest
             //输入
             realSubmitor.RecordLocalPath = @"D:\Work\Task\test更新列表.xls";
             //环境配置
-            realSubmitor.RecordTempRoot = @"D:\Work\vss更新";
+            realSubmitor.RecordTempRoot = @"D:\Temp\vss更新";
             //环境配置
             realSubmitor.RecordVssRoot = @"$/B-更新目录/01-应用更新"; 
 

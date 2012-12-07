@@ -8,6 +8,7 @@ using System.Data;
 using Microsoft.Office.Interop.Excel;
 using OfficeHelper;
 using Util;
+using Model.Enum;
 
 namespace VssTask
 {
@@ -18,12 +19,12 @@ namespace VssTask
     public class ExcelOperator
     {
 
-        private static readonly int UI_HEADER_ROW = 2;   //表头行,数据开始行
-        private static readonly int UI_DATA_ROW = 3;     //数据开始行
-        private static readonly int JAVA_HEADER_ROW = 4;   //表头行,数据开始行
-        private static readonly int JAVA_DATA_ROW = 5;     //数据开始行
-        private static readonly int SQL_HEADER_ROW = 0;   //表头行,数据开始行
-        private static readonly int SQL_DATA_ROW = 1;     //数据开始行,下表从零开始算起
+        private static readonly int UI_HEADER_ROW = 3;   //表头行,数据开始行
+        private static readonly int UI_DATA_ROW = 4;     //数据开始行
+        private static readonly int JAVA_HEADER_ROW = 5;   //表头行,数据开始行
+        private static readonly int JAVA_DATA_ROW = 6;     //数据开始行
+        private static readonly int SQL_HEADER_ROW = 1;   //表头行,数据开始行
+        private static readonly int SQL_DATA_ROW = 2;     //数据开始行,下表从零开始算起
         private readonly string SHEET_UI = "UI";
         private readonly string SHEET_JAVA = "JAVA";
         private readonly string SHEET_SQL = "sql";
@@ -60,6 +61,9 @@ namespace VssTask
             string sourceFile = this.readFilePath;
             string destFile = this.writeFilePath;
             //包括三个数据sheet,分别是UI,JAVA，sql
+            WriteSheet(SHEET_UI);
+            WriteSheet(SHEET_JAVA);
+            WriteSheet(SHEET_SQL);
         }
 
         /// <summary>
@@ -68,7 +72,7 @@ namespace VssTask
         /// <returns></returns>
         public System.Data.DataTable ReadUI()
         {
-            System.Data.DataTable dtbSheet = ReadSheet(SHEET_UI);
+            System.Data.DataTable dtbSheet = ReadSheet(RecordSheetEnum.UI);
             dtbSheet = Sys.RemoveSubTable(dtbSheet, 0, UI_DATA_ROW);
             return dtbSheet;
         }
@@ -79,7 +83,7 @@ namespace VssTask
         /// <returns></returns>
         public System.Data.DataTable ReadJava()
         {
-            System.Data.DataTable dtbSheet = ReadSheet(SHEET_JAVA);
+            System.Data.DataTable dtbSheet = ReadSheet(RecordSheetEnum.JAVA);
             dtbSheet = Sys.RemoveSubTable(dtbSheet, 0, JAVA_DATA_ROW);
             return dtbSheet;
         }
@@ -90,7 +94,7 @@ namespace VssTask
         /// <returns></returns>
         public System.Data.DataTable ReadSQL()
         {
-            System.Data.DataTable dtbSheet = ReadSheet(SHEET_SQL);
+            System.Data.DataTable dtbSheet = ReadSheet(RecordSheetEnum.SQL);
             dtbSheet = Sys.RemoveSubTable(dtbSheet, 0, SQL_DATA_ROW);
             return dtbSheet;
         }
@@ -100,13 +104,45 @@ namespace VssTask
         /// </summary>
         /// <param name="sheetName"></param>
         /// <returns></returns>
-        private System.Data.DataTable ReadSheet(string sheetName)
+        private System.Data.DataTable ReadSheet(RecordSheetEnum sheets)
         {
-            DataSet ds = ExcelHelper.LoadDataFromExcel(this.readFilePath, sheetName);
-            if(ds != null && ds.Tables.Count > 0)
-                return ds.Tables[0];
-            else
-                return null;
+            return ExcelHelper.LoadExcelDataToTable(this.readFilePath, (int)sheets);
+   
+        }
+
+        /// <summary>
+        /// 数据写入sheet
+        /// </summary>
+        /// <param name="sheetName"></param>
+        private void WriteSheet(string sheetName)
+        {
+            if (sheetName == SHEET_UI)
+            {
+                System.Data.DataTable dtbUI = ReadUI();
+                if (dtbUI != null && dtbUI.Rows.Count > 0)
+                {
+                    ExcelHelper.AddDataToExcel(dtbUI, this.writeFilePath, 1);//第一个sheet
+                    Console.WriteLine("UI sheet update");
+                }
+            }
+            else if (sheetName == SHEET_JAVA)
+            {
+                System.Data.DataTable dtbJava = ReadJava();
+                if (dtbJava != null && dtbJava.Rows.Count > 0)
+                {
+                    ExcelHelper.AddDataToExcel(dtbJava, this.writeFilePath, 2);//第二个sheet
+                    Console.WriteLine("Java sheet update");
+                }
+            }
+            else if (sheetName == SHEET_SQL)
+            {
+                System.Data.DataTable dtbSQL = ReadSQL();
+                if (dtbSQL != null && dtbSQL.Rows.Count > 0)
+                {
+                    ExcelHelper.AddDataToExcel(dtbSQL, this.writeFilePath, 3);//第三个sheet
+                    Console.WriteLine("Java sheet update");
+                }
+            }
         }
 
 

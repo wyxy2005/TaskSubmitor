@@ -51,20 +51,119 @@ namespace OfficeHelper
         }
 
         /// <summary>
+        /// 包含开始行，结束行数据，列同样（闭区间）
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="sheets"></param>
+        /// <param name="startRow"></param>
+        /// <param name="endRow"></param>
+        /// <param name="startColumn"></param>
+        /// <param name="endColumn"></param>
+        /// <returns></returns>
+        public static System.Data.DataTable LoadExcelDataToTable(string filePath, int sheets,
+            int startRow,int endRow,int startColumn,int endColumn)
+        {
+            if (startRow <= 0)
+                startRow = 1;
+            if (startColumn <= 0)
+                startColumn = 1;
+            System.Data.DataTable excelTable = new System.Data.DataTable();
+            for (int i = 0; i < endColumn - startColumn + 1; i++)
+            {
+                DataColumn dc = new DataColumn();
+                excelTable.Columns.Add(dc);
+            }
+
+            Microsoft.Office.Interop.Excel.Application app =
+                new Microsoft.Office.Interop.Excel.Application();
+            app.Visible = false;
+            Workbook wBook = app.Workbooks.Open(filePath);
+            Worksheet wSheet = wBook.Worksheets[sheets] as Worksheet;
+            try
+            {
+
+                for (int i = startRow; i <= endRow; i++)
+                {
+                    DataRow dr = excelTable.NewRow();
+                    bool hasDataRow = false;
+                    for (int j = startColumn; j <= endColumn; j++)
+                    {
+                        Range range = (Range)wSheet.Cells[i, j];
+                        if (range.Value2 != null)
+                        {
+                            string text = ((object)range.Value2).ToString();
+                            if (!string.IsNullOrEmpty(text))
+                            {
+                                dr[j - startColumn] = text;
+                                hasDataRow = true;
+                            }
+                        }
+                    }
+                    if (hasDataRow)
+                    {
+                        excelTable.Rows.Add(dr);
+                    }
+
+                }
+                //设置禁止弹出保存和覆盖的询问提示框 
+                app.DisplayAlerts = false;
+                app.AlertBeforeOverwriting = false;
+                //wSheet = null;
+                wBook.Close();
+                wBook = null;
+
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine("导出Excel出错！错误原因：" + err.Message);
+                //return false;
+            }
+            finally
+            {
+                app.Quit();
+                app = null;
+
+                // 9.释放资源
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(wSheet);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(wBook);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
+
+                // 10.调用GC的垃圾收集方法
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
+            //return result;
+            return excelTable;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="sheets"></param>
+        /// <returns></returns>
+        public static System.Data.DataTable LoadExcelDataToTable(string filePath, int sheets)
+        {
+            //默认范围
+            return LoadExcelDataToTable(filePath, sheets, 0, 20, 0, 15);
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="excelTable"></param>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public static bool SaveDataTableToExcel(System.Data.DataTable excelTable, string filePath)
+        public static bool SaveDataTableToExcel(System.Data.DataTable excelTable, string filePath,
+            int startRow,int startColumn,int sheets)
         {
             Microsoft.Office.Interop.Excel.Application app =
                 new Microsoft.Office.Interop.Excel.Application();
+            app.Visible = false;
+            Workbook wBook = app.Workbooks.Add(true);
+            Worksheet wSheet = wBook.Worksheets[sheets] as Worksheet;
             try
             {
-                app.Visible = false;
-                Workbook wBook = app.Workbooks.Add(true);
-                Worksheet wSheet = wBook.Worksheets[1] as Worksheet;
                 if (excelTable.Rows.Count > 0)
                 {
                     int row = 0;
@@ -75,11 +174,10 @@ namespace OfficeHelper
                         for (int j = 0; j < col; j++)
                         {
                             string str = excelTable.Rows[i][j].ToString();
-                            wSheet.Cells[i + 2, j + 1] = str;
+                            wSheet.Cells[i + startRow, j + startColumn] = str;
                         }
                     }
                 }
-
                 int size = excelTable.Columns.Count;
                 for (int i = 0; i < size; i++)
                 {
@@ -105,8 +203,96 @@ namespace OfficeHelper
             {
                 app.Quit();
                 app = null;
+
+                // 9.释放资源
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(wSheet);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(wBook);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
+
+                // 10.调用GC的垃圾收集方法
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             }
             return true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="excelTable"></param>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static bool SaveDataTableToExcel(System.Data.DataTable excelTable, string filePath)
+        {
+            //默认开始的行列，excel从1开始
+            return SaveDataTableToExcel(excelTable, filePath, 2, 1,1);
+        }
+
+        /// <summary>
+        /// 将数据添加到excel数据末尾
+        /// </summary>
+        /// <param name="excelTable"></param>
+        /// <param name="filePath"></param>
+        /// <param name="sheets"></param>
+        /// <returns></returns>
+        public static void AddDataToExcel(System.Data.DataTable excelTable, string filePath, int sheets)
+        {
+            Application app = new Application();
+            try
+            {
+                app.Visible = false;
+                Workbook wBook = app.Workbooks.Open(filePath);
+                Worksheet wSheet = wBook.Worksheets[sheets] as Worksheet;
+                int sheetRow = 1;
+                if (excelTable.Rows.Count > 0)
+                {
+                    int row = 0;
+                    row = excelTable.Rows.Count;
+                    int col = excelTable.Columns.Count;
+                    for (int i = 0; i < row; i++)
+                    {
+                        for (int j = 0; j < col; j++)
+                        {
+                            //用第一列来判断某行是否有值，无知则填入,存在隐患，如果本行第一列没有值，则本行之后的值会被覆盖，有待改进
+                            if (j == 0)
+                            {
+                                Range range = (Range)wSheet.Cells[sheetRow, 1];
+                                //移到没有数据的行
+                                while (range.Value2 != null)
+                                {
+                                    sheetRow++;
+                                    range = (Range)wSheet.Cells[sheetRow, 1];
+                                }
+                            }
+                            string str = excelTable.Rows[i][j].ToString();
+                            wSheet.Cells[sheetRow, j+1] = str;
+                        }
+                    }
+                }
+
+                //设置禁止弹出保存和覆盖的询问提示框 
+                app.DisplayAlerts = false;
+                app.AlertBeforeOverwriting = false;
+                //保存工作簿 
+                wBook.Save();
+                ////保存excel文件 
+                //app.Save(filePath);
+                //app.sa
+                
+                //app.SaveWorkspace(filePath);
+                //app.Quit();
+                //app = null;
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine("导出Excel出错！错误原因：" + err.Message);
+                //return false;
+            }
+            finally
+            {
+                app.Quit();
+                app = null;
+            }
         }
 
 

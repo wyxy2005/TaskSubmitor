@@ -16,15 +16,29 @@ namespace VssTask
     /// </summary>
     public class VssOperator
     {
-        private string srcsafeIni = @"";
+        private string srcSafeIni = @"";
+
+        public string SrcSafeIni
+        {
+            get { return srcSafeIni; }
+            set { srcSafeIni = value; }
+        }
         private string username = "";
+
+        public string Username
+        {
+            get { return username; }
+            set { username = value; }
+        }
         private string password = "";
 
-        //TODO:需要加入log4net来记录每一步的操作日志
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
 
-        public string SrcSafeIni { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        //TODO:需要加入log4net来记录每一步的操作日志
 
         public VssOperator()
         {
@@ -38,7 +52,7 @@ namespace VssTask
         /// <param name="password"></param>
         public VssOperator(string srcsafeIni, string username, string password)
         {
-            this.srcsafeIni = srcsafeIni;
+            this.srcSafeIni = srcsafeIni;
             this.username = username;
             this.password = password;
         }
@@ -64,7 +78,7 @@ namespace VssTask
             //TODO：添加判断文件是否存在
 
             IVSSDatabase vssDatabase = new VSSDatabase();
-            vssDatabase.Open(this.srcsafeIni, this.username, this.password);
+            vssDatabase.Open(this.srcSafeIni, this.username, this.password);
             VSSItem vssFolder = vssDatabase.get_VSSItem(vssWorkFolder, false);
             DisplayFolderContent(vssFolder);
             VSSItem vssTestFile = vssFolder.Add(localFile, comment, 0);
@@ -85,7 +99,7 @@ namespace VssTask
 
             // Open a VSS database using network name 
             // for automatic user login.
-            vssDatabase.Open(this.srcsafeIni, this.username, this.password);
+            vssDatabase.Open(this.srcSafeIni, this.username, this.password);
 
             IVSSItem vssFile =
                      vssDatabase.get_VSSItem(vssPath, false);
@@ -115,7 +129,7 @@ namespace VssTask
 
             // Open a VSS database using network name 
             // for automatic user login.
-            vssDatabase.Open(this.srcsafeIni, this.username, this.password);
+            vssDatabase.Open(this.srcSafeIni, this.username, this.password);
 
             IVSSItem vssFile = vssDatabase.get_VSSItem(vssFilePath, false);
 
@@ -154,7 +168,7 @@ namespace VssTask
 
             // Open a VSS database using network name 
             // for automatic user login.
-            vssDatabase.Open(this.srcsafeIni, this.username, this.password);
+            vssDatabase.Open(this.srcSafeIni, this.username, this.password);
 
             IVSSItem vssFile = vssDatabase.get_VSSItem(vssFilePath, false);
 
@@ -188,7 +202,7 @@ namespace VssTask
 
             // Open a VSS database using network name 
             // for automatic user login.
-            vssDatabase.Open(this.srcsafeIni, this.username, this.password);
+            vssDatabase.Open(this.srcSafeIni, this.username, this.password);
 
             IVSSItem vssParentFolder = vssDatabase.get_VSSItem(vssParentPath, false);
             DisplayFolder(vssParentFolder);
@@ -217,7 +231,7 @@ namespace VssTask
             string[] dir = absoluteVssPath.Split('/');
 
             IVSSDatabase vssDatabase = new VSSDatabase();
-            vssDatabase.Open(this.srcsafeIni, this.username, this.password);
+            vssDatabase.Open(this.srcSafeIni, this.username, this.password);
             IVSSItem vssParentFolder = null;// = vssDatabase.get_VSSItem(vssFolder, false);
             bool existProject = false;
             for (int i = 1; i < dir.Length; i++)
@@ -256,7 +270,7 @@ namespace VssTask
 
             // Open a VSS database using network name 
             // for automatic user login.
-            vssDatabase.Open(this.srcsafeIni, this.username, this.password);
+            vssDatabase.Open(this.srcSafeIni, this.username, this.password);
 
             IVSSItem vssDestroyFolder = vssDatabase.get_VSSItem(destroyFolder, false);
 
@@ -274,7 +288,7 @@ namespace VssTask
         public bool ExistFolder(string vssFolderPath)
         {
             IVSSDatabase vssDatabase = new VSSDatabase();
-            vssDatabase.Open(this.srcsafeIni, this.username, this.password);
+            vssDatabase.Open(this.srcSafeIni, this.username, this.password);
             //暂时使用异常来判断是否存在，之后优化
             try
             {
@@ -291,7 +305,7 @@ namespace VssTask
         public bool IsCheckOut(string vssFilePath)
         {
             IVSSDatabase vssDatabase = new VSSDatabase();
-            vssDatabase.Open(this.srcsafeIni, this.username, this.password);
+            vssDatabase.Open(this.srcSafeIni, this.username, this.password);
             IVSSItem vssFile = vssDatabase.get_VSSItem(vssFilePath, false);
 
             if ((VSSFileStatus)vssFile.IsCheckedOut ==

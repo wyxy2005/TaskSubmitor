@@ -57,6 +57,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{63D7D8FF-1930-4D0E-9D14-7655092E6CBC}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OfficeHelper\OfficeHelper.csproj">
       <Project>{6600CD58-DB53-4B3A-B37C-00F65374162A}</Project>
       <Name>OfficeHelper</Name>

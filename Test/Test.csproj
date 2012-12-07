@@ -56,6 +56,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OfficeHelperTest\ExcelHelperTest.cs" />
     <Compile Include="VssTask\ExcelOperatorTest.cs" />
     <Compile Include="VssTask\ISubmitVssTest.cs" />
     <Compile Include="VssTask\IVSSDatabaseTest.cs" />
@@ -69,6 +70,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\OfficeHelper\OfficeHelper.csproj">
+      <Project>{6600CD58-DB53-4B3A-B37C-00F65374162A}</Project>
+      <Name>OfficeHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VssTask\VssTask.csproj">
       <Project>{ACE93518-3E25-49F3-A954-F3075868EC91}</Project>
       <Name>VssTask</Name>
