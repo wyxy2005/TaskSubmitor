@@ -1,0 +1,12 @@
+<Catalogue
+	CID = "1"
+	NextCID = "2">
+	<Files
+		CID = "1">
+		<FileInfo
+			ID = "8C46BBAE-5228-4EB7-A3C8520EE3FF19F0"
+			RelativePath = "UI.gui"
+			OriginalRoot = "$Project"
+			OriginalPath = "UI.gui"/>
+	</Files>
+</Catalogue>

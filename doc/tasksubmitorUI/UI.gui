@@ -1,0 +1,1267 @@
+<Screen
+	CID = "1125515872"
+	AppID = "2"
+	AppVer = "4.2.111.0"
+	DocID = ""
+	HasCanvas = "0"
+	Width = "640"
+	Height = "480"
+	NextCID = "6"
+	RepresentativeRefID = "0"
+	UseDefRepresentative = "1">
+	<Elements
+		CID = "1">
+		<Element
+			CID = "371595080"
+			Type = "FrameWindow"
+			X = "-10"
+			Y = "-104"
+			Width = "671"
+			Height = "559"
+			Flags = "43520"
+			WindowColour = "172,168,153,0,13"
+			Typeface = ""
+			FontAttributes = "1"
+			TextSize = "Normal"
+			Title = "Maximised Application"
+			TitleBarHeight = "18"
+			IconMargin = "0"
+			BorderSize = "1"
+			IsBorderless = "1"
+			IsActive = "1"
+			IsDocWindow = "0"
+			HasSunkenWindow = "1"
+			CentreText = "0"
+			UseMutedColours = "0"
+			Mirror = "0"
+			Buttons = "15"
+			Icon = "DefaultApp"/>
+		<Element
+			CID = "371594485"
+			Type = "MenuBar"
+			X = "-10"
+			Y = "-85"
+			Width = "671"
+			Height = "22"
+			Flags = "2"
+			TopEdge = "Flat"
+			BottotmEdge = "Raised"
+			LeftEdge = "Flat"
+			RightEdge = "Flat"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			NextItemID = "6"
+			LeftMargin = "0"
+			Mirror = "0">
+			<MenuBarItem
+				Item = "&amp;File"
+				ItemID = "1"/>
+			<MenuBarItem
+				Item = "&amp;Edit"
+				ItemID = "2"/>
+			<MenuBarItem
+				Item = "&amp;View"
+				ItemID = "3"/>
+			<MenuBarItem
+				Item = "&amp;Window"
+				ItemID = "4"/>
+			<MenuBarItem
+				Item = "&amp;Help"
+				ItemID = "5"/>
+		</Element>
+		<Element
+			CID = "371591679"
+			Type = "EditBoxMultiLine"
+			X = "-8"
+			Y = "298"
+			Width = "667"
+			Height = "155"
+			Flags = "0"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HasHorzScrollBar = "0"
+			HasVertScrollBar = "1"
+			WordWrap = "1"
+			Mirror = "0"
+			HorzOffset = "0"
+			FirstVisibleLine = "1"
+			HorzAlign = "Left"
+			OverrideTextColour = "0"
+			OverrideDisabledTextColour = "0"
+			OverrideFillColour = "0"
+			OverrideDisabledFillColour = "0"
+			OverrideBorderColour = "0"
+			TextColour = "0,0,0,0,9"
+			DisabledTextColour = "161,161,146,0,18"
+			FillColour = "255,255,255,0,6"
+			DisabledFillColour = "236,233,216,0,16"
+			BorderColour = "164,185,127,0,12"
+			NextCID = "2">
+			<Text
+				CID = "1">
+				系统日志显示&#13;&#10;执行步骤显示
+			</Text>
+		</Element>
+		<Element
+			CID = "371614181"
+			Type = "ListBox"
+			X = "-8"
+			Y = "-33"
+			Width = "139"
+			Height = "331"
+			Flags = "0"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			NextItemID = "3"
+			IsDisabled = "0"
+			HasHorzScrollBar = "0"
+			HasVertScrollBar = "1"
+			Mirror = "0"
+			WordWrap = "0"
+			IsFlat = "0"
+			AutoHeight = "0"
+			HorzOffset = "0"
+			HorzMargin = "0"
+			FirstVisibleItem = "1"
+			ItemHeight = "16"
+			MaxVisibleItems = "20"
+			HorzAlign = "Left"
+			VertAlign = "Centre">
+			<ListBoxItem
+				ItemID = "1"
+				Value = "任务一"
+				IsSelected = "0"/>
+			<ListBoxItem
+				ItemID = "2"
+				Value = "任务二"
+				IsSelected = "0"/>
+		</Element>
+		<Element
+			CID = "371618196"
+			Type = "Table"
+			X = "131"
+			Y = "-33"
+			Width = "528"
+			Height = "331"
+			Flags = "0"
+			HeaderBackgroundColour = "236,233,216,0,16"
+			HeaderBorderColour = "172,168,153,0,17"
+			HeaderTextColour = "0,0,0,0,19"
+			BackgroundColour = "172,168,153,0,13"
+			BorderColour = "164,185,127,0,12"
+			GridLineColour = "241,239,226,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			NextColumnID = "6"
+			IsFlat = "0"
+			IsHeaderBold = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			Mirror = "0"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumnHeaders = "1"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderWordWrap = "0"
+			WordWrap = "0"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "1"
+					Heading = "名称"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Left"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "路径"
+					Width = "60"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Left"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "3"
+					Heading = "状态"
+					Width = "60"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Left"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "4"
+					Heading = "日期"
+					Width = "60"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Left"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "5"
+					Heading = "提交位置"
+					Width = "60"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Left"
+					CellAlignment = "Left"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						设计文档
+					</Cell>
+					<Cell>
+						c:/dir/src
+					</Cell>
+					<Cell>
+						未提交
+					</Cell>
+					<Cell>
+						2012-12-14
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						自测报告
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						检出
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						code1.java
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						code2.java
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "371590927"
+			Type = "FrameWindow"
+			X = "-296"
+			Y = "-903"
+			Width = "504"
+			Height = "372"
+			Flags = "0"
+			WindowColour = "172,168,153,0,13"
+			Typeface = ""
+			FontAttributes = "1"
+			TextSize = "Normal"
+			Title = "系统环境变量设置"
+			TitleBarHeight = "18"
+			IconMargin = "0"
+			BorderSize = "1"
+			IsBorderless = "0"
+			IsActive = "1"
+			IsDocWindow = "0"
+			HasSunkenWindow = "0"
+			CentreText = "0"
+			UseMutedColours = "0"
+			Mirror = "0"
+			Buttons = "17"
+			Icon = ""/>
+		<Element
+			CID = "2028222371"
+			Type = "EditBox"
+			X = "-246"
+			Y = "-859"
+			Width = "124"
+			Height = "21"
+			Flags = "2"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "任务工作区目录"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"
+			EditType = "Text"
+			OverrideTextColour = "0"
+			OverrideDisabledTextColour = "0"
+			OverrideFillColour = "0"
+			OverrideDisabledFillColour = "0"
+			OverrideBorderColour = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			TextColour = "0,0,0,0,9"
+			DisabledTextColour = "161,161,146,0,18"
+			FillColour = "255,255,153,0,0"
+			DisabledFillColour = "236,233,216,0,16"
+			BorderColour = "164,185,127,0,12"/>
+		<Element
+			CID = "2028239048"
+			Type = "EditBox"
+			X = "-13"
+			Y = "-860"
+			Width = "120"
+			Height = "21"
+			Flags = "2"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "vss任务目录"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"
+			EditType = "Text"
+			OverrideTextColour = "0"
+			OverrideDisabledTextColour = "0"
+			OverrideFillColour = "0"
+			OverrideDisabledFillColour = "0"
+			OverrideBorderColour = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			TextColour = "0,0,0,0,9"
+			DisabledTextColour = "161,161,146,0,18"
+			FillColour = "255,255,153,0,0"
+			DisabledFillColour = "236,233,216,0,16"
+			BorderColour = "164,185,127,0,12"/>
+		<Element
+			CID = "2028239017"
+			Type = "EditBox"
+			X = "-245"
+			Y = "-811"
+			Width = "120"
+			Height = "21"
+			Flags = "2"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "本地项目一目录"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"
+			EditType = "Text"
+			OverrideTextColour = "0"
+			OverrideDisabledTextColour = "0"
+			OverrideFillColour = "0"
+			OverrideDisabledFillColour = "0"
+			OverrideBorderColour = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			TextColour = "0,0,0,0,9"
+			DisabledTextColour = "161,161,146,0,18"
+			FillColour = "255,255,153,0,0"
+			DisabledFillColour = "236,233,216,0,16"
+			BorderColour = "164,185,127,0,12"/>
+		<Element
+			CID = "2028227850"
+			Type = "EditBox"
+			X = "-245"
+			Y = "-771"
+			Width = "120"
+			Height = "21"
+			Flags = "2"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "本地项目二目录"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"
+			EditType = "Text"
+			OverrideTextColour = "0"
+			OverrideDisabledTextColour = "0"
+			OverrideFillColour = "0"
+			OverrideDisabledFillColour = "0"
+			OverrideBorderColour = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			TextColour = "0,0,0,0,9"
+			DisabledTextColour = "161,161,146,0,18"
+			FillColour = "255,255,153,0,0"
+			DisabledFillColour = "236,233,216,0,16"
+			BorderColour = "164,185,127,0,12"/>
+		<Element
+			CID = "2028222986"
+			Type = "EditBox"
+			X = "-16"
+			Y = "-815"
+			Width = "120"
+			Height = "21"
+			Flags = "2"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "vss项目一目录"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"
+			EditType = "Text"
+			OverrideTextColour = "0"
+			OverrideDisabledTextColour = "0"
+			OverrideFillColour = "0"
+			OverrideDisabledFillColour = "0"
+			OverrideBorderColour = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			TextColour = "0,0,0,0,9"
+			DisabledTextColour = "161,161,146,0,18"
+			FillColour = "255,255,153,0,0"
+			DisabledFillColour = "236,233,216,0,16"
+			BorderColour = "164,185,127,0,12"/>
+		<Element
+			CID = "2028225037"
+			Type = "EditBox"
+			X = "-15"
+			Y = "-769"
+			Width = "120"
+			Height = "21"
+			Flags = "2"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "vss项目二目录"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"
+			EditType = "Text"
+			OverrideTextColour = "0"
+			OverrideDisabledTextColour = "0"
+			OverrideFillColour = "0"
+			OverrideDisabledFillColour = "0"
+			OverrideBorderColour = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			TextColour = "0,0,0,0,9"
+			DisabledTextColour = "161,161,146,0,18"
+			FillColour = "255,255,153,0,0"
+			DisabledFillColour = "236,233,216,0,16"
+			BorderColour = "164,185,127,0,12"/>
+		<Element
+			CID = "2028229805"
+			Type = "MenuPopup"
+			X = "460"
+			Y = "-412"
+			Width = "110"
+			Height = "88"
+			Flags = "3"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			NextItemID = "6"
+			LeftMargin = "20"
+			RightMargin = "16"
+			Mirror = "0">
+			<MenuPopupItem
+				ItemID = "1"
+				Type = "CommandOption"
+				Item = "Popup"
+				Hotkey = ""
+				IsDisabled = "0"/>
+			<MenuPopupItem
+				ItemID = "2"
+				Type = "Separator"
+				Item = ""
+				Hotkey = ""
+				IsDisabled = "0"/>
+			<MenuPopupItem
+				ItemID = "3"
+				Type = "CommandOption"
+				Item = "用户配置"
+				Hotkey = ""
+				IsDisabled = "0"/>
+			<MenuPopupItem
+				ItemID = "4"
+				Type = "CommandOption"
+				Item = "路径配置"
+				Hotkey = ""
+				IsDisabled = "0"/>
+			<MenuPopupItem
+				ItemID = "5"
+				Type = "CommandOption"
+				Item = "自动化配置"
+				Hotkey = ""
+				IsDisabled = "0"/>
+		</Element>
+		<Element
+			CID = "2028213697"
+			Type = "FrameWindow"
+			X = "291"
+			Y = "-947"
+			Width = "554"
+			Height = "391"
+			Flags = "0"
+			WindowColour = "172,168,153,0,13"
+			Typeface = ""
+			FontAttributes = "1"
+			TextSize = "Normal"
+			Title = "用户配置"
+			TitleBarHeight = "18"
+			IconMargin = "0"
+			BorderSize = "1"
+			IsBorderless = "0"
+			IsActive = "1"
+			IsDocWindow = "0"
+			HasSunkenWindow = "0"
+			CentreText = "0"
+			UseMutedColours = "0"
+			Mirror = "0"
+			Buttons = "17"
+			Icon = ""/>
+		<Element
+			CID = "2028223705"
+			Type = "EditBox"
+			X = "351"
+			Y = "-902"
+			Width = "124"
+			Height = "21"
+			Flags = "2"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "vss用户名"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"
+			EditType = "Text"
+			OverrideTextColour = "0"
+			OverrideDisabledTextColour = "0"
+			OverrideFillColour = "0"
+			OverrideDisabledFillColour = "0"
+			OverrideBorderColour = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			TextColour = "0,0,0,0,9"
+			DisabledTextColour = "161,161,146,0,18"
+			FillColour = "255,255,153,0,0"
+			DisabledFillColour = "236,233,216,0,16"
+			BorderColour = "164,185,127,0,12"/>
+		<Element
+			CID = "2028226818"
+			Type = "EditBox"
+			X = "350"
+			Y = "-817"
+			Width = "360"
+			Height = "21"
+			Flags = "2"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "vss路径safeini"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"
+			EditType = "Text"
+			OverrideTextColour = "0"
+			OverrideDisabledTextColour = "0"
+			OverrideFillColour = "0"
+			OverrideDisabledFillColour = "0"
+			OverrideBorderColour = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			TextColour = "0,0,0,0,9"
+			DisabledTextColour = "161,161,146,0,18"
+			FillColour = "255,255,153,0,0"
+			DisabledFillColour = "236,233,216,0,16"
+			BorderColour = "164,185,127,0,12"/>
+		<Element
+			CID = "2028216041"
+			Type = "EditBox"
+			X = "350"
+			Y = "-860"
+			Width = "124"
+			Height = "21"
+			Flags = "2"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "vss密码"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"
+			EditType = "Text"
+			OverrideTextColour = "0"
+			OverrideDisabledTextColour = "0"
+			OverrideFillColour = "0"
+			OverrideDisabledFillColour = "0"
+			OverrideBorderColour = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			TextColour = "0,0,0,0,9"
+			DisabledTextColour = "161,161,146,0,18"
+			FillColour = "255,255,153,0,0"
+			DisabledFillColour = "236,233,216,0,16"
+			BorderColour = "164,185,127,0,12"/>
+		<Element
+			CID = "2028237314"
+			Type = "TextButton"
+			X = "572"
+			Y = "-638"
+			Width = "75"
+			Height = "23"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "OK"
+			Depth = "2"
+			IsDefault = "1"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = "Accept"/>
+		<Element
+			CID = "2028236409"
+			Type = "TextButton"
+			X = "685"
+			Y = "-639"
+			Width = "73"
+			Height = "23"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "Cancel"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = "Cancel"/>
+		<Element
+			CID = "2028239677"
+			Type = "TextButton"
+			X = "736"
+			Y = "-820"
+			Width = "75"
+			Height = "23"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "添加"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "2028233765"
+			Type = "EditBox"
+			X = "351"
+			Y = "-778"
+			Width = "358"
+			Height = "21"
+			Flags = "2"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "vss路径safeini"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"
+			EditType = "Text"
+			OverrideTextColour = "0"
+			OverrideDisabledTextColour = "0"
+			OverrideFillColour = "0"
+			OverrideDisabledFillColour = "0"
+			OverrideBorderColour = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			TextColour = "0,0,0,0,9"
+			DisabledTextColour = "161,161,146,0,18"
+			FillColour = "255,255,153,0,0"
+			DisabledFillColour = "236,233,216,0,16"
+			BorderColour = "164,185,127,0,12"/>
+		<Element
+			CID = "619776139"
+			Type = "StatusBar"
+			X = "-10"
+			Y = "436"
+			Width = "671"
+			Height = "21"
+			Flags = "2"
+			TopEdge = "Raised"
+			BottotmEdge = "Flat"
+			LeftEdge = "Flat"
+			RightEdge = "Flat"
+			TextColour = "0,0,0,0,19"
+			FillColour = "236,233,216,0,16"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			StatusText = "For Help, press F1"
+			Mirror = "0"/>
+		<Element
+			CID = "619778995"
+			Type = "Toolbar"
+			X = "-10"
+			Y = "-65"
+			Width = "665"
+			Height = "30"
+			Flags = "2"
+			TopEdge = "Groove"
+			BottotmEdge = "Raised"
+			LeftEdge = "Flat"
+			RightEdge = "Flat"/>
+		<Element
+			CID = "619789794"
+			Type = "MenuPopup"
+			X = "-220"
+			Y = "-9"
+			Width = "98"
+			Height = "23"
+			Flags = "3"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			NextItemID = "4"
+			LeftMargin = "20"
+			RightMargin = "16"
+			Mirror = "0">
+			<MenuPopupItem
+				ItemID = "3"
+				Type = "CommandOption"
+				Item = "提交任务"
+				Hotkey = ""
+				IsDisabled = "0"/>
+		</Element>
+		<Element
+			CID = "619806419"
+			Type = "MenuPopup"
+			X = "716"
+			Y = "10"
+			Width = "159"
+			Height = "61"
+			Flags = "3"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			NextItemID = "6"
+			LeftMargin = "20"
+			RightMargin = "16"
+			Mirror = "0">
+			<MenuPopupItem
+				ItemID = "3"
+				Type = "CommandOption"
+				Item = "提交文件到vss"
+				Hotkey = ""
+				IsDisabled = "0"/>
+			<MenuPopupItem
+				ItemID = "4"
+				Type = "CommandOption"
+				Item = "checkout vss文件"
+				Hotkey = ""
+				IsDisabled = "0"/>
+			<MenuPopupItem
+				ItemID = "5"
+				Type = "CommandOption"
+				Item = "查看不同，调用git-dif"
+				Hotkey = ""
+				IsDisabled = "0"/>
+		</Element>
+		<Element
+			CID = "1852210433"
+			Type = "MenuPopup"
+			X = "-152"
+			Y = "-287"
+			Width = "74"
+			Height = "69"
+			Flags = "3"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			NextItemID = "6"
+			LeftMargin = "20"
+			RightMargin = "16"
+			Mirror = "0">
+			<MenuPopupItem
+				ItemID = "1"
+				Type = "CommandOption"
+				Item = "New"
+				Hotkey = ""
+				IsDisabled = "0"/>
+			<MenuPopupItem
+				ItemID = "2"
+				Type = "Separator"
+				Item = ""
+				Hotkey = ""
+				IsDisabled = "0"/>
+			<MenuPopupItem
+				ItemID = "4"
+				Type = "CommandOption"
+				Item = "任务"
+				Hotkey = ""
+				IsDisabled = "0"/>
+			<MenuPopupItem
+				ItemID = "3"
+				Type = "Popup"
+				Item = "文件"
+				Hotkey = ""
+				IsDisabled = "0"/>
+		</Element>
+		<Element
+			CID = "1852210404"
+			Type = "FrameWindow"
+			X = "-607"
+			Y = "-484"
+			Width = "330"
+			Height = "300"
+			Flags = "0"
+			WindowColour = "172,168,153,0,13"
+			Typeface = ""
+			FontAttributes = "1"
+			TextSize = "Normal"
+			Title = "创建一个新任务"
+			TitleBarHeight = "18"
+			IconMargin = "0"
+			BorderSize = "1"
+			IsBorderless = "0"
+			IsActive = "1"
+			IsDocWindow = "0"
+			HasSunkenWindow = "0"
+			CentreText = "0"
+			UseMutedColours = "0"
+			Mirror = "0"
+			Buttons = "17"
+			Icon = ""/>
+		<Element
+			CID = "1852194101"
+			Type = "MenuPopup"
+			X = "-29"
+			Y = "-273"
+			Width = "98"
+			Height = "80"
+			Flags = "3"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			NextItemID = "5"
+			LeftMargin = "20"
+			RightMargin = "16"
+			Mirror = "0">
+			<MenuPopupItem
+				ItemID = "1"
+				Type = "CommandOption"
+				Item = "设计文档"
+				Hotkey = ""
+				IsDisabled = "0"/>
+			<MenuPopupItem
+				ItemID = "2"
+				Type = "CommandOption"
+				Item = "自测报告"
+				Hotkey = ""
+				IsDisabled = "0"/>
+			<MenuPopupItem
+				ItemID = "4"
+				Type = "CommandOption"
+				Item = "修改列表"
+				Hotkey = ""
+				IsDisabled = "0"/>
+			<MenuPopupItem
+				ItemID = "3"
+				Type = "CommandOption"
+				Item = "文件"
+				Hotkey = ""
+				IsDisabled = "0"/>
+		</Element>
+		<Element
+			CID = "1852187719"
+			Type = "CheckListBox"
+			X = "-604"
+			Y = "-462"
+			Width = "324"
+			Height = "232"
+			Flags = "0"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			NextItemID = "9"
+			IsDisabled = "0"
+			HasHorzScrollBar = "0"
+			HasVertScrollBar = "1"
+			Mirror = "0"
+			WordWrap = "0"
+			IsFlat = "0"
+			AutoHeight = "0"
+			HorzOffset = "0"
+			HorzMargin = "2"
+			FirstVisibleItem = "1"
+			ItemHeight = "16"
+			MaxVisibleItems = "20"
+			HorzAlign = "Left"
+			VertAlign = "Centre">
+			<CheckListBoxItem
+				ItemID = "1"
+				Value = "设计文档"
+				CheckState = "1"
+				IsSelected = "0"/>
+			<CheckListBoxItem
+				ItemID = "3"
+				Value = "自测报告"
+				CheckState = "1"
+				IsSelected = "0"/>
+			<CheckListBoxItem
+				ItemID = "2"
+				Value = "修改列表"
+				CheckState = "1"
+				IsSelected = "0"/>
+			<CheckListBoxItem
+				ItemID = "5"
+				Value = "DevSQL"
+				CheckState = "1"
+				IsSelected = "0"/>
+			<CheckListBoxItem
+				ItemID = "4"
+				Value = "DML"
+				CheckState = "0"
+				IsSelected = "0"/>
+			<CheckListBoxItem
+				ItemID = "6"
+				Value = "DDL"
+				CheckState = "0"
+				IsSelected = "0"/>
+			<CheckListBoxItem
+				ItemID = "8"
+				Value = "数据库审批表"
+				CheckState = "0"
+				IsSelected = "0"/>
+			<CheckListBoxItem
+				ItemID = "7"
+				Value = "数据库PDM"
+				CheckState = "0"
+				IsSelected = "0"/>
+		</Element>
+		<Element
+			CID = "1852210996"
+			Type = "TextButton"
+			X = "-481"
+			Y = "-218"
+			Width = "75"
+			Height = "23"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "OK"
+			Depth = "2"
+			IsDefault = "1"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = "Accept"/>
+		<Element
+			CID = "1852204404"
+			Type = "TextButton"
+			X = "-376"
+			Y = "-219"
+			Width = "75"
+			Height = "23"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Typeface = ""
+			FontAttributes = "0"
+			TextSize = "Normal"
+			Text = "Cancel"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = "Cancel"/>
+	</Elements>
+	<Connections
+		CID = "2">
+		<Connection
+			CID = "2028239557"
+			Layer = "DesignElements"
+			Trigger = "LeftClick"
+			Type = "Navigation"
+			SubType = "ModalSelector"
+			SourceSubItemID = "5"
+			SourceRefID = "371594485"
+			TargetRefID = "2028229805"
+			ConLineWidth = "2"
+			ConLineColour = "0,0,0,0,0"/>
+		<Connection
+			CID = "2028209678"
+			Layer = "DesignElements"
+			Trigger = "LeftClick"
+			Type = "Navigation"
+			SubType = "Modal"
+			SourceSubItemID = "4"
+			SourceRefID = "2028229805"
+			TargetRefID = "371590927"
+			ConLineWidth = "2"
+			ConLineColour = "0,0,0,0,0"/>
+		<Connection
+			CID = "2028236067"
+			Layer = "DesignElements"
+			Trigger = "LeftClick"
+			Type = "Navigation"
+			SubType = "Modal"
+			SourceSubItemID = "3"
+			SourceRefID = "2028229805"
+			TargetRefID = "2028213697"
+			ConLineWidth = "2"
+			ConLineColour = "0,0,0,0,0"/>
+		<Connection
+			CID = "619796020"
+			Layer = "DesignElements"
+			Trigger = "LeftClick"
+			Type = "Navigation"
+			SubType = "ModelessSwitch"
+			SourceSubItemID = "1"
+			SourceRefID = "371614181"
+			TargetRefID = "371618196"
+			ConLineWidth = "2"
+			ConLineColour = "0,0,0,0,0"/>
+		<Connection
+			CID = "619788130"
+			Layer = "DesignElements"
+			Trigger = "RightClick"
+			Type = "Navigation"
+			SubType = "ModalSelector"
+			SourceSubItemID = "2"
+			SourceRefID = "371614181"
+			TargetRefID = "619789794"
+			ConLineWidth = "2"
+			ConLineColour = "0,0,0,0,0"/>
+		<Connection
+			CID = "619805714"
+			Layer = "DesignElements"
+			Trigger = "LeftClick"
+			Type = "Navigation"
+			SubType = "ModelessSwitch"
+			SourceSubItemID = "3"
+			SourceRefID = "619789794"
+			TargetRefID = "371591679"
+			ConLineWidth = "2"
+			ConLineColour = "0,0,0,0,0"/>
+		<Connection
+			CID = "619797187"
+			Layer = "DesignElements"
+			Trigger = "RightClick"
+			Type = "Navigation"
+			SubType = "ModalSelector"
+			SourceSubItemID = "1"
+			SourceRefID = "371618196"
+			TargetRefID = "619806419"
+			ConLineWidth = "2"
+			ConLineColour = "0,0,0,0,0"/>
+		<Connection
+			CID = "1852184399"
+			Layer = "DesignElements"
+			Trigger = "LeftClick"
+			Type = "Navigation"
+			SubType = "ModalSelector"
+			SourceSubItemID = "1"
+			SourceRefID = "371594485"
+			TargetRefID = "1852210433"
+			ConLineWidth = "2"
+			ConLineColour = "0,0,0,0,0"/>
+		<Connection
+			CID = "1852192473"
+			Layer = "DesignElements"
+			Trigger = "LeftClick"
+			Type = "Navigation"
+			SubType = "Modal"
+			SourceSubItemID = "4"
+			SourceRefID = "1852210433"
+			TargetRefID = "1852210404"
+			ConLineWidth = "2"
+			ConLineColour = "0,0,0,0,0"/>
+		<Connection
+			CID = "1852198937"
+			Layer = "DesignElements"
+			Trigger = "LeftClick"
+			Type = "Navigation"
+			SubType = "ModalSelector"
+			SourceSubItemID = "3"
+			SourceRefID = "1852210433"
+			TargetRefID = "1852194101"
+			ConLineWidth = "2"
+			ConLineColour = "0,0,0,0,0"/>
+	</Connections>
+	<Groups
+		CID = "3"/>
+	<SelectionGroups
+		CID = "4"/>
+	<Notes
+		CID = "5">
+		<Note
+			CID = "1126527590"
+			Name = "Description"
+			NextCID = "2">
+			<Text
+				CID = "1">
+				
+			</Text>
+		</Note>
+	</Notes>
+</Screen>

@@ -1,0 +1,17 @@
+<Project
+	CID = "1"
+	NextCID = "3">
+	<Links
+		CID = "1">
+		<Link
+			RootPath = "$Application"
+			Filename = "Web Widgets Library.gdp"
+			RelativePath = "Libraries\Web Widgets Library\"/>
+		<Link
+			RootPath = "$Application"
+			Filename = "Windows Library.gdp"
+			RelativePath = "Libraries\Windows Library\"/>
+	</Links>
+	<Options
+		CID = "2"/>
+</Project>

@@ -3,5 +3,37 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="405" Width="565" >
     <Grid>
+            <Menu Height="23" HorizontalAlignment="Left" Name="menu1" VerticalAlignment="Top" Width="565">
+                <MenuItem Header="文件">
+                    <MenuItem Header="打开" Command="Open"/>
+                    <MenuItem Header="查找" Command="Find" />
+                    <MenuItem Header="新建任务" />
+                    <MenuItem Header="新建文件">
+                        <MenuItem Header="设计文档"></MenuItem>
+                        <MenuItem Header="自测报告"></MenuItem>
+                        <MenuItem Header="修改列表"></MenuItem>
+                        <MenuItem Header="DEV-SQL"></MenuItem>
+                        <MenuItem Header="DML"></MenuItem>
+                        <MenuItem Header="DDL"></MenuItem>
+                        <MenuItem Header="数据库审批表"></MenuItem>
+                        <MenuItem Header="数据库PDM"></MenuItem>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="设置">
+                    <MenuItem Header="用户配置" Command="" />
+                    <MenuItem Header="路径配置" Command="" />
+                    <MenuItem Header="自动化配置" Command="" />
+                    <MenuItem Header="环境配置" Command="" />
+                </MenuItem>
+                <MenuItem Header="帮助" />
+            </Menu>
+        
+        <RichTextBox  />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="153*" />
+                <ColumnDefinition Width="390*" />
+            </Grid.ColumnDefinitions>
+        </Grid>
     </Grid>
 </Window>
