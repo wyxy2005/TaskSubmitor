@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enum\SysEnum.cs" />
+    <Compile Include="Enum\TaskFileEnum.cs" />
+    <Compile Include="SysData.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
