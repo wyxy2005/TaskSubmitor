@@ -73,7 +73,7 @@ namespace VssTask
         public System.Data.DataTable ReadUI()
         {
             System.Data.DataTable dtbSheet = ReadSheet(RecordSheetEnum.UI);
-            dtbSheet = Sys.RemoveSubTable(dtbSheet, 0, UI_DATA_ROW);
+            dtbSheet = SysLib.RemoveSubTable(dtbSheet, 0, UI_DATA_ROW);
             return dtbSheet;
         }
 
@@ -84,7 +84,7 @@ namespace VssTask
         public System.Data.DataTable ReadJava()
         {
             System.Data.DataTable dtbSheet = ReadSheet(RecordSheetEnum.JAVA);
-            dtbSheet = Sys.RemoveSubTable(dtbSheet, 0, JAVA_DATA_ROW);
+            dtbSheet = SysLib.RemoveSubTable(dtbSheet, 0, JAVA_DATA_ROW);
             return dtbSheet;
         }
 
@@ -95,7 +95,7 @@ namespace VssTask
         public System.Data.DataTable ReadSQL()
         {
             System.Data.DataTable dtbSheet = ReadSheet(RecordSheetEnum.SQL);
-            dtbSheet = Sys.RemoveSubTable(dtbSheet, 0, SQL_DATA_ROW);
+            dtbSheet = SysLib.RemoveSubTable(dtbSheet, 0, SQL_DATA_ROW);
             return dtbSheet;
         }
 
