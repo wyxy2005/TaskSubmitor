@@ -13,7 +13,7 @@ namespace Util
     /// 作者：ChengNing
     /// 日期：2012-12-06
     /// </summary>
-    public static class Sys
+    public static class SysLib
     {
         /// <summary>
         /// 将DataTable指定列转化为string的List
