@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="UIForm" GeneratedClassName="sys">
+  <Profiles />
+  <Settings>
+    <Setting Name="username" Type="System.String" Scope="User">
+      <Value Profile="(Default)">chengning</Value>
+    </Setting>
+    <Setting Name="password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">chengning</Value>
+    </Setting>
+    <Setting Name="safeIniSrc" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\10.10.134.71\lisvss_src\srcsafe.ini</Value>
+    </Setting>
+    <Setting Name="safeIniDoc" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\10.10.134.71\lisvss_doc\srcsafe.ini</Value>
+    </Setting>
+    <Setting Name="localWorkspace" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Work\Task</Value>
+    </Setting>
+    <Setting Name="localProjectP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Work\Dev\Workspace\AB-P-devlis</Value>
+    </Setting>
+    <Setting Name="localProjectG" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Work\Dev\Workspace\AB-G-devlis</Value>
+    </Setting>
+    <Setting Name="vssProjectP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$/AB-P-devlis</Value>
+    </Setting>
+    <Setting Name="vssProjectG" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$/AB-G-devlis</Value>
+    </Setting>
+    <Setting Name="vssUpdatePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$/B-更新目录/03-数据更新/01核心</Value>
+    </Setting>
+    <Setting Name="TaskPrex" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ABLREQUEST</Value>
+    </Setting>
+    <Setting Name="Author" Type="System.String" Scope="User">
+      <Value Profile="(Default)">程宁</Value>
+    </Setting>
+    <Setting Name="JiraUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://jira.abic.com/browse/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

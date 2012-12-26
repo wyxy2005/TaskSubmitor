@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("TaskSubmitor")]
+[assembly: AssemblyTitle("BLL")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ChengNing")]
-[assembly: AssemblyProduct("TaskSubmitor")]
-[assembly: AssemblyCopyright("Copyright © ChengNing 2012")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyProduct("BLL")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("18cd94e7-70fc-45d5-a4e9-137b0563ca76")]
+[assembly: Guid("6e9baf97-5d21-4cd4-b1a3-ec51db486080")]
 
 // 程序集的版本信息由下面四个值组成:
 //

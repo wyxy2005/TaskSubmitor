@@ -2,20 +2,18 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1458859D-71B1-4D4C-9A91-A4DB48DB7547}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{DEA69B8D-6236-46A7-B28C-82E9E138DB30}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleTest</RootNamespace>
-    <AssemblyName>ConsoleTest</AssemblyName>
+    <RootNamespace>GitHelper</RootNamespace>
+    <AssemblyName>GitHelper</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,8 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LibGit2Sharp">
+      <HintPath>..\..\..\DLL\git\LibGit2Sharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,32 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OfficeHelperTest.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="GitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VssTaskTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GitHelper\GitHelper.csproj">
-      <Project>{DEA69B8D-6236-46A7-B28C-82E9E138DB30}</Project>
-      <Name>GitHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{63D7D8FF-1930-4D0E-9D14-7655092E6CBC}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OfficeHelper\OfficeHelper.csproj">
-      <Project>{6600CD58-DB53-4B3A-B37C-00F65374162A}</Project>
-      <Name>OfficeHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Util\Util.csproj">
-      <Project>{2D0F237B-9896-48C6-919B-D03FE3F9A6F8}</Project>
-      <Name>Util</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VssTask\VssTask.csproj">
-      <Project>{ACE93518-3E25-49F3-A954-F3075868EC91}</Project>
-      <Name>VssTask</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

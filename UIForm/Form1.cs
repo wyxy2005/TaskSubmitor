@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace UIForm
 {
-    public partial class TaskSubmitor : Form
+    public partial class Form1 : Form
     {
-        public TaskSubmitor()
+        public Form1()
         {
             InitializeComponent();
         }

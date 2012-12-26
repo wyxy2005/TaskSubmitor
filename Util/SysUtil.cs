@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
+using System.ComponentModel;
 
 namespace Util
 {
@@ -21,6 +23,35 @@ namespace Util
         public static void OpenDir(string path)
         {
             System.Diagnostics.Process.Start("explorer.exe", path);
+        }
+
+        /// <summary>
+        /// 使用浏览器打开指定的链接
+        /// </summary>
+        /// <param name="url"></param>
+        public static void BrowseURL(string url)
+        {
+            //默认浏览器
+            try
+            {
+                Process browser = new Process();
+                browser.StartInfo.Arguments = url;
+                browser.Start();
+                //Process.Start(url);//调用系统打开
+            }
+            catch (Win32Exception noBrowser)
+            {
+                if (noBrowser.ErrorCode == -2147467259)
+                    Console.WriteLine("没有默认浏览器");
+                    //MessageBox.Show(noBrowser.Message); 
+            }
+            catch (Exception ex)
+            {//使用IE打开
+                Process browser = new Process();
+                browser.StartInfo.FileName = "iexplore.exe";
+                browser.StartInfo.Arguments = url;
+                browser.Start();
+            }
         }
     }
 }

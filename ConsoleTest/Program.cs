@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using Model;
+using GitHelper;
 
 namespace ConsoleTest
 {
@@ -17,6 +20,12 @@ namespace ConsoleTest
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            GitTest.TestDiff();
+            string templatePath = AppDomain.CurrentDomain.BaseDirectory + SysData.FileName.TEMPLATE_PATH;
+            //设计文档
+            File.Copy(templatePath + SysData.FileName.DESIGN,
+                @"C:\" + SysData.FileName.DESIGN);
+
             //vss项目操作测试
             VssTaskTest.Test();
 
