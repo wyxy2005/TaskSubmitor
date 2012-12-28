@@ -6,6 +6,7 @@ using Model;
 using System.IO;
 using OfficeHelper;
 using Model.Enum;
+using DAL;
 
 namespace BLL
 {
@@ -47,6 +48,9 @@ namespace BLL
                 //taskDir.Create();
                 //创建任务文件
                 CreateTemplate(taskDir);
+                //写入数据文件
+                TaskDAL taskDal = new TaskDAL();
+                int  ire = taskDal.Insert(this.task);
 
                 return true;
             }
@@ -70,25 +74,28 @@ namespace BLL
             string destFile = "";
             try
             {
-                //设计文档
-                if (this.task.Files.Contains(TaskFileEnum.Design))
-                    CreateDesignFile(templatePath, destDirName);
-
-                //自测文档
-                if (this.task.Files.Contains(TaskFileEnum.Test))
-                    CreateTestFile(templatePath, destDirName);
-
-                //修改列表
-                if (this.task.Files.Contains(TaskFileEnum.Xls))
-                    CreateModifyFile(templatePath, destDirName);
-
-                //DEV-SQL
-                if (this.task.Files.Contains(TaskFileEnum.DevSql))
+                foreach (TaskFile file in this.task.Files)
                 {
-                    sourceFile = templatePath + SysData.FileName.DEV;
-                    destFile = destDirName + @"DEV-SQL.sql";
-                    File.Copy(sourceFile, destFile);
-                    Console.WriteLine("DEV-SQL创建成功");
+                    //设计文档
+                    if (file.Type == TaskFileEnum.Design)
+                        CreateDesignFile(templatePath, destDirName);
+
+                    //自测文档
+                    if (file.Type == TaskFileEnum.Test)
+                        CreateTestFile(templatePath, destDirName);
+
+                    //修改列表
+                    if (file.Type == TaskFileEnum.Xls)
+                        CreateModifyFile(templatePath, destDirName);
+
+                    //DEV-SQL
+                    if (file.Type == TaskFileEnum.DevSql)
+                    {
+                        sourceFile = templatePath + SysData.FileName.DEV;
+                        destFile = destDirName + @"DEV-SQL.sql";
+                        File.Copy(sourceFile, destFile);
+                        Console.WriteLine("DEV-SQL创建成功");
+                    }
                 }
             }
             catch (Exception ex)

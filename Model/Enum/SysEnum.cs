@@ -10,6 +10,7 @@ namespace Model.Enum
     /// </summary>
     public enum SysEnum
     {
+        PGI
     }
 
     /// <summary>
@@ -17,6 +18,8 @@ namespace Model.Enum
     /// </summary>
     public enum ChannelEnum
     { 
+        G,
+        P
     }
 
     /// <summary>
@@ -24,6 +27,21 @@ namespace Model.Enum
     /// </summary>
     public enum ModuleEnum
     { 
+    }
+
+    public enum PhaseEnum
+    {
+        /// <summary>
+        /// 需求
+        /// </summary>
+        ANA,
+        DEV,
+        DAT,
+        UAT,
+        /// <summary>
+        /// 上线
+        /// </summary>
+        ON
     }
 
     /// <summary>

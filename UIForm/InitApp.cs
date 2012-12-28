@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using Util;
 
 namespace UIForm
 {
@@ -26,6 +27,10 @@ namespace UIForm
         {
             if (!Directory.Exists(@"..\Template"))
                 Directory.CreateDirectory(@"..\Template");
+            if (!File.Exists(@"data\data.xml"))
+            {
+                SysUtil.CreateDataFile();
+            }
         }
     }
 }

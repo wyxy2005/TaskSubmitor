@@ -94,26 +94,68 @@ namespace UIForm
             task.Prefix = txt_Prefix.Text.Trim();
             task.No = int.Parse(txt_No.Text.Trim());
             task.Name = txt_Name.Text.Trim();
+            task.Dir = sys.Default.localWorkspace + @"\" + task.Description;
             //需要创建的文档
-            IList<TaskFileEnum> files = GetTaskFiles();
+            IList<TaskFile> files = GenTaskFiles();
             task.Files = files;
             NewTaskBLL newTask = new NewTaskBLL(task, sys.Default.localWorkspace, sys.Default.Author);
             newTask.Create();
         }
 
-        private IList<TaskFileEnum> GetTaskFiles()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private IList<TaskFile> GenTaskFiles()
         {
-            IList<TaskFileEnum> files = new List<TaskFileEnum>();
+            //TODO:文件名称
+            IList<TaskFile> files = new List<TaskFile>();
             if (cbx_DesignDoc.Checked)
-                files.Add(TaskFileEnum.Design);
+            {
+                TaskFile file = new TaskFile();
+                file.Type = TaskFileEnum.Design;
+                files.Add(file);
+            }
             if (cbx_TestDoc.Checked)
-                files.Add(TaskFileEnum.Test);
+            {
+                TaskFile file = new TaskFile();
+                file.Type = TaskFileEnum.Test;
+                files.Add(file);
+            }
             if (cbx_RecordXls.Checked)
-                files.Add(TaskFileEnum.Xls);
+            {
+                TaskFile file = new TaskFile();
+                file.Type = TaskFileEnum.Xls;
+                files.Add(file);
+            }
             if (cbx_DevSql.Checked)
-                files.Add(TaskFileEnum.DevSql);
+            {
+                TaskFile file = new TaskFile();
+                file.Type = TaskFileEnum.DevSql;
+                files.Add(file);
+            }
             if (cbx_DmlSql.Checked)
-                files.Add(TaskFileEnum.DML);
+            {
+                TaskFile file = new TaskFile();
+                file.Type = TaskFileEnum.DML;
+                files.Add(file);
+            }
+            return files;
+        }
+
+        private IList<TaskFile> GetTaskFiles()
+        {
+            IList<TaskFile> files = new List<TaskFile>();
+            //if (cbx_DesignDoc.Checked)
+            //    files.Add(TaskFileEnum.Design);
+            //if (cbx_TestDoc.Checked)
+            //    files.Add(TaskFileEnum.Test);
+            //if (cbx_RecordXls.Checked)
+            //    files.Add(TaskFileEnum.Xls);
+            //if (cbx_DevSql.Checked)
+            //    files.Add(TaskFileEnum.DevSql);
+            //if (cbx_DmlSql.Checked)
+            //    files.Add(TaskFileEnum.DML);
             return files;
         }
 

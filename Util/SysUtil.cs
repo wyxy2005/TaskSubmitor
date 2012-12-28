@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Xml;
+using System.IO;
 
 namespace Util
 {
@@ -52,6 +54,24 @@ namespace Util
                 browser.StartInfo.Arguments = url;
                 browser.Start();
             }
+        }
+
+        /// <summary>
+        /// 创建系统数据文件
+        /// </summary>
+        public static void CreateDataFile()
+        {
+            XmlDocument xmldoc = new XmlDocument();
+            //加入XML的声明段落,<?xml version="1.0" encoding="gb2312"?>
+            XmlDeclaration xmldecl;
+            xmldecl = xmldoc.CreateXmlDeclaration("1.0", "gb2312", null);
+            xmldoc.AppendChild(xmldecl);
+
+            //加入一个根元素
+            XmlElement xmlelem = xmldoc.CreateElement("", "Tasks", "");
+            xmldoc.AppendChild(xmlelem);
+            Directory.CreateDirectory(@".\data");
+            xmldoc.Save(@".\data\data.xml");
         }
     }
 }

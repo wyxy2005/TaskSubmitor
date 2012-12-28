@@ -175,6 +175,11 @@ namespace UIForm
             newTask.Show();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_goto_Click(object sender, EventArgs e)
         {
             string url = sys.Default.JiraUrl + sys.Default.TaskPrex + "-" + txt_JiraNo.Text.Trim();
@@ -192,6 +197,16 @@ namespace UIForm
         {
             if (e.KeyCode == Keys.Enter)
                 btn_goto_Click(sender, e);
+        }
+
+        /// <summary>
+        /// 上线
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_CopyToOnline_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

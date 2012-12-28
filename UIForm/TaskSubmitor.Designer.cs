@@ -80,17 +80,19 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.txt_JiraNo = new System.Windows.Forms.TextBox();
+            this.btn_goto = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tv_TaskList = new System.Windows.Forms.TreeView();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.gb_Top = new System.Windows.Forms.GroupBox();
+            this.btn_CopyToOnline = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.txt_JiraNo = new System.Windows.Forms.TextBox();
-            this.btn_goto = new System.Windows.Forms.Button();
+            this.rtx_logOutput = new System.Windows.Forms.RichTextBox();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -106,9 +108,8 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.gb_Top.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -126,7 +127,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(792, 24);
+            this.menuStrip.Size = new System.Drawing.Size(966, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -494,7 +495,7 @@
             this.toolStripStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 544);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(792, 22);
+            this.statusStrip.Size = new System.Drawing.Size(966, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -503,6 +504,30 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(29, 17);
             this.toolStripStatusLabel.Text = "状态";
+            // 
+            // txt_JiraNo
+            // 
+            this.txt_JiraNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_JiraNo.Location = new System.Drawing.Point(828, 26);
+            this.txt_JiraNo.Name = "txt_JiraNo";
+            this.txt_JiraNo.Size = new System.Drawing.Size(67, 21);
+            this.txt_JiraNo.TabIndex = 4;
+            this.toolTip.SetToolTip(this.txt_JiraNo, "输入JIRA号");
+            this.txt_JiraNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_JiraNo_KeyUp);
+            // 
+            // btn_goto
+            // 
+            this.btn_goto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_goto.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btn_goto.BackgroundImage = global::UIForm.Properties.Resources._goto;
+            this.btn_goto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_goto.Location = new System.Drawing.Point(895, 24);
+            this.btn_goto.Name = "btn_goto";
+            this.btn_goto.Size = new System.Drawing.Size(67, 23);
+            this.btn_goto.TabIndex = 5;
+            this.toolTip.SetToolTip(this.btn_goto, "转到JIRA中的问题");
+            this.btn_goto.UseVisualStyleBackColor = false;
+            this.btn_goto.Click += new System.EventHandler(this.btn_goto_Click);
             // 
             // splitContainer1
             // 
@@ -521,9 +546,10 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
-            this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(792, 495);
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Panel2.Controls.Add(this.listView1);
+            this.splitContainer1.Panel2.Controls.Add(this.rtx_logOutput);
+            this.splitContainer1.Size = new System.Drawing.Size(966, 495);
             this.splitContainer1.SplitterDistance = 264;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -535,19 +561,35 @@
             this.tv_TaskList.Size = new System.Drawing.Size(257, 491);
             this.tv_TaskList.TabIndex = 0;
             // 
-            // splitContainer2
+            // panel1
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.gb_Top);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(526, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(168, 491);
+            this.panel1.TabIndex = 1;
             // 
-            // splitContainer2.Panel2
+            // gb_Top
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.listView1);
-            this.splitContainer2.Size = new System.Drawing.Size(520, 100);
-            this.splitContainer2.SplitterDistance = 57;
-            this.splitContainer2.TabIndex = 0;
+            this.gb_Top.Controls.Add(this.btn_CopyToOnline);
+            this.gb_Top.Location = new System.Drawing.Point(3, 3);
+            this.gb_Top.Name = "gb_Top";
+            this.gb_Top.Size = new System.Drawing.Size(163, 207);
+            this.gb_Top.TabIndex = 0;
+            this.gb_Top.TabStop = false;
+            this.gb_Top.Text = "工具箱";
+            // 
+            // btn_CopyToOnline
+            // 
+            this.btn_CopyToOnline.Location = new System.Drawing.Point(7, 33);
+            this.btn_CopyToOnline.Name = "btn_CopyToOnline";
+            this.btn_CopyToOnline.Size = new System.Drawing.Size(66, 23);
+            this.btn_CopyToOnline.TabIndex = 0;
+            this.btn_CopyToOnline.Text = "上线";
+            this.btn_CopyToOnline.UseVisualStyleBackColor = true;
+            this.btn_CopyToOnline.Click += new System.EventHandler(this.btn_CopyToOnline_Click);
             // 
             // listView1
             // 
@@ -560,43 +602,19 @@
             listViewItem1,
             listViewItem2,
             listViewItem3});
-            this.listView1.Location = new System.Drawing.Point(0, -39);
+            this.listView1.Location = new System.Drawing.Point(0, 1);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(518, 284);
+            this.listView1.Size = new System.Drawing.Size(512, 283);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // richTextBox1
+            // rtx_logOutput
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(-5, 324);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(521, 127);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            // 
-            // txt_JiraNo
-            // 
-            this.txt_JiraNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_JiraNo.Location = new System.Drawing.Point(654, 26);
-            this.txt_JiraNo.Name = "txt_JiraNo";
-            this.txt_JiraNo.Size = new System.Drawing.Size(67, 21);
-            this.txt_JiraNo.TabIndex = 4;
-            this.toolTip.SetToolTip(this.txt_JiraNo, "输入JIRA号");
-            this.txt_JiraNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_JiraNo_KeyUp);
-            // 
-            // btn_goto
-            // 
-            this.btn_goto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_goto.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btn_goto.BackgroundImage = global::UIForm.Properties.Resources._goto;
-            this.btn_goto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_goto.Location = new System.Drawing.Point(721, 24);
-            this.btn_goto.Name = "btn_goto";
-            this.btn_goto.Size = new System.Drawing.Size(67, 23);
-            this.btn_goto.TabIndex = 5;
-            this.toolTip.SetToolTip(this.btn_goto, "转到JIRA中的问题");
-            this.btn_goto.UseVisualStyleBackColor = false;
-            this.btn_goto.Click += new System.EventHandler(this.btn_goto_Click);
+            this.rtx_logOutput.Location = new System.Drawing.Point(-5, 281);
+            this.rtx_logOutput.Name = "rtx_logOutput";
+            this.rtx_logOutput.Size = new System.Drawing.Size(520, 207);
+            this.rtx_logOutput.TabIndex = 0;
+            this.rtx_logOutput.Text = "";
             // 
             // newToolStripButton
             // 
@@ -678,7 +696,7 @@
             this.helpToolStripButton});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(792, 25);
+            this.toolStrip.Size = new System.Drawing.Size(966, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -687,7 +705,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(792, 566);
+            this.ClientSize = new System.Drawing.Size(966, 566);
             this.Controls.Add(this.btn_goto);
             this.Controls.Add(this.txt_JiraNo);
             this.Controls.Add(this.splitContainer1);
@@ -708,9 +726,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.gb_Top.ResumeLayout(false);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -769,13 +786,12 @@
         private System.Windows.Forms.ToolStripMenuItem menu_Tool_NewTask;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView tv_TaskList;
-        private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtx_logOutput;
         private System.Windows.Forms.TextBox txt_JiraNo;
         private System.Windows.Forms.Button btn_goto;
         private System.Windows.Forms.ToolStripButton newToolStripButton;
@@ -787,6 +803,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox gb_Top;
+        private System.Windows.Forms.Button btn_CopyToOnline;
     }
 }
 

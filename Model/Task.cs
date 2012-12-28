@@ -15,15 +15,50 @@ namespace Model
         private int no;
         private string name;
         private string description;
+        private string dir;
+
+        public string Dir
+        {
+            get { return dir; }
+            set { dir = value; }
+        }
+
+        private PhaseEnum phase;
+
+        public PhaseEnum Phase
+        {
+            get { return phase; }
+            set { phase = value; }
+        }
+        private ModuleEnum module;
+
+        public ModuleEnum Module
+        {
+            get { return module; }
+            set { module = value; }
+        }
         private SysEnum sys;
-        private string channel;
+
+        public SysEnum Sys
+        {
+            get { return sys; }
+            set { sys = value; }
+        }
+        
+        private ChannelEnum channel;
+
+        public ChannelEnum Channel
+        {
+            get { return channel; }
+            set { channel = value; }
+        }
         private string state;
-        private IList<TaskFileEnum> files;
+        private IList<TaskFile> files;
 
         /// <summary>
         /// 任务所拥有的文档类型列表
         /// </summary>
-        public IList<TaskFileEnum> Files
+        public IList<TaskFile> Files
         {
             get { return files; }
             set { files = value; }
@@ -46,6 +81,7 @@ namespace Model
                 description = value;
             }
         }
+
         /// <summary>
         /// 需求名称
         /// </summary>

@@ -71,14 +71,14 @@ namespace VssTask
         public void Submit()
         {
             //设置文档vss
-            ////上传自测报告，设计报告（研发文档）
-            //AddDoc();
+            //上传自测报告，设计报告（研发文档）
+            AddDoc();
             //设置程序vss
             //上传sql文件等（$/B-更新目录/03-数据更新/01核心/年月/）
             //AddSqlFile();
-            ////check in文件到vss(对应文件目录)
-            //CheckIn();
-            ////填写vss应用更新记录表（$/B-更新目录/01-应用更新/年月/年月日/11点，17点）
+            //check in文件到vss(对应文件目录)
+            CheckIn();
+            //填写vss应用更新记录表（$/B-更新目录/01-应用更新/年月/年月日/11点，17点）
             UpdateDayRecordFile();
             ////填写vss应用更新的更新记录表($/B-更新目录/01-应用更新/)
             //UpdateRecordFile();
