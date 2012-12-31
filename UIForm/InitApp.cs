@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using Util;
+using log4net;
+using System.Reflection;
 
 namespace UIForm
 {
@@ -31,6 +33,14 @@ namespace UIForm
             {
                 SysUtil.CreateDataFile();
             }
+            InitLog();
         }
+
+        private static void InitLog()
+        {
+            ILog log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            log.Info("启动程序");
+        }
+
     }
 }

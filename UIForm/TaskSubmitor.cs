@@ -9,15 +9,21 @@ using System.Windows.Forms;
 
 using UIForm.config;
 using Util;
+using UIForm.Tools;
+using log4net;
+using System.Reflection;
 
 namespace UIForm
 {
     public partial class TaskSubmitor : Form
     {
         private int childFormNumber = 0;
+        private ILog log;
 
         public TaskSubmitor()
         {
+            log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            
             InitializeComponent();
             InitUI();
             InitData();
@@ -206,7 +212,14 @@ namespace UIForm
         /// <param name="e"></param>
         private void btn_CopyToOnline_Click(object sender, EventArgs e)
         {
+            Online onlineForm = new Online();
+            onlineForm.ShowDialog();
+            //this.ShowDialog(Online);
+        }
 
+        private void TaskSubmitor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            log.Info("退出程序");
         }
 
     }

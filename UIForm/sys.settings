@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="username" Type="System.String" Scope="User">
-      <Value Profile="(Default)">chengning</Value>
+      <Value Profile="(Default)">******</Value>
     </Setting>
     <Setting Name="password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">chengning</Value>
+      <Value Profile="(Default)">******</Value>
     </Setting>
     <Setting Name="safeIniSrc" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\\10.10.134.71\lisvss_src\srcsafe.ini</Value>
+      <Value Profile="(Default)"></Value>
     </Setting>
     <Setting Name="safeIniDoc" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\\10.10.134.71\lisvss_doc\srcsafe.ini</Value>
+      <Value Profile="(Default)"></Value>
     </Setting>
     <Setting Name="localWorkspace" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\Work\Task</Value>
