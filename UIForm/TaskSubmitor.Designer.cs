@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskSubmitor));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("");
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,8 +86,10 @@
             this.tv_TaskList = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gb_Top = new System.Windows.Forms.GroupBox();
+            this.btn_NewTask = new System.Windows.Forms.Button();
+            this.btn_ToDat = new System.Windows.Forms.Button();
             this.btn_CopyToOnline = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lv_fileList = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -102,6 +104,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.btn_checkout = new System.Windows.Forms.Button();
+            this.btn_Copy = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -127,7 +131,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(966, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1063, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -493,9 +497,9 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 544);
+            this.statusStrip.Location = new System.Drawing.Point(0, 718);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(966, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1063, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -508,7 +512,7 @@
             // txt_JiraNo
             // 
             this.txt_JiraNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_JiraNo.Location = new System.Drawing.Point(828, 26);
+            this.txt_JiraNo.Location = new System.Drawing.Point(925, 26);
             this.txt_JiraNo.Name = "txt_JiraNo";
             this.txt_JiraNo.Size = new System.Drawing.Size(67, 21);
             this.txt_JiraNo.TabIndex = 4;
@@ -521,7 +525,7 @@
             this.btn_goto.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.btn_goto.BackgroundImage = global::UIForm.Properties.Resources._goto;
             this.btn_goto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_goto.Location = new System.Drawing.Point(895, 24);
+            this.btn_goto.Location = new System.Drawing.Point(992, 24);
             this.btn_goto.Name = "btn_goto";
             this.btn_goto.Size = new System.Drawing.Size(67, 23);
             this.btn_goto.TabIndex = 5;
@@ -547,9 +551,9 @@
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Panel2.Controls.Add(this.listView1);
+            this.splitContainer1.Panel2.Controls.Add(this.lv_fileList);
             this.splitContainer1.Panel2.Controls.Add(this.rtx_logOutput);
-            this.splitContainer1.Size = new System.Drawing.Size(966, 495);
+            this.splitContainer1.Size = new System.Drawing.Size(1063, 669);
             this.splitContainer1.SplitterDistance = 264;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -558,7 +562,7 @@
             this.tv_TaskList.Dock = System.Windows.Forms.DockStyle.Left;
             this.tv_TaskList.Location = new System.Drawing.Point(0, 0);
             this.tv_TaskList.Name = "tv_TaskList";
-            this.tv_TaskList.Size = new System.Drawing.Size(257, 491);
+            this.tv_TaskList.Size = new System.Drawing.Size(257, 665);
             this.tv_TaskList.TabIndex = 0;
             // 
             // panel1
@@ -566,24 +570,48 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.gb_Top);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(526, 0);
+            this.panel1.Location = new System.Drawing.Point(617, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(168, 491);
+            this.panel1.Size = new System.Drawing.Size(168, 677);
             this.panel1.TabIndex = 1;
             // 
             // gb_Top
             // 
+            this.gb_Top.Controls.Add(this.btn_Copy);
+            this.gb_Top.Controls.Add(this.btn_checkout);
+            this.gb_Top.Controls.Add(this.btn_NewTask);
+            this.gb_Top.Controls.Add(this.btn_ToDat);
             this.gb_Top.Controls.Add(this.btn_CopyToOnline);
             this.gb_Top.Location = new System.Drawing.Point(3, 3);
             this.gb_Top.Name = "gb_Top";
-            this.gb_Top.Size = new System.Drawing.Size(163, 207);
+            this.gb_Top.Size = new System.Drawing.Size(163, 324);
             this.gb_Top.TabIndex = 0;
             this.gb_Top.TabStop = false;
-            this.gb_Top.Text = "工具箱";
+            this.gb_Top.Text = "开发者工具箱";
+            // 
+            // btn_NewTask
+            // 
+            this.btn_NewTask.Location = new System.Drawing.Point(6, 30);
+            this.btn_NewTask.Name = "btn_NewTask";
+            this.btn_NewTask.Size = new System.Drawing.Size(66, 23);
+            this.btn_NewTask.TabIndex = 2;
+            this.btn_NewTask.Text = "新建任务";
+            this.btn_NewTask.UseVisualStyleBackColor = true;
+            this.btn_NewTask.Click += new System.EventHandler(this.btn_NewTask_Click);
+            // 
+            // btn_ToDat
+            // 
+            this.btn_ToDat.Location = new System.Drawing.Point(6, 59);
+            this.btn_ToDat.Name = "btn_ToDat";
+            this.btn_ToDat.Size = new System.Drawing.Size(66, 23);
+            this.btn_ToDat.TabIndex = 1;
+            this.btn_ToDat.Text = "提交DAT";
+            this.btn_ToDat.UseVisualStyleBackColor = true;
+            this.btn_ToDat.Click += new System.EventHandler(this.btn_ToDat_Click);
             // 
             // btn_CopyToOnline
             // 
-            this.btn_CopyToOnline.Location = new System.Drawing.Point(7, 33);
+            this.btn_CopyToOnline.Location = new System.Drawing.Point(6, 88);
             this.btn_CopyToOnline.Name = "btn_CopyToOnline";
             this.btn_CopyToOnline.Size = new System.Drawing.Size(66, 23);
             this.btn_CopyToOnline.TabIndex = 0;
@@ -591,28 +619,28 @@
             this.btn_CopyToOnline.UseVisualStyleBackColor = true;
             this.btn_CopyToOnline.Click += new System.EventHandler(this.btn_CopyToOnline_Click);
             // 
-            // listView1
+            // lv_fileList
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lv_fileList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
-            this.listView1.Location = new System.Drawing.Point(0, 1);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(512, 283);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.lv_fileList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem7,
+            listViewItem8,
+            listViewItem9});
+            this.lv_fileList.Location = new System.Drawing.Point(3, 5);
+            this.lv_fileList.Name = "lv_fileList";
+            this.lv_fileList.Size = new System.Drawing.Size(613, 343);
+            this.lv_fileList.TabIndex = 0;
+            this.lv_fileList.UseCompatibleStateImageBehavior = false;
             // 
             // rtx_logOutput
             // 
-            this.rtx_logOutput.Location = new System.Drawing.Point(-5, 281);
+            this.rtx_logOutput.Location = new System.Drawing.Point(0, 371);
             this.rtx_logOutput.Name = "rtx_logOutput";
-            this.rtx_logOutput.Size = new System.Drawing.Size(520, 207);
+            this.rtx_logOutput.Size = new System.Drawing.Size(617, 306);
             this.rtx_logOutput.TabIndex = 0;
             this.rtx_logOutput.Text = "";
             // 
@@ -696,16 +724,36 @@
             this.helpToolStripButton});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(966, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1063, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
+            // 
+            // btn_checkout
+            // 
+            this.btn_checkout.Location = new System.Drawing.Point(7, 142);
+            this.btn_checkout.Name = "btn_checkout";
+            this.btn_checkout.Size = new System.Drawing.Size(65, 23);
+            this.btn_checkout.TabIndex = 3;
+            this.btn_checkout.Text = "检出/入";
+            this.btn_checkout.UseVisualStyleBackColor = true;
+            this.btn_checkout.Click += new System.EventHandler(this.btn_checkout_Click);
+            // 
+            // btn_Copy
+            // 
+            this.btn_Copy.Location = new System.Drawing.Point(7, 174);
+            this.btn_Copy.Name = "btn_Copy";
+            this.btn_Copy.Size = new System.Drawing.Size(65, 23);
+            this.btn_Copy.TabIndex = 4;
+            this.btn_Copy.Text = "批量复制";
+            this.btn_Copy.UseVisualStyleBackColor = true;
+            this.btn_Copy.Click += new System.EventHandler(this.btn_Copy_Click);
             // 
             // TaskSubmitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(966, 566);
+            this.ClientSize = new System.Drawing.Size(1063, 740);
             this.Controls.Add(this.btn_goto);
             this.Controls.Add(this.txt_JiraNo);
             this.Controls.Add(this.splitContainer1);
@@ -718,6 +766,7 @@
             this.Name = "TaskSubmitor";
             this.Text = "任务提交器";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TaskSubmitor_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TaskSubmitor_FormClosed);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -787,7 +836,7 @@
         private System.Windows.Forms.ToolStripMenuItem menu_Tool_NewTask;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView tv_TaskList;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lv_fileList;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -807,6 +856,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox gb_Top;
         private System.Windows.Forms.Button btn_CopyToOnline;
+        private System.Windows.Forms.Button btn_NewTask;
+        private System.Windows.Forms.Button btn_ToDat;
+        private System.Windows.Forms.Button btn_Copy;
+        private System.Windows.Forms.Button btn_checkout;
     }
 }
 

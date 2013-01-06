@@ -12,31 +12,51 @@ using Util;
 using UIForm.Tools;
 using log4net;
 using System.Reflection;
+using System.Threading;
+using log4net.Core;
+using UIForm.UI;
 
 namespace UIForm
 {
     public partial class TaskSubmitor : Form
     {
         private int childFormNumber = 0;
-        private ILog log;
+        private ILog log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private bool logWatching = true;
+        private log4net.Appender.MemoryAppender logger;
+        private Thread logWatcher;
+
 
         public TaskSubmitor()
         {
-            log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-            
+
             InitializeComponent();
+            FormClosing += TaskSubmitor_FormClosing;
+
+            logger = new log4net.Appender.MemoryAppender();
+
+            log4net.Config.BasicConfigurator.Configure(logger);
+
+            logWatcher = new Thread(new ThreadStart(LogWatcher));
+            logWatcher.Start();
+
+
             InitUI();
             InitData();
+
+
+
         }
 
         private void InitUI()
-        { 
+        {
+            log.Info("InitUI");
         }
 
         private void InitData()
         {
 
-            tv_TaskList.Nodes.Add("1","已上线");
+            tv_TaskList.Nodes.Add("1", "已上线");
             tv_TaskList.Nodes[0].Nodes.Add("1111", "ABLREQUEST-1103-工行网银");
 
             tv_TaskList.Nodes.Add("1", "ABLREQUEST-1199-团险核保分级授权");
@@ -188,10 +208,10 @@ namespace UIForm
         /// <param name="e"></param>
         private void btn_goto_Click(object sender, EventArgs e)
         {
+            log.Info("打开浏览器转到jira");
             string url = sys.Default.JiraUrl + sys.Default.TaskPrex + "-" + txt_JiraNo.Text.Trim();
             //调用浏览器打开
             SysUtil.BrowseURL(url);
-            //MessageBox.Show(url);
         }
 
         /// <summary>
@@ -205,6 +225,90 @@ namespace UIForm
                 btn_goto_Click(sender, e);
         }
 
+
+        private void TaskSubmitor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            logWatching = false;
+            logWatcher.Join();
+        }
+        private void TaskSubmitor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            log.Info("退出程序");
+        }
+
+        delegate void delOneStr(string log);
+
+        /// <summary>
+        /// 监听log4net事件
+        /// </summary>
+        private void LogWatcher()
+        {
+            while (logWatching)
+            {
+                try
+                {
+                    LoggingEvent[] events = logger.GetEvents();
+                    if (events != null && events.Length > 0)
+                    {
+                        logger.Clear();
+                        foreach (LoggingEvent ev in events)
+                        {
+                            string line = ev.LoggerName + ": " + ev.RenderedMessage + Environment.NewLine;
+                            AppendLog(line);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Error(ex.Message);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_log"></param>
+        void AppendLog(string _log)
+        {
+            if (rtx_logOutput.InvokeRequired)
+            {
+                delOneStr dd = new delOneStr(AppendLog);
+                rtx_logOutput.Invoke(dd, new object[] { _log });
+            }
+            else
+            {
+                StringBuilder builder;
+                if (rtx_logOutput.Lines.Length > 99)
+                {
+                    builder = new StringBuilder(rtx_logOutput.Text);
+                    builder.Remove(0, rtx_logOutput.Text.IndexOf('\r', 3000) + 2);
+                    builder.Append(_log);
+                    rtx_logOutput.Clear();
+                    rtx_logOutput.AppendText(builder.ToString());
+                }
+                else
+                {
+                    rtx_logOutput.AppendText(_log);
+                }
+                rtx_logOutput.ScrollToCaret();
+            }
+        }
+
+        private void btn_NewTask_Click(object sender, EventArgs e)
+        {
+            NewTask newTaskForm = new NewTask();
+            newTaskForm.ShowDialog();//模态显示
+        }
+
+        private void btn_ToDat_Click(object sender, EventArgs e)
+        {
+            ToDATForm datForm = new ToDATForm();
+            datForm.ShowInTaskbar = false;
+            datForm.ShowDialog();
+        }
+
+
         /// <summary>
         /// 上线
         /// </summary>
@@ -217,10 +321,21 @@ namespace UIForm
             //this.ShowDialog(Online);
         }
 
-        private void TaskSubmitor_FormClosed(object sender, FormClosedEventArgs e)
+        private void btn_checkout_Click(object sender, EventArgs e)
         {
-            log.Info("退出程序");
+            CheckForm checkForm = new CheckForm();
+            checkForm.ShowInTaskbar = false;
+            checkForm.ShowDialog();
         }
+
+        private void btn_Copy_Click(object sender, EventArgs e)
+        {
+            CopyForm copyForm = new CopyForm();
+            copyForm.ShowInTaskbar = false;
+            copyForm.ShowDialog();
+        }
+
+
 
     }
 }

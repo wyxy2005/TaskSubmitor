@@ -147,11 +147,29 @@
     <Compile Include="Control\ToOnlineCtrl.Designer.cs">
       <DependentUpon>ToOnlineCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\CheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\CheckForm.Designer.cs">
+      <DependentUpon>CheckForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\CopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\CopyForm.Designer.cs">
+      <DependentUpon>CopyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\Online.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Tools\Online.Designer.cs">
       <DependentUpon>Online.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ToDATForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ToDATForm.Designer.cs">
+      <DependentUpon>ToDATForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
@@ -187,8 +205,17 @@
     <EmbeddedResource Include="Control\ToOnlineCtrl.resx">
       <DependentUpon>ToOnlineCtrl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tools\CheckForm.resx">
+      <DependentUpon>CheckForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\CopyForm.resx">
+      <DependentUpon>CopyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tools\Online.resx">
       <DependentUpon>Online.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ToDATForm.resx">
+      <DependentUpon>ToDATForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config">
       <SubType>Designer</SubType>
