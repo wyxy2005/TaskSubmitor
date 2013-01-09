@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Windows.Forms;
 using BLL;
 
@@ -71,9 +72,19 @@ namespace UIForm.Tools
                 msg = "请输入源工作区";
                 return false;
             }
+            if (!Directory.Exists(txt_SourceDir.Text.Trim()))
+            {
+                msg = "源工作区目录不存在";
+                return false;
+            }
             if (string.IsNullOrEmpty(txt_DestDir.Text.Trim()))
             {
                 msg = "请输入目的工作区";
+                return false;
+            }
+            if (!Directory.Exists(txt_DestDir.Text.Trim()))
+            {
+                msg = "目的工作区目录不存在";
                 return false;
             }
             if (string.IsNullOrEmpty(rtb_FileList.Text.Trim()))
