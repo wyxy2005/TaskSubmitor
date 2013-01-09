@@ -33,13 +33,14 @@
             this.rtx_ConfigData = new System.Windows.Forms.RichTextBox();
             this.txt_task = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.cbx_RecordAll = new System.Windows.Forms.CheckBox();
+            this.cbx_Record = new System.Windows.Forms.CheckBox();
+            this.cbx_CheckIn = new System.Windows.Forms.CheckBox();
+            this.cbx_CheckOut = new System.Windows.Forms.CheckBox();
+            this.cbx_SQL = new System.Windows.Forms.CheckBox();
+            this.cbx_DevDoc = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -74,19 +75,19 @@
             // 
             // txt_task
             // 
-            this.txt_task.Location = new System.Drawing.Point(17, 26);
+            this.txt_task.Location = new System.Drawing.Point(79, 26);
             this.txt_task.Name = "txt_task";
-            this.txt_task.Size = new System.Drawing.Size(495, 21);
+            this.txt_task.Size = new System.Drawing.Size(433, 21);
             this.txt_task.TabIndex = 4;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox6);
-            this.groupBox1.Controls.Add(this.checkBox5);
-            this.groupBox1.Controls.Add(this.checkBox4);
-            this.groupBox1.Controls.Add(this.checkBox3);
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.cbx_RecordAll);
+            this.groupBox1.Controls.Add(this.cbx_Record);
+            this.groupBox1.Controls.Add(this.cbx_CheckIn);
+            this.groupBox1.Controls.Add(this.cbx_CheckOut);
+            this.groupBox1.Controls.Add(this.cbx_SQL);
+            this.groupBox1.Controls.Add(this.cbx_DevDoc);
             this.groupBox1.Location = new System.Drawing.Point(17, 297);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(495, 71);
@@ -94,65 +95,65 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "执行操作";
             // 
-            // checkBox1
+            // cbx_RecordAll
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(14, 19);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(96, 16);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "上传开发文档";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbx_RecordAll.AutoSize = true;
+            this.cbx_RecordAll.Location = new System.Drawing.Point(319, 40);
+            this.cbx_RecordAll.Name = "cbx_RecordAll";
+            this.cbx_RecordAll.Size = new System.Drawing.Size(138, 16);
+            this.cbx_RecordAll.TabIndex = 5;
+            this.cbx_RecordAll.Text = "填写更新记录表_总表";
+            this.cbx_RecordAll.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // cbx_Record
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(14, 41);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(90, 16);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "上传SQL文件";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.cbx_Record.AutoSize = true;
+            this.cbx_Record.Location = new System.Drawing.Point(319, 17);
+            this.cbx_Record.Name = "cbx_Record";
+            this.cbx_Record.Size = new System.Drawing.Size(108, 16);
+            this.cbx_Record.TabIndex = 4;
+            this.cbx_Record.Text = "填写更新记录表";
+            this.cbx_Record.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // cbx_CheckIn
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(146, 19);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(120, 16);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "CheckOut修改代码";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.cbx_CheckIn.AutoSize = true;
+            this.cbx_CheckIn.Location = new System.Drawing.Point(146, 41);
+            this.cbx_CheckIn.Name = "cbx_CheckIn";
+            this.cbx_CheckIn.Size = new System.Drawing.Size(114, 16);
+            this.cbx_CheckIn.TabIndex = 3;
+            this.cbx_CheckIn.Text = "CheckIn修改代码";
+            this.cbx_CheckIn.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // cbx_CheckOut
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(146, 41);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(120, 16);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "CheckOut修改代码";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.cbx_CheckOut.AutoSize = true;
+            this.cbx_CheckOut.Location = new System.Drawing.Point(146, 19);
+            this.cbx_CheckOut.Name = "cbx_CheckOut";
+            this.cbx_CheckOut.Size = new System.Drawing.Size(120, 16);
+            this.cbx_CheckOut.TabIndex = 2;
+            this.cbx_CheckOut.Text = "CheckOut修改代码";
+            this.cbx_CheckOut.UseVisualStyleBackColor = true;
             // 
-            // checkBox5
+            // cbx_SQL
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(319, 17);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(108, 16);
-            this.checkBox5.TabIndex = 4;
-            this.checkBox5.Text = "填写更新记录表";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.cbx_SQL.AutoSize = true;
+            this.cbx_SQL.Location = new System.Drawing.Point(14, 41);
+            this.cbx_SQL.Name = "cbx_SQL";
+            this.cbx_SQL.Size = new System.Drawing.Size(90, 16);
+            this.cbx_SQL.TabIndex = 1;
+            this.cbx_SQL.Text = "上传SQL文件";
+            this.cbx_SQL.UseVisualStyleBackColor = true;
             // 
-            // checkBox6
+            // cbx_DevDoc
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(319, 40);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(138, 16);
-            this.checkBox6.TabIndex = 5;
-            this.checkBox6.Text = "填写更新记录表_总表";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.cbx_DevDoc.AutoSize = true;
+            this.cbx_DevDoc.Location = new System.Drawing.Point(14, 19);
+            this.cbx_DevDoc.Name = "cbx_DevDoc";
+            this.cbx_DevDoc.Size = new System.Drawing.Size(96, 16);
+            this.cbx_DevDoc.TabIndex = 0;
+            this.cbx_DevDoc.Text = "上传开发文档";
+            this.cbx_DevDoc.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -164,10 +165,20 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "提交参数显示";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "任务工作区";
+            // 
             // ToDatCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txt_task);
@@ -190,12 +201,13 @@
         private System.Windows.Forms.RichTextBox rtx_ConfigData;
         private System.Windows.Forms.TextBox txt_task;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox cbx_DevDoc;
+        private System.Windows.Forms.CheckBox cbx_SQL;
+        private System.Windows.Forms.CheckBox cbx_CheckOut;
+        private System.Windows.Forms.CheckBox cbx_CheckIn;
+        private System.Windows.Forms.CheckBox cbx_Record;
+        private System.Windows.Forms.CheckBox cbx_RecordAll;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label1;
     }
 }

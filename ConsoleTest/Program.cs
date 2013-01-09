@@ -20,14 +20,15 @@ namespace ConsoleTest
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            GitTest.TestDiff();
-            string templatePath = AppDomain.CurrentDomain.BaseDirectory + SysData.FileName.TEMPLATE_PATH;
-            //设计文档
-            File.Copy(templatePath + SysData.FileName.DESIGN,
-                @"C:\" + SysData.FileName.DESIGN);
+            TestCopy();
+            //GitTest.TestDiff();
+            //string templatePath = AppDomain.CurrentDomain.BaseDirectory + SysData.FileName.TEMPLATE_PATH;
+            ////设计文档
+            //File.Copy(templatePath + SysData.FileName.DESIGN,
+            //    @"C:\" + SysData.FileName.DESIGN);
 
             //vss项目操作测试
-            VssTaskTest.Test();
+           // VssTaskTest.Test();
 
             //
             //OfficeHelperTest.Test();
@@ -38,6 +39,13 @@ namespace ConsoleTest
             //==============================================
             Console.WriteLine("Please enter any key to continue!");
             Console.ReadKey();
+        }
+
+        private static void TestCopy()
+        {
+            FileInfo file = new FileInfo(@"D:\Work\Dev\Workspace\AB-P-devlis\ui\sys\GrpPolDetailQuery.js");
+            //file.
+            file.CopyTo(@"D:\AB-P-Pro\ui\sys\GrpPolDetailQuery.js", true);
         }
     }
 }

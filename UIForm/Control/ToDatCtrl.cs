@@ -44,17 +44,46 @@ namespace UIForm.Control
         /// <param name="e"></param>
         private void btn_Ok_Click(object sender, EventArgs e)
         {
-            //if(clb_DatItem.SelectedItems)
+            string msg = "";
+            if (ValidateInput(ref msg))
+            {
+                try
+                {
+                    //执行提交操作
+                    SubmitDAT();
+                    MessageBox.Show("提交成功");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("提交失败" + ex.Message);
+                }
+            }
+            else
+                MessageBox.Show(msg);
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
-            //this.Parent.
             this.ParentForm.Close();
         }
 
         /// <summary>
-        /// 提交DAT
+        /// 输入合法性验证
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        private bool ValidateInput(ref string msg)
+        {
+            if (string.IsNullOrEmpty(txt_task.Text.Trim()))
+            {
+                msg = "没有任务工作区";
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// 提交DAT,模板操作
         /// </summary>
         private void SubmitDAT()
         {
@@ -86,6 +115,55 @@ namespace UIForm.Control
             //ISubmitVss submitProxy = new SubmitVssProxy(realSubmitor);
             ////使用代理提交任务
             //submitProxy.Submit();
+
+            if (cbx_DevDoc.Checked)
+            {
+                SubmitDevDoc();
+            }
+            if (cbx_SQL.Checked)
+            {
+                SubmitSQL();
+            }
+            if (cbx_CheckOut.Checked)
+            {
+                CheckOutSrc();
+            }
+            if (cbx_CheckIn.Checked)
+            {
+                CheckInSrc();
+            }
+            if (cbx_Record.Checked)
+            {
+                ModifyRecords();
+            }
+            if (cbx_RecordAll.Checked)
+            {
+                ModifyRecordAll();
+            }
+        }
+
+        private void SubmitDevDoc()
+        { 
+        }
+
+        private void SubmitSQL()
+        { 
+        }
+
+        private void CheckOutSrc()
+        { 
+        }
+
+        private void CheckInSrc()
+        { 
+        }
+
+        private void ModifyRecords()
+        { 
+        }
+
+        private void ModifyRecordAll()
+        { 
         }
     }
 }

@@ -7,6 +7,8 @@ using System.IO;
 using OfficeHelper;
 using Model.Enum;
 using DAL;
+using log4net;
+using System.Reflection;
 
 namespace BLL
 {
@@ -18,6 +20,8 @@ namespace BLL
         private Task task;
         private string path;
         private string author;
+
+        private ILog log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// 
@@ -37,20 +41,36 @@ namespace BLL
         /// <returns></returns>
         public bool Create()
         {
+            log.Info("开始创建任务");
             DirectoryInfo taskSpace = Directory.CreateDirectory(path);
             if (!taskSpace.Exists)
+            {
                 taskSpace.Create();
+                log.Info("创建工作区目录");
+            }
             //创建任务目录
             DirectoryInfo taskDir = taskSpace.CreateSubdirectory(this.task.Description);
+            log.Info("创建任务目录");
             if (taskDir.Exists)
             {
                 //创建任务目录
                 //taskDir.Create();
+                log.Info("创建任务文件");
                 //创建任务文件
                 CreateTemplate(taskDir);
+
+                
                 //写入数据文件
                 TaskDAL taskDal = new TaskDAL();
                 int  ire = taskDal.Insert(this.task);
+                if (ire > 0)
+                {
+                    log.Info("写入数据文件成功");
+                }
+                else
+                {
+                    log.Info("写入数据文件失败");
+                }
 
                 return true;
             }
@@ -94,13 +114,13 @@ namespace BLL
                         sourceFile = templatePath + SysData.FileName.DEV;
                         destFile = destDirName + @"DEV-SQL.sql";
                         File.Copy(sourceFile, destFile);
-                        Console.WriteLine("DEV-SQL创建成功");
+                        log.Info("DEV-SQL创建成功");
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("创建失败");
+                log.Info("创建失败");
             }
             finally
             {
@@ -121,7 +141,7 @@ namespace BLL
             sourceFile = templatePath + SysData.FileName.XLS;
             destFile = destDirName + this.task.Description + @"-修改列表.xls";
             File.Copy(sourceFile, destFile);
-            Console.WriteLine("修改列表创建成功");
+            log.Info("修改列表创建成功");
         }
 
         /// <summary>
@@ -136,7 +156,7 @@ namespace BLL
             sourceFile = templatePath + SysData.FileName.TEST;
             destFile = destDirName + this.task.Description + DateTime.Now.ToString(@"-自测报告yyyyMMdd") + ".doc";
             File.Copy(sourceFile, destFile);
-            Console.WriteLine("自测文档创建成功");
+            log.Info("自测文档创建成功");
 
             WordHelper wHelper = new WordHelper();
             Microsoft.Office.Interop.Word._Document oDoc = wHelper.Load(destFile);
@@ -193,7 +213,7 @@ namespace BLL
             sourceFile = templatePath + SysData.FileName.DESIGN;
             destFile = destDirName + this.task.Description + DateTime.Now.ToString(@"-设计说明书yyyyMMdd") + ".doc";
             File.Copy(sourceFile, destFile);
-            Console.WriteLine("设计文档创建成功");
+            log.Info("设计文档创建成功");
 
             WordHelper wHelper = new WordHelper();
             Microsoft.Office.Interop.Word._Document oDoc = wHelper.Load(destFile);

@@ -15,6 +15,9 @@ using System.Reflection;
 using System.Threading;
 using log4net.Core;
 using UIForm.UI;
+using BLL;
+using Model;
+using System.IO;
 
 namespace UIForm
 {
@@ -31,14 +34,16 @@ namespace UIForm
         {
 
             InitializeComponent();
-            FormClosing += TaskSubmitor_FormClosing;
 
-            logger = new log4net.Appender.MemoryAppender();
+            //日志功能
+            //FormClosing += TaskSubmitor_FormClosing;
 
-            log4net.Config.BasicConfigurator.Configure(logger);
+            //logger = new log4net.Appender.MemoryAppender();
 
-            logWatcher = new Thread(new ThreadStart(LogWatcher));
-            logWatcher.Start();
+            //log4net.Config.BasicConfigurator.Configure(logger);
+
+            //logWatcher = new Thread(new ThreadStart(LogWatcher));
+            //logWatcher.Start();
 
 
             InitUI();
@@ -51,21 +56,43 @@ namespace UIForm
         private void InitUI()
         {
             log.Info("InitUI");
+            //TreeNode node = new TreeNode();
+            //node.Name = "颜色说明";
+            //node.Nodes.Add("红色表示正在开发");
+            //node.Nodes.Add("绿色表示已经上线");
+            //node.Nodes.Add("其他表示测试阶段");
+            //node.Nodes[0].ForeColor = Color.Red;
+            //node.Nodes[1].ForeColor = Color.Green;
+            //tv_TaskList.Nodes.Add(node);
+            
         }
 
         private void InitData()
         {
-
-            tv_TaskList.Nodes.Add("1", "已上线");
-            tv_TaskList.Nodes[0].Nodes.Add("1111", "ABLREQUEST-1103-工行网银");
-
-            tv_TaskList.Nodes.Add("1", "ABLREQUEST-1199-团险核保分级授权");
-            tv_TaskList.Nodes.Add("2", "ABLREQUEST-1362-变更团险地址录入");
-            tv_TaskList.Nodes.Add("3", "ABLREQUEST-1365-针对团险录入需做出控制");
-            tv_TaskList.Nodes.Add("4", "以上线");
-            tv_TaskList.Nodes.Add("5", "以上线");
-            tv_TaskList.Nodes.Add("6", "以上线");
+            BindTreeNode();
         }
+
+        private void BindTreeNode()
+        {
+            TaskBLL taskBll = new TaskBLL();
+            IList<Task> tasks = taskBll.GetTaskList();
+            tasks = tasks.OrderBy(x => x.Phase).ToList();
+            foreach (Task t in tasks)
+            {
+                TreeNode node = new TreeNode();
+                node.Name = t.No.ToString();
+                node.ForeColor = TaskBLL.GetTaskColor(t);
+                node.Text = t.Description;
+                //添加右键菜单
+                node.ContextMenuStrip = this.treeNodeRightKeyMenu;
+                tv_TaskList.Nodes.Add(node);
+                
+            }
+        }
+
+
+        #region 系统生成
+
 
         private void ShowNewForm(object sender, EventArgs e)
         {
@@ -152,6 +179,27 @@ namespace UIForm
             }
         }
 
+
+        #endregion
+
+        #region 程序框架Form
+
+        private void TaskSubmitor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //logWatching = false;
+            //logWatcher.Join();
+        }
+        private void TaskSubmitor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            log.Info("退出程序");
+        }
+
+
+        #endregion
+
+        #region 菜单栏任务栏
+
+
         /// <summary>
         /// 关于
         /// </summary>
@@ -225,16 +273,119 @@ namespace UIForm
                 btn_goto_Click(sender, e);
         }
 
+        #endregion 
 
-        private void TaskSubmitor_FormClosing(object sender, FormClosingEventArgs e)
+        #region TreeNode_TaskList
+
+        private void tv_TaskList_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            logWatching = false;
-            logWatcher.Join();
+            //设置选中的节点为当前节点，右键菜单需要
+            this.tv_TaskList.SelectedNode = e.Node;
+
+            TaskBLL taskBll = new TaskBLL();
+            Task t = taskBll.GetTask(int.Parse(e.Node.Name));
+            //Task t = 
+            Bind_clb_FileList(e.Node.Text);
+            Bind_clb_srcList(e.Node.Text);
+            //设置工作区目录
+            if ( t.Channel == Model.Enum.ChannelEnum.P)
+                lbl_Workspace.Text = sys.Default.localProjectP;
+            else if (t.Channel == Model.Enum.ChannelEnum.G)
+                lbl_Workspace.Text = sys.Default.localProjectG;
+            else
+                lbl_Workspace.Text = "...";
         }
-        private void TaskSubmitor_FormClosed(object sender, FormClosedEventArgs e)
+
+        private void tnMenu_Open_Click(object sender, EventArgs e)
         {
-            log.Info("退出程序");
+            string xpath = sys.Default.localWorkspace + @"\" + this.tv_TaskList.SelectedNode.Text;
+            SysUtil.BrowseURL(xpath);
         }
+
+        private void tnMenu_ToOnline_Click(object sender, EventArgs e)
+        {
+            TreeNode currentNode = this.tv_TaskList.SelectedNode;
+            //需要上线的任务编号
+            string taskNo = currentNode.Name;
+            TaskBLL bll = new TaskBLL();
+            Task currentTask = bll.GetTask(int.Parse(taskNo));
+            currentTask.Phase = Model.Enum.PhaseEnum.RUN;
+            int ire = bll.Update(currentTask);
+            if (ire > 0)
+            {
+                currentNode.ForeColor = TaskBLL.GetTaskColor(currentTask);
+            }
+            
+
+        }
+
+        private void tnMenu_ToDAT_Click(object sender, EventArgs e)
+        {
+            //需要上线的任务编号
+            string taskNo = this.tv_TaskList.SelectedNode.Name;
+        }
+
+        #endregion
+
+        #region CheckListBox_FileList
+
+        private void clb_FileList_DoubleClick(object sender, EventArgs e)
+        {
+            
+            MessageBox.Show("打开文件");
+        }
+
+
+
+
+        #endregion
+
+        #region 个人工具箱
+
+
+        /// <summary>
+        /// 上线
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_CopyToOnline_Click(object sender, EventArgs e)
+        {
+            Online onlineForm = new Online();
+            onlineForm.ShowDialog();
+            //this.ShowDialog(Online);
+        }
+
+        private void btn_checkout_Click(object sender, EventArgs e)
+        {
+            CheckForm checkForm = new CheckForm();
+            checkForm.ShowInTaskbar = false;
+            checkForm.ShowDialog();
+        }
+
+        private void btn_Copy_Click(object sender, EventArgs e)
+        {
+            CopyForm copyForm = new CopyForm();
+            copyForm.ShowInTaskbar = false;
+            copyForm.ShowDialog();
+        }
+
+        private void btn_NewTask_Click(object sender, EventArgs e)
+        {
+            NewTask newTaskForm = new NewTask();
+            newTaskForm.ShowDialog();//模态显示
+        }
+
+        private void btn_ToDat_Click(object sender, EventArgs e)
+        {
+            ToDATForm datForm = new ToDATForm();
+            datForm.ShowInTaskbar = false;
+            datForm.ShowDialog();
+        }
+
+        #endregion 
+
+        #region 日志显示功能
+
 
         delegate void delOneStr(string log);
 
@@ -295,45 +446,34 @@ namespace UIForm
             }
         }
 
-        private void btn_NewTask_Click(object sender, EventArgs e)
+
+        #endregion
+
+        private void cbx_RecordAll_Click(object sender, EventArgs e)
         {
-            NewTask newTaskForm = new NewTask();
-            newTaskForm.ShowDialog();//模态显示
+
         }
 
-        private void btn_ToDat_Click(object sender, EventArgs e)
+        private void Bind_clb_srcList(string nodeText)
+        { 
+        }
+
+        private void Bind_clb_FileList(string nodeText)
         {
-            ToDATForm datForm = new ToDATForm();
-            datForm.ShowInTaskbar = false;
-            datForm.ShowDialog();
+            string xpath = sys.Default.localWorkspace + @"\" + nodeText;
+            DirectoryInfo dir = Directory.CreateDirectory(xpath);
+            FileInfo[] fileList = dir.GetFiles();
+            clb_FileList.DataSource = fileList;
+            clb_FileList.DisplayMember = "文件";
+            clb_FileList.ValueMember = "Name";
         }
 
 
-        /// <summary>
-        /// 上线
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_CopyToOnline_Click(object sender, EventArgs e)
-        {
-            Online onlineForm = new Online();
-            onlineForm.ShowDialog();
-            //this.ShowDialog(Online);
-        }
 
-        private void btn_checkout_Click(object sender, EventArgs e)
-        {
-            CheckForm checkForm = new CheckForm();
-            checkForm.ShowInTaskbar = false;
-            checkForm.ShowDialog();
-        }
 
-        private void btn_Copy_Click(object sender, EventArgs e)
-        {
-            CopyForm copyForm = new CopyForm();
-            copyForm.ShowInTaskbar = false;
-            copyForm.ShowDialog();
-        }
+
+
+
 
 
 

@@ -31,11 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,10 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckBLL.cs" />
     <Compile Include="NewTaskBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShowData.cs" />
     <Compile Include="SubmitDAT.cs" />
+    <Compile Include="TaskBLL.cs" />
+    <Compile Include="ToOnline.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
@@ -60,6 +67,10 @@
     <ProjectReference Include="..\OfficeHelper\OfficeHelper.csproj">
       <Project>{6600CD58-DB53-4B3A-B37C-00F65374162A}</Project>
       <Name>OfficeHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VssHelper\VssHelper.csproj">
+      <Project>{C4EAEF07-101B-42A9-B42C-0A37DED16186}</Project>
+      <Name>VssHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\VssTask\VssTask.csproj">
       <Project>{ACE93518-3E25-49F3-A954-F3075868EC91}</Project>

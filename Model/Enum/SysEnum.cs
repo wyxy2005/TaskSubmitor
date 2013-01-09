@@ -6,11 +6,12 @@ using System.Text;
 namespace Model.Enum
 {
     /// <summary>
-    /// 系统类型，核心，销售等
+    /// 系统类型，核心，销售,官网等
     /// </summary>
     public enum SysEnum
     {
-        PGI
+        PGI, /**/
+        WS   /**/
     }
 
     /// <summary>
@@ -34,14 +35,14 @@ namespace Model.Enum
         /// <summary>
         /// 需求
         /// </summary>
-        ANA,
-        DEV,
-        DAT,
-        UAT,
+        ANA = 1,
+        DEV = 2,
+        DAT = 3,
+        UAT = 4,
         /// <summary>
         /// 上线
         /// </summary>
-        ON
+        RUN = 5
     }
 
     /// <summary>
