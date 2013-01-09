@@ -37,6 +37,8 @@ namespace Model.Enum
         /// <summary>
         /// /*修改的PDM，用于提交*/
         /// </summary>
-        PDM         
+        PDM,
+        README
+      
     }
 }

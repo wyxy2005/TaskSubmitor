@@ -10,8 +10,9 @@ namespace Model.Enum
     /// </summary>
     public enum SysEnum
     {
-        PGI, /**/
-        WS   /**/
+        /**/
+        PGI = 1,
+        WS = 2   /**/
     }
 
     /// <summary>
@@ -19,7 +20,13 @@ namespace Model.Enum
     /// </summary>
     public enum ChannelEnum
     { 
+        /// <summary>
+        /// 团
+        /// </summary>
         G,
+        /// <summary>
+        /// 个
+        /// </summary>
         P
     }
 
@@ -28,6 +35,18 @@ namespace Model.Enum
     /// </summary>
     public enum ModuleEnum
     { 
+        /// <summary>
+        /// 新契约
+        /// </summary>
+        CONT = 1,
+        /// <summary>
+        /// 保全
+        /// </summary>
+        EDOR = 2,
+        /// <summary>
+        /// 理赔
+        /// </summary>
+        CLM  = 3
     }
 
     public enum PhaseEnum
