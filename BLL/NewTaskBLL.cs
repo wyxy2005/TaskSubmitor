@@ -110,12 +110,16 @@ namespace BLL
 
                     //DEV-SQL
                     if (file.Type == TaskFileEnum.DevSql)
+                        CreateTextFile(templatePath, destDirName, "DEV-SQL.sql");
+                    if (file.Type == TaskFileEnum.DML)
                     {
-                        sourceFile = templatePath + SysData.FileName.DEV;
-                        destFile = destDirName + @"DEV-SQL.sql";
-                        File.Copy(sourceFile, destFile);
-                        log.Info("DEV-SQL创建成功");
+                        string fileName = this.task.Sys.ToString() + "-DML-" + 
+                            this.task.Description + "-" + this.author + "-" +
+                            DateTime.Today.ToString("yyyyMMdd") + ".sql";
+                        CreateTextFile(templatePath, destDirName, fileName);
                     }
+                    if (file.Type == TaskFileEnum.README)
+                        CreateTextFile(templatePath, destDirName, "readme.txt");
                 }
             }
             catch (Exception ex)
@@ -255,7 +259,19 @@ namespace BLL
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="templatePath"></param>
+        /// <param name="destDirName"></param>
+        /// <param name="fileName"></param>
+        private void CreateTextFile(string templatePath, string destDirName,string fileName)
+        {
+            string sourceFile = templatePath + SysData.FileName.DEV;
+            string destFile = destDirName + fileName;
+            File.Copy(sourceFile, destFile);
+            log.Info(fileName + "创建成功");
+        }
 
     }
 }
