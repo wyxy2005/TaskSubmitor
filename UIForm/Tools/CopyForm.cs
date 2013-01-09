@@ -14,8 +14,26 @@ namespace UIForm.Tools
     {
         public CopyForm()
         {
+            //系统初始化
             InitializeComponent();
+
+            //个性初始化
+            InitData();
         }
+
+        #region init
+
+        /// <summary>
+        /// 初始化界面数据
+        /// </summary>
+        private void InitData()
+        {
+            txt_SourceDir.Text = sys.Default.localProjectG;
+            txt_DestDir.Text = sys.Default.localOnlineG;
+        }
+
+
+        #endregion
 
         private void btn_OK_Click(object sender, EventArgs e)
         {
