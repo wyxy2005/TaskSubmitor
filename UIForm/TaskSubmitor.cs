@@ -358,15 +358,17 @@ namespace UIForm
         private void btn_checkout_Click(object sender, EventArgs e)
         {
             CheckForm checkForm = new CheckForm();
-            checkForm.ShowInTaskbar = false;
-            checkForm.ShowDialog();
+            checkForm.Show();//非模态单独窗口，需要和其他窗口交互
+            //checkForm.ShowInTaskbar = false;
+            //checkForm.ShowDialog();
         }
 
         private void btn_Copy_Click(object sender, EventArgs e)
         {
             CopyForm copyForm = new CopyForm();
-            copyForm.ShowInTaskbar = false;
-            copyForm.ShowDialog();
+            copyForm.Show();//非模态单独窗口
+            //copyForm.ShowInTaskbar = false;
+            //copyForm.ShowDialog();
         }
 
         private void btn_NewTask_Click(object sender, EventArgs e)
