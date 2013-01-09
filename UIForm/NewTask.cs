@@ -33,7 +33,7 @@ namespace UIForm
         }
 
         /// <summary>
-        /// 初始化界面显示
+        /// 初始化界面显示,颜色，排版，隐藏与显示
         /// </summary>
         private void InitUI()
         { 
@@ -46,7 +46,21 @@ namespace UIForm
         {
             lbl_Workspace.Text = sys.Default.localWorkspace;
             txt_Prefix.Text = sys.Default.TaskPrex;
+
+            //绑定数据
+            cb_Sys.DataSource = Enum.GetNames(typeof(SysEnum));
+            //默认选项
+            cb_Sys.SelectedIndex = cb_Sys.FindString(SysEnum.PGI.ToString());
+
+            cb_Chanel.DataSource = Enum.GetNames(typeof(ChannelEnum));
+            cb_Chanel.SelectedIndex = cb_Chanel.FindString(ChannelEnum.G.ToString());
+
+            cb_Module.DataSource = Enum.GetNames(typeof(ModuleEnum));
+            cb_Module.SelectedIndex = cb_Module.FindString(ModuleEnum.CONT.ToString());
+
         }
+
+        
 
         /// <summary>
         /// 创建按钮
@@ -95,6 +109,11 @@ namespace UIForm
             task.No = int.Parse(txt_No.Text.Trim());
             task.Name = txt_Name.Text.Trim();
             task.Dir = sys.Default.localWorkspace + @"\" + task.Description;
+            task.Sys = (SysEnum)Enum.Parse(typeof(SysEnum), cb_Sys.SelectedItem.ToString(), false);
+            task.Channel = (ChannelEnum)Enum.Parse(typeof(ChannelEnum),
+                cb_Chanel.SelectedItem.ToString(), false);
+            task.Module = (ModuleEnum)Enum.Parse(typeof(ModuleEnum), 
+                cb_Module.SelectedItem.ToString(), false);
             //需要创建的文档
             IList<TaskFile> files = GenTaskFiles();
             task.Files = files;
@@ -138,6 +157,12 @@ namespace UIForm
             {
                 TaskFile file = new TaskFile();
                 file.Type = TaskFileEnum.DML;
+                files.Add(file);
+            }
+            if (cbx_Readme.Checked)
+            {
+                TaskFile file = new TaskFile();
+                file.Type = TaskFileEnum.README;
                 files.Add(file);
             }
             return files;

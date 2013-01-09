@@ -47,13 +47,20 @@
             this.cbx_DevSql = new System.Windows.Forms.CheckBox();
             this.cbx_TestDoc = new System.Windows.Forms.CheckBox();
             this.cbx_DesignDoc = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cb_Sys = new System.Windows.Forms.ComboBox();
+            this.cb_Chanel = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cb_Module = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbx_Readme = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(56, 70);
+            this.label1.Location = new System.Drawing.Point(56, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 0;
@@ -71,7 +78,7 @@
             // 
             // txt_Prefix
             // 
-            this.txt_Prefix.Location = new System.Drawing.Point(139, 64);
+            this.txt_Prefix.Location = new System.Drawing.Point(115, 43);
             this.txt_Prefix.Name = "txt_Prefix";
             this.txt_Prefix.Size = new System.Drawing.Size(104, 21);
             this.txt_Prefix.TabIndex = 2;
@@ -88,7 +95,7 @@
             // lbl_Workspace
             // 
             this.lbl_Workspace.AutoSize = true;
-            this.lbl_Workspace.Location = new System.Drawing.Point(139, 20);
+            this.lbl_Workspace.Location = new System.Drawing.Point(121, 20);
             this.lbl_Workspace.Name = "lbl_Workspace";
             this.lbl_Workspace.Size = new System.Drawing.Size(59, 12);
             this.lbl_Workspace.TabIndex = 4;
@@ -97,7 +104,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(56, 105);
+            this.label4.Location = new System.Drawing.Point(56, 84);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 5;
@@ -105,7 +112,7 @@
             // 
             // txt_No
             // 
-            this.txt_No.Location = new System.Drawing.Point(139, 101);
+            this.txt_No.Location = new System.Drawing.Point(116, 80);
             this.txt_No.Name = "txt_No";
             this.txt_No.Size = new System.Drawing.Size(104, 21);
             this.txt_No.TabIndex = 6;
@@ -113,7 +120,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(56, 146);
+            this.label5.Location = new System.Drawing.Point(56, 125);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 7;
@@ -121,7 +128,7 @@
             // 
             // txt_Name
             // 
-            this.txt_Name.Location = new System.Drawing.Point(139, 140);
+            this.txt_Name.Location = new System.Drawing.Point(116, 119);
             this.txt_Name.Name = "txt_Name";
             this.txt_Name.Size = new System.Drawing.Size(382, 21);
             this.txt_Name.TabIndex = 8;
@@ -138,6 +145,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbx_Readme);
             this.groupBox1.Controls.Add(this.checkBox7);
             this.groupBox1.Controls.Add(this.checkBox6);
             this.groupBox1.Controls.Add(this.checkBox5);
@@ -146,7 +154,7 @@
             this.groupBox1.Controls.Add(this.cbx_DevSql);
             this.groupBox1.Controls.Add(this.cbx_TestDoc);
             this.groupBox1.Controls.Add(this.cbx_DesignDoc);
-            this.groupBox1.Location = new System.Drawing.Point(63, 186);
+            this.groupBox1.Location = new System.Drawing.Point(63, 217);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(454, 143);
             this.groupBox1.TabIndex = 10;
@@ -233,11 +241,81 @@
             this.cbx_DesignDoc.Text = "设计文档";
             this.cbx_DesignDoc.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(58, 168);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 12);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "系统";
+            // 
+            // cb_Sys
+            // 
+            this.cb_Sys.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_Sys.FormattingEnabled = true;
+            this.cb_Sys.Location = new System.Drawing.Point(91, 164);
+            this.cb_Sys.Name = "cb_Sys";
+            this.cb_Sys.Size = new System.Drawing.Size(75, 20);
+            this.cb_Sys.TabIndex = 12;
+            // 
+            // cb_Chanel
+            // 
+            this.cb_Chanel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_Chanel.FormattingEnabled = true;
+            this.cb_Chanel.Location = new System.Drawing.Point(246, 164);
+            this.cb_Chanel.Name = "cb_Chanel";
+            this.cb_Chanel.Size = new System.Drawing.Size(77, 20);
+            this.cb_Chanel.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(213, 168);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 12);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "渠道";
+            // 
+            // cb_Module
+            // 
+            this.cb_Module.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_Module.FormattingEnabled = true;
+            this.cb_Module.Location = new System.Drawing.Point(417, 165);
+            this.cb_Module.Name = "cb_Module";
+            this.cb_Module.Size = new System.Drawing.Size(77, 20);
+            this.cb_Module.TabIndex = 16;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(384, 169);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(29, 12);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "模块";
+            // 
+            // cbx_Readme
+            // 
+            this.cbx_Readme.AutoSize = true;
+            this.cbx_Readme.Location = new System.Drawing.Point(187, 87);
+            this.cbx_Readme.Name = "cbx_Readme";
+            this.cbx_Readme.Size = new System.Drawing.Size(60, 16);
+            this.cbx_Readme.TabIndex = 8;
+            this.cbx_Readme.Text = "readme";
+            this.cbx_Readme.UseVisualStyleBackColor = true;
+            // 
             // NewTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(554, 426);
+            this.Controls.Add(this.cb_Module);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cb_Chanel);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cb_Sys);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.txt_Name);
@@ -279,5 +357,12 @@
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cb_Sys;
+        private System.Windows.Forms.ComboBox cb_Chanel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cb_Module;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox cbx_Readme;
     }
 }
