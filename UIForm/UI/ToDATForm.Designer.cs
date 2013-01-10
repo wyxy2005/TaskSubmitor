@@ -28,23 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.toDatCtrl1 = new UIForm.Control.ToDatCtrl();
+            this.ctrl_ToDat = new UIForm.Control.ToDatCtrl();
             this.SuspendLayout();
             // 
-            // toDatCtrl1
+            // ctrl_ToDat
             // 
-            this.toDatCtrl1.Location = new System.Drawing.Point(25, 7);
-            this.toDatCtrl1.Name = "toDatCtrl1";
-            this.toDatCtrl1.Size = new System.Drawing.Size(550, 436);
-            this.toDatCtrl1.TabIndex = 0;
-            this.toDatCtrl1.TaskNo = 0;
+            this.ctrl_ToDat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrl_ToDat.Location = new System.Drawing.Point(25, 7);
+            this.ctrl_ToDat.Name = "ctrl_ToDat";
+            this.ctrl_ToDat.Size = new System.Drawing.Size(550, 436);
+            this.ctrl_ToDat.TabIndex = 0;
+            this.ctrl_ToDat.TaskDir = null;
+            this.ctrl_ToDat.TaskNo = 0;
             // 
             // ToDATForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(621, 455);
-            this.Controls.Add(this.toDatCtrl1);
+            this.Controls.Add(this.ctrl_ToDat);
             this.Name = "ToDATForm";
             this.Text = "提交DAT";
             this.ResumeLayout(false);
@@ -53,6 +57,6 @@
 
         #endregion
 
-        private Control.ToDatCtrl toDatCtrl1;
+        private Control.ToDatCtrl ctrl_ToDat;
     }
 }

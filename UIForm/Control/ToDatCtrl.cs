@@ -6,12 +6,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace UIForm.Control
 {
     public partial class ToDatCtrl : UserControl
     {
         private int taskNo;
+        private string taskDir;
         //private Task task;
         /// <summary>
         /// 需要提交的任务编号
@@ -22,19 +24,29 @@ namespace UIForm.Control
             set { this.taskNo = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public string TaskDir
+        {
+            get { return this.taskDir; }
+            set { this.taskDir = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public ToDatCtrl()
         {
             InitializeComponent();
-
-            InitData();
         }
 
         /// <summary>
         /// 显示界面初始化相关数据
         /// </summary>
-        private void InitData()
+        public void InitData()
         {
-
+            txt_task.Text = this.taskDir;
         }
 
         /// <summary>
@@ -78,6 +90,10 @@ namespace UIForm.Control
             {
                 msg = "没有任务工作区";
                 return false;
+            }
+            if (!Directory.Exists(txt_task.Text.Trim()))
+            {
+                msg = "任务工作区目录不存在,程序找不到，请检查";
             }
             return true;
         }

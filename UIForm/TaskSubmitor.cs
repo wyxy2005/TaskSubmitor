@@ -275,7 +275,7 @@ namespace UIForm
 
         #endregion 
 
-        #region TreeNode_TaskList
+        #region TreeNode_TaskList任务树
 
         private void tv_TaskList_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
@@ -323,6 +323,11 @@ namespace UIForm
         {
             //需要上线的任务编号
             string taskNo = this.tv_TaskList.SelectedNode.Name;
+            string taskDir = sys.Default.localWorkspace + @"\" + this.tv_TaskList.SelectedNode.Text;
+            ToDATForm toDatForm = new ToDATForm();
+            toDatForm.TaskDir = taskDir;
+            toDatForm.InitData();
+            toDatForm.ShowDialog();
         }
 
         #endregion
