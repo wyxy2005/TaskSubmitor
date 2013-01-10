@@ -31,8 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LibGit2Sharp">
-      <HintPath>..\..\..\DLL\git\LibGit2Sharp.dll</HintPath>
+    <Reference Include="NGit">
+      <HintPath>..\lib\NGit.dll</HintPath>
+    </Reference>
+    <Reference Include="Sharpen">
+      <HintPath>..\lib\Sharpen.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
