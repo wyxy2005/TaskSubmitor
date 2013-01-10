@@ -59,5 +59,17 @@ namespace BLL
             submitProxy.Submit();
 
         }
+
+        public int SubmitDevDoc()
+        {
+            SubmitVssTemplate realSubmitor = new SubmitVssConcrete();
+            //输入
+            realSubmitor.DesignDocLocalPath = @"D:\Work\Task\已经上线\ABLREQUEST-1083-银保通签发保单之后发送承保短信\ddd.doc";
+            //输入
+            realSubmitor.TestDocLocalPath = @"D:\Work\Task\ABLREQUEST-1396-团险添加投保率不足0.75的控制提示\ABLREQUEST-1396-团险添加投保率不足0.75的控制提示-自测试报告20121204.doc";
+            //输入
+            realSubmitor.DocVssFolder = @"$/LIS－CM－AB/05-项目任务/B-契约模块/ABLREQUEST-1396-团险添加投保率不足0.75的控制提示";
+            return 0;
+        }
     }
 }
