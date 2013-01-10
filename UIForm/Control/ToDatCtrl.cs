@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using Model;
+using BLL;
 
 namespace UIForm.Control
 {
@@ -62,8 +64,9 @@ namespace UIForm.Control
                 try
                 {
                     //执行提交操作
-                    SubmitDAT();
-                    MessageBox.Show("提交成功");
+                    //SubmitDAT();
+                    //MessageBox.Show("提交成功");
+                    MessageBox.Show("此功能未开放");
                 }
                 catch (Exception ex)
                 {
@@ -94,6 +97,7 @@ namespace UIForm.Control
             if (!Directory.Exists(txt_task.Text.Trim()))
             {
                 msg = "任务工作区目录不存在,程序找不到，请检查";
+                return false;
             }
             return true;
         }
@@ -103,6 +107,10 @@ namespace UIForm.Control
         /// </summary>
         private void SubmitDAT()
         {
+            TaskBLL bll = new TaskBLL();
+            Task task = bll.GetTask(this.taskNo);
+            BLL.SubmitDAT datSubmitor = new BLL.SubmitDAT(task);
+
             ////TODO：输入太多，考虑输入jira号之后，由软件自动生成相关文件模板，用户修改添加即可，这样多数路径又软件智能提取
             ////任务提交器
             //SubmitVssTemplate realSubmitor = new SubmitVssConcrete();
@@ -134,51 +142,55 @@ namespace UIForm.Control
 
             if (cbx_DevDoc.Checked)
             {
-                SubmitDevDoc();
+                SubmitDevDoc(datSubmitor);
             }
             if (cbx_SQL.Checked)
             {
-                SubmitSQL();
+                SubmitSQL(datSubmitor);
             }
             if (cbx_CheckOut.Checked)
             {
-                CheckOutSrc();
+                CheckOutSrc(datSubmitor);
             }
             if (cbx_CheckIn.Checked)
             {
-                CheckInSrc();
+                CheckInSrc(datSubmitor);
             }
             if (cbx_Record.Checked)
             {
-                ModifyRecords();
+                ModifyRecords(datSubmitor);
             }
             if (cbx_RecordAll.Checked)
             {
-                ModifyRecordAll();
+                ModifyRecordAll(datSubmitor);
             }
         }
 
-        private void SubmitDevDoc()
+        /// <summary>
+        /// 创建项目文档路径在vss上，并且添加项目
+        /// </summary>
+        private void SubmitDevDoc(BLL.SubmitDAT datSubmitor)
+        {
+            datSubmitor.SubmitDevDoc();
+        }
+
+        private void SubmitSQL(BLL.SubmitDAT datSubmitor)
         { 
         }
 
-        private void SubmitSQL()
+        private void CheckOutSrc(BLL.SubmitDAT datSubmitor)
         { 
         }
 
-        private void CheckOutSrc()
+        private void CheckInSrc(BLL.SubmitDAT datSubmitor)
         { 
         }
 
-        private void CheckInSrc()
+        private void ModifyRecords(BLL.SubmitDAT datSubmitor)
         { 
         }
 
-        private void ModifyRecords()
-        { 
-        }
-
-        private void ModifyRecordAll()
+        private void ModifyRecordAll(BLL.SubmitDAT datSubmitor)
         { 
         }
     }
