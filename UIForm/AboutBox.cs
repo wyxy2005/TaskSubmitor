@@ -5,11 +5,13 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using Util;
 
 namespace UIForm
 {
     partial class AboutBox : Form
     {
+        private const string projectUrl = @"https://github.com/chengn/TaskSubmitor";
         public AboutBox()
         {
             InitializeComponent();
@@ -17,8 +19,8 @@ namespace UIForm
             this.labelProductName.Text = AssemblyProduct;
             this.labelVersion.Text = String.Format("版本 {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = AssemblyDescription;
+            this.link_Project.Text = projectUrl;
+            this.textBoxDescription.Text = @"这是一个开源软件，你可以在https://github.com/chengn/TaskSubmitor 得到其全部源码。你也可以fork此项目并且修改，然后pull request，作者会考虑合并你修改的功能。";
         }
 
         #region 程序集特性访问器
@@ -100,5 +102,15 @@ namespace UIForm
             }
         }
         #endregion
+
+        private void link_Project_Click(object sender, EventArgs e)
+        {
+            SysUtil.BrowseURL(projectUrl);
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
