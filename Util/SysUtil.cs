@@ -34,9 +34,9 @@ namespace Util
         public static void BrowseURL(string url)
         {
             //默认浏览器
+            Process browser = new Process();
             try
             {
-                Process browser = new Process();
                 browser.StartInfo.Arguments = url;
                 browser.Start();
                 //Process.Start(url);//调用系统打开
@@ -45,14 +45,19 @@ namespace Util
             {
                 if (noBrowser.ErrorCode == -2147467259)
                     Console.WriteLine("没有默认浏览器");
-                    //MessageBox.Show(noBrowser.Message); 
+                //MessageBox.Show(noBrowser.Message); 
             }
             catch (Exception ex)
             {//使用IE打开
-                Process browser = new Process();
-                browser.StartInfo.FileName = "iexplore.exe";
-                browser.StartInfo.Arguments = url;
-                browser.Start();
+                Process ie = new Process();
+                ie.StartInfo.FileName = "iexplore.exe";
+                ie.StartInfo.Arguments = url;
+                ie.Start();
+                ie.Close();
+            }
+            finally
+            {
+                browser.Close();
             }
         }
 
