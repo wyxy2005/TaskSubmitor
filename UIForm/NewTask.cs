@@ -114,6 +114,7 @@ namespace UIForm
                 cb_Chanel.SelectedItem.ToString(), false);
             task.Module = (ModuleEnum)Enum.Parse(typeof(ModuleEnum), 
                 cb_Module.SelectedItem.ToString(), false);
+            task.Phase = PhaseEnum.DEV;
             //需要创建的文档
             IList<TaskFile> files = GenTaskFiles();
             task.Files = files;
