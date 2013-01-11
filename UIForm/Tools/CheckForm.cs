@@ -65,6 +65,11 @@ namespace UIForm.Tools
                 msg = "没有要检出的文件";
                 return false;
             }
+            if (string.IsNullOrEmpty(txt_comment.Text.Trim()))
+            {
+                msg = "必须输入注释";
+                return false;
+            }
 
             return true;
         }
@@ -103,7 +108,7 @@ namespace UIForm.Tools
 
             CheckBLL check = new CheckBLL(sys.Default.username, sys.Default.password,
                 sys.Default.safeIniSrc, txt_VssDir.Text.Trim(), txt_LocalDir.Text.Trim());
-            check.CheckOut(files, "");
+            check.CheckOut(files, txt_comment.Text.Trim());
 
 
         }
@@ -116,7 +121,7 @@ namespace UIForm.Tools
 
             CheckBLL check = new CheckBLL(sys.Default.username, sys.Default.password,
                 sys.Default.safeIniSrc, txt_VssDir.Text.Trim(), txt_LocalDir.Text.Trim());
-            check.CheckIn(files, "");
+            check.CheckIn(files, txt_comment.Text.Trim());
 
 
         }

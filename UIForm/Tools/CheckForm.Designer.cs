@@ -39,7 +39,10 @@
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_CheckIn = new System.Windows.Forms.Button();
             this.txt_vssUrl = new System.Windows.Forms.TextBox();
+            this.txt_comment = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -86,7 +89,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.rtb_FileList);
-            this.groupBox1.Location = new System.Drawing.Point(14, 126);
+            this.groupBox1.Location = new System.Drawing.Point(14, 213);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(646, 343);
             this.groupBox1.TabIndex = 5;
@@ -103,7 +106,7 @@
             // 
             // btn_CheckOut
             // 
-            this.btn_CheckOut.Location = new System.Drawing.Point(312, 488);
+            this.btn_CheckOut.Location = new System.Drawing.Point(383, 565);
             this.btn_CheckOut.Name = "btn_CheckOut";
             this.btn_CheckOut.Size = new System.Drawing.Size(61, 23);
             this.btn_CheckOut.TabIndex = 6;
@@ -113,7 +116,7 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(529, 487);
+            this.btn_Cancel.Location = new System.Drawing.Point(600, 564);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(54, 23);
             this.btn_Cancel.TabIndex = 7;
@@ -123,7 +126,7 @@
             // 
             // btn_CheckIn
             // 
-            this.btn_CheckIn.Location = new System.Drawing.Point(422, 488);
+            this.btn_CheckIn.Location = new System.Drawing.Point(493, 565);
             this.btn_CheckIn.Name = "btn_CheckIn";
             this.btn_CheckIn.Size = new System.Drawing.Size(58, 23);
             this.btn_CheckIn.TabIndex = 8;
@@ -139,11 +142,30 @@
             this.txt_vssUrl.Size = new System.Drawing.Size(525, 21);
             this.txt_vssUrl.TabIndex = 9;
             // 
+            // txt_comment
+            // 
+            this.txt_comment.Location = new System.Drawing.Point(7, 20);
+            this.txt_comment.Multiline = true;
+            this.txt_comment.Name = "txt_comment";
+            this.txt_comment.Size = new System.Drawing.Size(633, 62);
+            this.txt_comment.TabIndex = 10;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txt_comment);
+            this.groupBox2.Location = new System.Drawing.Point(14, 117);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(646, 94);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "注释";
+            // 
             // CheckForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(678, 527);
+            this.ClientSize = new System.Drawing.Size(677, 598);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.txt_vssUrl);
             this.Controls.Add(this.btn_CheckIn);
             this.Controls.Add(this.btn_Cancel);
@@ -157,6 +179,8 @@
             this.Name = "CheckForm";
             this.Text = "CheckForm";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,5 +199,7 @@
         private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.Button btn_CheckIn;
         private System.Windows.Forms.TextBox txt_vssUrl;
+        private System.Windows.Forms.TextBox txt_comment;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
