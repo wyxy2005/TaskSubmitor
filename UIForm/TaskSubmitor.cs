@@ -72,8 +72,14 @@ namespace UIForm
             BindTreeNode();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void BindTreeNode()
         {
+            //清空遗留数据
+            tv_TaskList.Nodes.Clear();
+            //读取数据绑定树节点
             TaskBLL taskBll = new TaskBLL();
             IList<Task> tasks = taskBll.GetTaskList();
             tasks = tasks.OrderBy(x => x.Phase).ToList();
@@ -86,7 +92,6 @@ namespace UIForm
                 //添加右键菜单
                 node.ContextMenuStrip = this.treeNodeRightKeyMenu;
                 tv_TaskList.Nodes.Add(node);
-                
             }
         }
 
@@ -302,6 +307,11 @@ namespace UIForm
             SysUtil.BrowseURL(xpath);
         }
 
+        /// <summary>
+        /// 右键菜单“上线”触发
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tnMenu_ToOnline_Click(object sender, EventArgs e)
         {
             TreeNode currentNode = this.tv_TaskList.SelectedNode;
@@ -310,12 +320,28 @@ namespace UIForm
             TaskBLL bll = new TaskBLL();
             Task currentTask = bll.GetTask(int.Parse(taskNo));
             currentTask.Phase = Model.Enum.PhaseEnum.RUN;
-            int ire = bll.Update(currentTask);
-            if (ire > 0)
+            //移动工作区进入已上线
+            string destDir = sys.Default.OnlineDir + @"\" + currentTask.Description;
+            string msg = "";
+            if (bll.MoveTaskDir(currentTask, destDir))
             {
-                currentNode.ForeColor = TaskBLL.GetTaskColor(currentTask);
+                int ire = bll.Update(currentTask);
+                if (ire > 0)
+                {
+                    currentNode.ForeColor = TaskBLL.GetTaskColor(currentTask);
+                    BindTreeNode();
+                    msg = @"更改任务为上线成功";
+                }
+                else
+                    msg = @"更改任务为上线失败,请手动";
             }
-            
+            else
+            {
+                msg = @"更改任务为上线失败,请手动";
+            }
+
+            //反馈结果
+            MessageBox.Show(msg);
 
         }
 
@@ -468,11 +494,18 @@ namespace UIForm
         private void Bind_clb_FileList(string nodeText)
         {
             string xpath = sys.Default.localWorkspace + @"\" + nodeText;
-            DirectoryInfo dir = Directory.CreateDirectory(xpath);
-            FileInfo[] fileList = dir.GetFiles();
-            clb_FileList.DataSource = fileList;
-            clb_FileList.DisplayMember = "文件";
-            clb_FileList.ValueMember = "Name";
+            if (Directory.Exists(xpath))
+            {
+                DirectoryInfo dir = Directory.CreateDirectory(xpath);
+                FileInfo[] fileList = dir.GetFiles();
+                clb_FileList.DataSource = fileList;
+                clb_FileList.DisplayMember = "文件";
+                clb_FileList.ValueMember = "Name";
+            }
+            else
+            {
+                MessageBox.Show("此任务对应的目录不存在于" + xpath);
+            }
         }
 
 

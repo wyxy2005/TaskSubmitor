@@ -6,6 +6,7 @@ using System.Data;
 using DAL;
 using Model;
 using System.Drawing;
+using System.IO;
 
 namespace BLL
 {
@@ -100,6 +101,27 @@ namespace BLL
             TaskDAL dal = new TaskDAL();
             int ire = dal.Update(task);
             return ire;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="destPath"></param>
+        public bool MoveTaskDir(Task task,string destPath)
+        {
+            if (task == null)
+                return false;
+            try
+            {
+                Directory.Move(task.Dir, destPath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("工作区移动失败" + ex.Message);
+                return false;
+            }
+            return true;
         }
     }
 }
