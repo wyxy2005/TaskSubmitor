@@ -14,25 +14,11 @@ namespace UIForm.Control
 {
     public partial class ToDatCtrl : UserControl
     {
-        private int taskNo;
-        private string taskDir;
-        //private Task task;
-        /// <summary>
-        /// 需要提交的任务编号
-        /// </summary>
-        public int TaskNo
+        private Task task;
+        public Task CurrentTask
         {
-            get { return this.taskNo; }
-            set { this.taskNo = value; }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string TaskDir
-        {
-            get { return this.taskDir; }
-            set { this.taskDir = value; }
+            get { return this.task; }
+            set { this.task = value; }
         }
 
         /// <summary>
@@ -48,7 +34,8 @@ namespace UIForm.Control
         /// </summary>
         public void InitData()
         {
-            txt_task.Text = this.taskDir;
+            txt_TaskID.Text = this.task.No.ToString();
+            txt_task.Text = this.task.Dir;
         }
 
         /// <summary>
@@ -58,23 +45,38 @@ namespace UIForm.Control
         /// <param name="e"></param>
         private void btn_Ok_Click(object sender, EventArgs e)
         {
+            //StringBuilder sb = new StringBuilder();
             string msg = "";
             if (ValidateInput(ref msg))
             {
+                if (this.task == null)
+                {
+                    //根据输入得到任务
+                    TaskBLL bll = new TaskBLL();
+                    Task cTask = bll.GetTask(int.Parse(txt_TaskID.Text.Trim()));
+                    if (cTask == null)
+                    {
+                        MessageBox.Show("本地没有此编号的任务信息");
+                        return;
+                    }
+                    else
+                        this.task = cTask;
+                }
                 try
                 {
+                    UpdateTaskPhase(this.task);
+                    msg += "任务状态更新成功；";
                     //执行提交操作
                     //SubmitDAT();
                     //MessageBox.Show("提交成功");
-                    MessageBox.Show("此功能未开放");
+                    //MessageBox.Show("此功能未开放");
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("提交失败" + ex.Message);
                 }
             }
-            else
-                MessageBox.Show(msg);
+            MessageBox.Show(msg);
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
@@ -89,6 +91,11 @@ namespace UIForm.Control
         /// <returns></returns>
         private bool ValidateInput(ref string msg)
         {
+            if (string.IsNullOrEmpty(txt_TaskID.Text.Trim()))
+            {
+                msg = "没有任务编号";
+                return false;
+            }
             if (string.IsNullOrEmpty(txt_task.Text.Trim()))
             {
                 msg = "没有任务工作区";
@@ -102,13 +109,21 @@ namespace UIForm.Control
             return true;
         }
 
+
+        private void UpdateTaskPhase(Task task)
+        {
+            task.Phase = Model.Enum.PhaseEnum.DAT;
+            TaskBLL bll = new TaskBLL();
+            bll.Update(task);
+        }
+
         /// <summary>
         /// 提交DAT,模板操作
         /// </summary>
         private void SubmitDAT()
         {
             TaskBLL bll = new TaskBLL();
-            Task task = bll.GetTask(this.taskNo);
+            Task task = bll.GetTask(this.task.No);
             BLL.SubmitDAT datSubmitor = new BLL.SubmitDAT(task);
 
             ////TODO：输入太多，考虑输入jira号之后，由软件自动生成相关文件模板，用户修改添加即可，这样多数路径又软件智能提取

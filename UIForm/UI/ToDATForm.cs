@@ -6,17 +6,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Model;
 
 namespace UIForm.UI
 {
     public partial class ToDATForm : Form
     {
-        private string taskDir;
+        private Task task;
 
-        public string TaskDir
+        public Task CurrentTask
         {
-            get { return this.taskDir; }
-            set { this.taskDir = value; }
+            get { return this.task; }
+            set { this.task = value; }
         }
 
         public ToDATForm()
@@ -27,7 +28,7 @@ namespace UIForm.UI
         public void InitData()
         {
             //设置需要dat的任务
-            ctrl_ToDat.TaskDir = this.TaskDir;
+            ctrl_ToDat.CurrentTask = this.task;
             ctrl_ToDat.InitData();
         }
 

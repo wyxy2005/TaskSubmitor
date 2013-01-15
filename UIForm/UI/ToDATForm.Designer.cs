@@ -36,18 +36,17 @@
             this.ctrl_ToDat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrl_ToDat.CurrentTask = null;
             this.ctrl_ToDat.Location = new System.Drawing.Point(25, 7);
             this.ctrl_ToDat.Name = "ctrl_ToDat";
-            this.ctrl_ToDat.Size = new System.Drawing.Size(550, 436);
+            this.ctrl_ToDat.Size = new System.Drawing.Size(521, 460);
             this.ctrl_ToDat.TabIndex = 0;
-            this.ctrl_ToDat.TaskDir = null;
-            this.ctrl_ToDat.TaskNo = 0;
             // 
             // ToDATForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(621, 455);
+            this.ClientSize = new System.Drawing.Size(592, 479);
             this.Controls.Add(this.ctrl_ToDat);
             this.Name = "ToDATForm";
             this.Text = "提交DAT";

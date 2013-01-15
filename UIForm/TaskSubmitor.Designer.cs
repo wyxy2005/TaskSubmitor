@@ -85,6 +85,11 @@
             this.tnMenu_Open = new System.Windows.Forms.ToolStripMenuItem();
             this.tnMenu_ToDAT = new System.Windows.Forms.ToolStripMenuItem();
             this.tnMenu_ToOnline = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbl_Workspace = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbx_RecordAll = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.clb_srcList = new System.Windows.Forms.CheckedListBox();
             this.clb_FileList = new System.Windows.Forms.CheckedListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gb_Top = new System.Windows.Forms.GroupBox();
@@ -106,11 +111,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.clb_srcList = new System.Windows.Forms.CheckedListBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbx_RecordAll = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lbl_Workspace = new System.Windows.Forms.Label();
+            this.tnMenu_Refresh = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -581,32 +582,80 @@
             // treeNodeRightKeyMenu
             // 
             this.treeNodeRightKeyMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tnMenu_Refresh,
             this.tnMenu_Open,
             this.tnMenu_ToDAT,
             this.tnMenu_ToOnline});
             this.treeNodeRightKeyMenu.Name = "contextMenuStrip1";
-            this.treeNodeRightKeyMenu.Size = new System.Drawing.Size(113, 70);
+            this.treeNodeRightKeyMenu.Size = new System.Drawing.Size(153, 114);
             // 
             // tnMenu_Open
             // 
             this.tnMenu_Open.Name = "tnMenu_Open";
-            this.tnMenu_Open.Size = new System.Drawing.Size(112, 22);
+            this.tnMenu_Open.Size = new System.Drawing.Size(152, 22);
             this.tnMenu_Open.Text = "打开";
             this.tnMenu_Open.Click += new System.EventHandler(this.tnMenu_Open_Click);
             // 
             // tnMenu_ToDAT
             // 
             this.tnMenu_ToDAT.Name = "tnMenu_ToDAT";
-            this.tnMenu_ToDAT.Size = new System.Drawing.Size(112, 22);
+            this.tnMenu_ToDAT.Size = new System.Drawing.Size(152, 22);
             this.tnMenu_ToDAT.Text = "提交DAT";
             this.tnMenu_ToDAT.Click += new System.EventHandler(this.tnMenu_ToDAT_Click);
             // 
             // tnMenu_ToOnline
             // 
             this.tnMenu_ToOnline.Name = "tnMenu_ToOnline";
-            this.tnMenu_ToOnline.Size = new System.Drawing.Size(112, 22);
+            this.tnMenu_ToOnline.Size = new System.Drawing.Size(152, 22);
             this.tnMenu_ToOnline.Text = "上线";
             this.tnMenu_ToOnline.Click += new System.EventHandler(this.tnMenu_ToOnline_Click);
+            // 
+            // lbl_Workspace
+            // 
+            this.lbl_Workspace.AutoSize = true;
+            this.lbl_Workspace.Location = new System.Drawing.Point(245, 253);
+            this.lbl_Workspace.Name = "lbl_Workspace";
+            this.lbl_Workspace.Size = new System.Drawing.Size(23, 12);
+            this.lbl_Workspace.TabIndex = 13;
+            this.lbl_Workspace.Text = "...";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(178, 254);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "工作区目录";
+            // 
+            // cbx_RecordAll
+            // 
+            this.cbx_RecordAll.AutoSize = true;
+            this.cbx_RecordAll.Location = new System.Drawing.Point(91, 253);
+            this.cbx_RecordAll.Name = "cbx_RecordAll";
+            this.cbx_RecordAll.Size = new System.Drawing.Size(48, 16);
+            this.cbx_RecordAll.TabIndex = 11;
+            this.cbx_RecordAll.Text = "全选";
+            this.cbx_RecordAll.UseVisualStyleBackColor = true;
+            this.cbx_RecordAll.Click += new System.EventHandler(this.cbx_RecordAll_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(-2, 255);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "修改列表";
+            // 
+            // clb_srcList
+            // 
+            this.clb_srcList.CheckOnClick = true;
+            this.clb_srcList.FormattingEnabled = true;
+            this.clb_srcList.Location = new System.Drawing.Point(0, 270);
+            this.clb_srcList.Name = "clb_srcList";
+            this.clb_srcList.Size = new System.Drawing.Size(616, 244);
+            this.clb_srcList.TabIndex = 4;
             // 
             // clb_FileList
             // 
@@ -813,52 +862,12 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "测试中";
             // 
-            // clb_srcList
+            // tnMenu_Refresh
             // 
-            this.clb_srcList.CheckOnClick = true;
-            this.clb_srcList.FormattingEnabled = true;
-            this.clb_srcList.Location = new System.Drawing.Point(0, 270);
-            this.clb_srcList.Name = "clb_srcList";
-            this.clb_srcList.Size = new System.Drawing.Size(616, 244);
-            this.clb_srcList.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(-2, 255);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 12);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "修改列表";
-            // 
-            // cbx_RecordAll
-            // 
-            this.cbx_RecordAll.AutoSize = true;
-            this.cbx_RecordAll.Location = new System.Drawing.Point(91, 253);
-            this.cbx_RecordAll.Name = "cbx_RecordAll";
-            this.cbx_RecordAll.Size = new System.Drawing.Size(48, 16);
-            this.cbx_RecordAll.TabIndex = 11;
-            this.cbx_RecordAll.Text = "全选";
-            this.cbx_RecordAll.UseVisualStyleBackColor = true;
-            this.cbx_RecordAll.Click += new System.EventHandler(this.cbx_RecordAll_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(178, 254);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "工作区目录";
-            // 
-            // lbl_Workspace
-            // 
-            this.lbl_Workspace.AutoSize = true;
-            this.lbl_Workspace.Location = new System.Drawing.Point(245, 253);
-            this.lbl_Workspace.Name = "lbl_Workspace";
-            this.lbl_Workspace.Size = new System.Drawing.Size(23, 12);
-            this.lbl_Workspace.TabIndex = 13;
-            this.lbl_Workspace.Text = "...";
+            this.tnMenu_Refresh.Name = "tnMenu_Refresh";
+            this.tnMenu_Refresh.Size = new System.Drawing.Size(152, 22);
+            this.tnMenu_Refresh.Text = "刷新";
+            this.tnMenu_Refresh.Click += new System.EventHandler(this.tnMenu_Refresh_Click);
             // 
             // TaskSubmitor
             // 
@@ -985,6 +994,7 @@
         private System.Windows.Forms.CheckedListBox clb_srcList;
         private System.Windows.Forms.Label lbl_Workspace;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolStripMenuItem tnMenu_Refresh;
     }
 }
 

@@ -22,10 +22,13 @@ namespace DAL
             {
                 task.No = int.Parse(taskNode.Attributes["id"].Value);
                 task.Description = taskNode.Attributes["name"].Value;
+                task.Sys = (Model.Enum.SysEnum)int.Parse(taskNode.Attributes["sys"].Value);
                 task.Phase = (Model.Enum.PhaseEnum)int.Parse(taskNode.Attributes["phase"].Value);
-                
+                task.Module = (Model.Enum.ModuleEnum)int.Parse(taskNode.Attributes["module"].Value);
+                task.Channel = (Model.Enum.ChannelEnum)int.Parse(taskNode.Attributes["chanl"].Value);
+                task.Dir = taskNode.SelectSingleNode("dir").InnerText;
+                task.Name = taskNode.SelectSingleNode("content").InnerText;
 
-                //task.Dir = taskNode.ChildNodes[
             }
             catch (Exception ex)
             { 

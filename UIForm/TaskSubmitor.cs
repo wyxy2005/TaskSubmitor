@@ -290,8 +290,8 @@ namespace UIForm
             TaskBLL taskBll = new TaskBLL();
             Task t = taskBll.GetTask(int.Parse(e.Node.Name));
             //Task t = 
-            Bind_clb_FileList(e.Node.Text);
-            Bind_clb_srcList(e.Node.Text);
+            Bind_clb_FileList(t);
+            Bind_clb_srcList(t);
             //设置工作区目录
             if ( t.Channel == Model.Enum.ChannelEnum.P)
                 lbl_Workspace.Text = sys.Default.localProjectP;
@@ -345,16 +345,32 @@ namespace UIForm
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tnMenu_ToDAT_Click(object sender, EventArgs e)
         {
+            TreeNode currentNode = this.tv_TaskList.SelectedNode;
             //需要上线的任务编号
-            string taskNo = this.tv_TaskList.SelectedNode.Name;
-            string taskDir = sys.Default.localWorkspace + @"\" + this.tv_TaskList.SelectedNode.Text;
+            string taskNo = currentNode.Name;
+            TaskBLL bll = new TaskBLL();
+            Task currentTask = bll.GetTask(int.Parse(taskNo));
+
+            //调用用户控件进行处理
             ToDATForm toDatForm = new ToDATForm();
-            toDatForm.TaskDir = taskDir;
+            toDatForm.CurrentTask = currentTask;
             toDatForm.InitData();
             toDatForm.ShowDialog();
         }
+
+
+        private void tnMenu_Refresh_Click(object sender, EventArgs e)
+        {
+            BindTreeNode();
+        }
+
 
         #endregion
 
@@ -487,13 +503,15 @@ namespace UIForm
 
         }
 
-        private void Bind_clb_srcList(string nodeText)
+        private void Bind_clb_srcList(Task task)
         { 
+            //从gitlog中获取当前的编号的文件
+
         }
 
-        private void Bind_clb_FileList(string nodeText)
+        private void Bind_clb_FileList(Task task)
         {
-            string xpath = sys.Default.localWorkspace + @"\" + nodeText;
+            string xpath = task.Dir;
             if (Directory.Exists(xpath))
             {
                 DirectoryInfo dir = Directory.CreateDirectory(xpath);
@@ -507,6 +525,8 @@ namespace UIForm
                 MessageBox.Show("此任务对应的目录不存在于" + xpath);
             }
         }
+
+
 
 
 
