@@ -82,8 +82,13 @@ namespace UIForm
             //读取数据绑定树节点
             TaskBLL taskBll = new TaskBLL();
             IList<Task> tasks = taskBll.GetTaskList();
-            tasks = tasks.OrderBy(x => x.Phase).ToList();
-            foreach (Task t in tasks)
+            ////lambda
+            //var sortedTask = tasks.OrderBy(x => x.Phase).ThenByDescending(x => x.No).ToList();
+            //linq sort
+            var sortedTask = from t in tasks
+                             orderby t.Phase ascending, t.No descending
+                             select t;
+            foreach (Task t in sortedTask)
             {
                 TreeNode node = new TreeNode();
                 node.Name = t.No.ToString();
