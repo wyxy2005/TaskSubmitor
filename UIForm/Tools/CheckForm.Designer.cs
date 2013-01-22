@@ -41,6 +41,8 @@
             this.txt_vssUrl = new System.Windows.Forms.TextBox();
             this.txt_comment = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_Diff = new System.Windows.Forms.Button();
+            this.btn_UndoCheckOut = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -106,7 +108,7 @@
             // 
             // btn_CheckOut
             // 
-            this.btn_CheckOut.Location = new System.Drawing.Point(383, 565);
+            this.btn_CheckOut.Location = new System.Drawing.Point(276, 566);
             this.btn_CheckOut.Name = "btn_CheckOut";
             this.btn_CheckOut.Size = new System.Drawing.Size(61, 23);
             this.btn_CheckOut.TabIndex = 6;
@@ -126,7 +128,7 @@
             // 
             // btn_CheckIn
             // 
-            this.btn_CheckIn.Location = new System.Drawing.Point(493, 565);
+            this.btn_CheckIn.Location = new System.Drawing.Point(530, 565);
             this.btn_CheckIn.Name = "btn_CheckIn";
             this.btn_CheckIn.Size = new System.Drawing.Size(58, 23);
             this.btn_CheckIn.TabIndex = 8;
@@ -160,11 +162,33 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "注释";
             // 
+            // btn_Diff
+            // 
+            this.btn_Diff.Location = new System.Drawing.Point(350, 566);
+            this.btn_Diff.Name = "btn_Diff";
+            this.btn_Diff.Size = new System.Drawing.Size(61, 23);
+            this.btn_Diff.TabIndex = 12;
+            this.btn_Diff.Text = "Diff";
+            this.btn_Diff.UseVisualStyleBackColor = true;
+            this.btn_Diff.Click += new System.EventHandler(this.btn_Diff_Click);
+            // 
+            // btn_UndoCheckOut
+            // 
+            this.btn_UndoCheckOut.Location = new System.Drawing.Point(421, 565);
+            this.btn_UndoCheckOut.Name = "btn_UndoCheckOut";
+            this.btn_UndoCheckOut.Size = new System.Drawing.Size(97, 23);
+            this.btn_UndoCheckOut.TabIndex = 13;
+            this.btn_UndoCheckOut.Text = "Undo CheckOut";
+            this.btn_UndoCheckOut.UseVisualStyleBackColor = true;
+            this.btn_UndoCheckOut.Click += new System.EventHandler(this.btn_UndoCheckOut_Click);
+            // 
             // CheckForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 598);
+            this.Controls.Add(this.btn_UndoCheckOut);
+            this.Controls.Add(this.btn_Diff);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.txt_vssUrl);
             this.Controls.Add(this.btn_CheckIn);
@@ -201,5 +225,7 @@
         private System.Windows.Forms.TextBox txt_vssUrl;
         private System.Windows.Forms.TextBox txt_comment;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btn_Diff;
+        private System.Windows.Forms.Button btn_UndoCheckOut;
     }
 }

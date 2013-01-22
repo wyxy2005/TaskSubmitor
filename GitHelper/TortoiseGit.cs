@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace GitHelper
 {
@@ -12,5 +13,21 @@ namespace GitHelper
     /// </summary>
     public class TortoiseGit
     {
+
+        private string tortoiseMerge; //=  @"D:\Program Files\TortoiseGit\bin\TortoiseMerge.exe";
+        
+        public TortoiseGit(string tortoiseGitRootPath)
+        { 
+            this.tortoiseMerge = tortoiseGitRootPath + @"\bin\TortoiseMerge.exe";
+        }
+
+        public void Diff(string fileAPath,string fileBPath)
+        {
+            string argu = fileAPath + " " + fileBPath;
+            Process tmerger = new Process();
+            tmerger.StartInfo.FileName = this.tortoiseMerge;
+            tmerger.StartInfo.Arguments = argu;
+            tmerger.Start();
+        }
     }
 }

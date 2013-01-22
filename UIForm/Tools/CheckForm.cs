@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using BLL;
+using GitHelper;
+using System.IO;
+using System.Threading;
 
 namespace UIForm.Tools
 {
@@ -94,10 +97,44 @@ namespace UIForm.Tools
                 MessageBox.Show(msg);
             }
         }
+        
+
+        private void btn_Diff_Click(object sender, EventArgs e)
+        {
+            string msg = "";
+            if (ValidateInput(ref msg))
+            {
+                try
+                {
+                    Diff();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Diff 失败\n" + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show(msg);
+            }
+        }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+
+
+        private void btn_UndoCheckOut_Click(object sender, EventArgs e)
+        {
+            //从输入获取文件列表
+            string text = rtb_FileList.Text.Trim();
+            string[] files = text.Split('\n');
+            string file = files[0];
+            CheckBLL check = new CheckBLL(sys.Default.username, sys.Default.password,
+                sys.Default.safeIniSrc, txt_VssDir.Text.Trim(), txt_LocalDir.Text.Trim());
+            check.UndoCheckOut(file, txt_comment.Text.Trim());
         }
 
         private void CheckOut()
@@ -124,6 +161,39 @@ namespace UIForm.Tools
             check.CheckIn(files, txt_comment.Text.Trim());
 
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void Diff()
+        {
+            //需要重新设计文件列表
+            //从输入获取文件列表
+            string text = rtb_FileList.Text.Trim();
+            string[] files = text.Split('\n');
+            string file = files[0];
+            //得到服务器文件
+            if (!UiUtil.ExistTempDir())
+                UiUtil.CreateTempDir();
+
+            CheckBLL check = new CheckBLL(sys.Default.username, sys.Default.password,
+                sys.Default.safeIniSrc, txt_VssDir.Text.Trim(), txt_LocalDir.Text.Trim());
+            //工作区文件
+            string localFilePath = txt_LocalDir.Text.Trim() + @"\" + file;
+            //服务器文件版本
+            string tempFileName = Guid.NewGuid().ToString();
+            string tempFilePath = sys.Default.TempDir + @"\~" + tempFileName;
+            check.Get(file, tempFilePath);
+
+            //invoke TortoiseMerge
+            TortoiseGit tortoise = new TortoiseGit(sys.Default.TortoiseGitRootPath);
+            tortoise.Diff(tempFilePath, localFilePath);
+
+            //当前线程暂停5秒，防止临时文件在没有被加载时就删除了
+            Thread.Sleep(5000);
+            //删除临时文件
+            File.Delete(tempFilePath);
         }
     }
 }

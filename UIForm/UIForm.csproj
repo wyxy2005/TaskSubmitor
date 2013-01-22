@@ -165,6 +165,7 @@
     <Compile Include="Tools\Online.Designer.cs">
       <DependentUpon>Online.cs</DependentUpon>
     </Compile>
+    <Compile Include="UiUtil.cs" />
     <Compile Include="UI\ToDATForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,6 +248,10 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{E4EF658F-97CD-4155-93F2-B92BF1C2FAE1}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHelper\GitHelper.csproj">
+      <Project>{DEA69B8D-6236-46A7-B28C-82E9E138DB30}</Project>
+      <Name>GitHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{63D7D8FF-1930-4D0E-9D14-7655092E6CBC}</Project>
