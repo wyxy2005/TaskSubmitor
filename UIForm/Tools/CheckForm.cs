@@ -98,24 +98,26 @@ namespace UIForm.Tools
             }
         }
         
-
+        /// <summary>
+        /// 此功能添加到右键
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Diff_Click(object sender, EventArgs e)
         {
             string msg = "";
-            if (ValidateInput(ref msg))
+            if(clb_FileList.SelectedItems.Count > 0)
             {
-                try
-                {
-                    Diff();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Diff 失败\n" + ex.Message);
-                }
+                //原始功能，对于第一个选择的比较,此处会添加至右键
+                Diff(clb_FileList.SelectedItems[0].ToString());
+                //for (int i = 0; i < clb_FileList.SelectedItems.Count; ++i)
+                //{
+                //    clb_FileList.SelectedItems[i].ToString();
+                //}
             }
             else
             {
-                MessageBox.Show(msg);
+                MessageBox.Show("没有选择文件");
             }
         }
 
@@ -125,18 +127,36 @@ namespace UIForm.Tools
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_UndoCheckOut_Click(object sender, EventArgs e)
         {
-            //从输入获取文件列表
-            string text = rtb_FileList.Text.Trim();
-            string[] files = text.Split('\n');
-            string file = files[0];
-            CheckBLL check = new CheckBLL(sys.Default.username, sys.Default.password,
-                sys.Default.safeIniSrc, txt_VssDir.Text.Trim(), txt_LocalDir.Text.Trim());
-            check.UndoCheckOut(file, txt_comment.Text.Trim());
+
+            string msg = "";
+            if (ValidateInput(ref msg))
+            {
+                try
+                {
+                    UndoCheckOut();
+                    MessageBox.Show("取消检出成功");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("取消检出失败，请手动取消检出\n" + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show(msg);
+            }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void CheckOut()
         {
             //从输入获取文件列表
@@ -146,10 +166,15 @@ namespace UIForm.Tools
             CheckBLL check = new CheckBLL(sys.Default.username, sys.Default.password,
                 sys.Default.safeIniSrc, txt_VssDir.Text.Trim(), txt_LocalDir.Text.Trim());
             check.CheckOut(files, txt_comment.Text.Trim());
-
+            
+            foreach(string f in files)
+                clb_FileList.Items.Add(f);
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void CheckIn()
         {
             //从输入获取文件列表
@@ -166,13 +191,27 @@ namespace UIForm.Tools
         /// <summary>
         /// 
         /// </summary>
-        private void Diff()
+        private void UndoCheckOut()
         {
-            //需要重新设计文件列表
             //从输入获取文件列表
             string text = rtb_FileList.Text.Trim();
             string[] files = text.Split('\n');
-            string file = files[0];
+            //string file = files[0];
+            CheckBLL check = new CheckBLL(sys.Default.username, sys.Default.password,
+                sys.Default.safeIniSrc, txt_VssDir.Text.Trim(), txt_LocalDir.Text.Trim());
+            check.UndoCheckOut(files, txt_comment.Text.Trim());
+        }
+
+        /// <summary>
+        /// 只针对第一个文件
+        /// </summary>
+        private void Diff(string file)
+        {
+            //需要重新设计文件列表
+            //从输入获取文件列表
+            //string text = rtb_FileList.Text.Trim();
+            //string[] files = text.Split('\n');
+            //string file = files[0];
             //得到服务器文件
             if (!UiUtil.ExistTempDir())
                 UiUtil.CreateTempDir();
@@ -186,6 +225,7 @@ namespace UIForm.Tools
             string tempFilePath = sys.Default.TempDir + @"\~" + tempFileName;
             check.Get(file, tempFilePath);
 
+            //TODO:这里的调用以后使用异步调用
             //invoke TortoiseMerge
             TortoiseGit tortoise = new TortoiseGit(sys.Default.TortoiseGitRootPath);
             tortoise.Diff(tempFilePath, localFilePath);

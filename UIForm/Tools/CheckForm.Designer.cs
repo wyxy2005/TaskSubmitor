@@ -43,6 +43,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_Diff = new System.Windows.Forms.Button();
             this.btn_UndoCheckOut = new System.Windows.Forms.Button();
+            this.clb_FileList = new System.Windows.Forms.CheckedListBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -90,6 +91,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.clb_FileList);
             this.groupBox1.Controls.Add(this.rtb_FileList);
             this.groupBox1.Location = new System.Drawing.Point(14, 213);
             this.groupBox1.Name = "groupBox1";
@@ -102,7 +104,7 @@
             // 
             this.rtb_FileList.Location = new System.Drawing.Point(7, 16);
             this.rtb_FileList.Name = "rtb_FileList";
-            this.rtb_FileList.Size = new System.Drawing.Size(633, 321);
+            this.rtb_FileList.Size = new System.Drawing.Size(633, 186);
             this.rtb_FileList.TabIndex = 0;
             this.rtb_FileList.Text = "";
             // 
@@ -182,6 +184,15 @@
             this.btn_UndoCheckOut.UseVisualStyleBackColor = true;
             this.btn_UndoCheckOut.Click += new System.EventHandler(this.btn_UndoCheckOut_Click);
             // 
+            // clb_FileList
+            // 
+            this.clb_FileList.CheckOnClick = true;
+            this.clb_FileList.FormattingEnabled = true;
+            this.clb_FileList.Location = new System.Drawing.Point(6, 208);
+            this.clb_FileList.Name = "clb_FileList";
+            this.clb_FileList.Size = new System.Drawing.Size(634, 132);
+            this.clb_FileList.TabIndex = 1;
+            // 
             // CheckForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -227,5 +238,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btn_Diff;
         private System.Windows.Forms.Button btn_UndoCheckOut;
+        private System.Windows.Forms.CheckedListBox clb_FileList;
     }
 }

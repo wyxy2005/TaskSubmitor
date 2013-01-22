@@ -178,10 +178,13 @@ namespace VssHelper
             vssDatabase.Open(this.srcSafeIni, this.username, this.password);
 
             IVSSItem vssFile = vssDatabase.get_VSSItem(vssFilePath, false);
-            if ((VSSFileStatus)vssFile.IsCheckedOut == VSSFileStatus.VSSFILE_CHECKEDOUT)
+            //只有取消自己检出的
+            if ((VSSFileStatus)vssFile.IsCheckedOut == VSSFileStatus.VSSFILE_CHECKEDOUT_ME)
+            {
                 vssFile.UndoCheckout();
 
-            Console.WriteLine("undo check out ." + vssFilePath);
+                Console.WriteLine("undo check out ." + vssFilePath);
+            }
             Console.ReadLine();
         }
 
