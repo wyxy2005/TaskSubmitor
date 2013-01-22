@@ -178,5 +178,101 @@ namespace UIForm {
                 this["safeIniDoc"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\AB-P-Pro")]
+        public string localOnlineP {
+            get {
+                return ((string)(this["localOnlineP"]));
+            }
+            set {
+                this["localOnlineP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\AB-G-Pro")]
+        public string localOnlineG {
+            get {
+                return ((string)(this["localOnlineG"]));
+            }
+            set {
+                this["localOnlineG"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$/H-Pro/AB-Pui-Pro")]
+        public string vssOnlineP {
+            get {
+                return ((string)(this["vssOnlineP"]));
+            }
+            set {
+                this["vssOnlineP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$/H-Pro/AB-Gui-Pro")]
+        public string vssOnlineG {
+            get {
+                return ((string)(this["vssOnlineG"]));
+            }
+            set {
+                this["vssOnlineG"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Work\\Task\\已经上线")]
+        public string OnlineDir {
+            get {
+                return ((string)(this["OnlineDir"]));
+            }
+            set {
+                this["OnlineDir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Temp")]
+        public string TempDir {
+            get {
+                return ((string)(this["TempDir"]));
+            }
+            set {
+                this["TempDir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Program Files\\TortoiseGit\\bin\\TortoiseMerge.exe")]
+        public string TortoiseMerge {
+            get {
+                return ((string)(this["TortoiseMerge"]));
+            }
+            set {
+                this["TortoiseMerge"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Program Files\\TortoiseGit")]
+        public string TortoiseGitRootPath {
+            get {
+                return ((string)(this["TortoiseGitRootPath"]));
+            }
+            set {
+                this["TortoiseGitRootPath"] = value;
+            }
+        }
     }
 }
