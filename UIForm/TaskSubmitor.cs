@@ -330,6 +330,7 @@ namespace UIForm
             string msg = "";
             if (bll.MoveTaskDir(currentTask, destDir))
             {
+                currentTask.Dir = destDir;
                 int ire = bll.Update(currentTask);
                 if (ire > 0)
                 {
