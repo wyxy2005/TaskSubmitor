@@ -266,10 +266,7 @@ namespace UIForm
         /// <param name="e"></param>
         private void btn_goto_Click(object sender, EventArgs e)
         {
-            log.Info("打开浏览器转到jira");
-            string url = sys.Default.JiraUrl + sys.Default.TaskPrex + "-" + txt_JiraNo.Text.Trim();
-            //调用浏览器打开
-            SysUtil.BrowseURL(url);
+            GotoJira(txt_JiraNo.Text.Trim());
         }
 
         /// <summary>
@@ -532,10 +529,30 @@ namespace UIForm
             }
         }
 
+        private void tnMenu_GotoJira_Click(object sender, EventArgs e)
+        {
+            TreeNode currentNode = this.tv_TaskList.SelectedNode;
+            //需要上线的任务编号
+            string taskNo = currentNode.Name;
+            GotoJira(taskNo);
+        }
 
 
 
 
+
+
+        /// <summary>
+        /// goto jira
+        /// </summary>
+        /// <param name="jiraId"></param>
+        private void GotoJira(string jiraId)
+        {
+            log.Info("打开浏览器转到jira");
+            string url = sys.Default.JiraUrl + sys.Default.TaskPrex + "-" + jiraId;
+            //调用浏览器打开
+            SysUtil.BrowseURL(url);
+        }
 
 
 

@@ -82,6 +82,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tv_TaskList = new System.Windows.Forms.TreeView();
             this.treeNodeRightKeyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tnMenu_Refresh = new System.Windows.Forms.ToolStripMenuItem();
             this.tnMenu_Open = new System.Windows.Forms.ToolStripMenuItem();
             this.tnMenu_ToDAT = new System.Windows.Forms.ToolStripMenuItem();
             this.tnMenu_ToOnline = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,7 +112,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tnMenu_Refresh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tnMenu_GotoJira = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -584,16 +585,24 @@
             this.treeNodeRightKeyMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tnMenu_Refresh,
             this.tnMenu_Open,
+            this.tnMenu_GotoJira,
             this.tnMenu_ToDAT,
             this.tnMenu_ToOnline});
             this.treeNodeRightKeyMenu.Name = "contextMenuStrip1";
-            this.treeNodeRightKeyMenu.Size = new System.Drawing.Size(153, 114);
+            this.treeNodeRightKeyMenu.Size = new System.Drawing.Size(153, 136);
+            // 
+            // tnMenu_Refresh
+            // 
+            this.tnMenu_Refresh.Name = "tnMenu_Refresh";
+            this.tnMenu_Refresh.Size = new System.Drawing.Size(152, 22);
+            this.tnMenu_Refresh.Text = "刷新";
+            this.tnMenu_Refresh.Click += new System.EventHandler(this.tnMenu_Refresh_Click);
             // 
             // tnMenu_Open
             // 
             this.tnMenu_Open.Name = "tnMenu_Open";
             this.tnMenu_Open.Size = new System.Drawing.Size(152, 22);
-            this.tnMenu_Open.Text = "打开";
+            this.tnMenu_Open.Text = "本地打开";
             this.tnMenu_Open.Click += new System.EventHandler(this.tnMenu_Open_Click);
             // 
             // tnMenu_ToDAT
@@ -862,12 +871,12 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "测试中";
             // 
-            // tnMenu_Refresh
+            // tnMenu_GotoJira
             // 
-            this.tnMenu_Refresh.Name = "tnMenu_Refresh";
-            this.tnMenu_Refresh.Size = new System.Drawing.Size(152, 22);
-            this.tnMenu_Refresh.Text = "刷新";
-            this.tnMenu_Refresh.Click += new System.EventHandler(this.tnMenu_Refresh_Click);
+            this.tnMenu_GotoJira.Name = "tnMenu_GotoJira";
+            this.tnMenu_GotoJira.Size = new System.Drawing.Size(152, 22);
+            this.tnMenu_GotoJira.Text = "转到JIRA";
+            this.tnMenu_GotoJira.Click += new System.EventHandler(this.tnMenu_GotoJira_Click);
             // 
             // TaskSubmitor
             // 
@@ -995,6 +1004,7 @@
         private System.Windows.Forms.Label lbl_Workspace;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem tnMenu_Refresh;
+        private System.Windows.Forms.ToolStripMenuItem tnMenu_GotoJira;
     }
 }
 
