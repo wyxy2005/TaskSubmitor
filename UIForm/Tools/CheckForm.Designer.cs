@@ -30,20 +30,20 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txt_VssDir = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txt_LocalDir = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.clb_FileList = new System.Windows.Forms.CheckedListBox();
             this.rtb_FileList = new System.Windows.Forms.RichTextBox();
             this.btn_CheckOut = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_CheckIn = new System.Windows.Forms.Button();
-            this.txt_vssUrl = new System.Windows.Forms.TextBox();
             this.txt_comment = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_Diff = new System.Windows.Forms.Button();
             this.btn_UndoCheckOut = new System.Windows.Forms.Button();
-            this.clb_FileList = new System.Windows.Forms.CheckedListBox();
+            this.cb_VssUrl = new System.Windows.Forms.ComboBox();
+            this.cb_VssDir = new System.Windows.Forms.ComboBox();
+            this.cb_LocalDir = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -66,13 +66,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "vss工作区";
             // 
-            // txt_VssDir
-            // 
-            this.txt_VssDir.Location = new System.Drawing.Point(85, 46);
-            this.txt_VssDir.Name = "txt_VssDir";
-            this.txt_VssDir.Size = new System.Drawing.Size(525, 21);
-            this.txt_VssDir.TabIndex = 2;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -82,23 +75,25 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "本地工作区";
             // 
-            // txt_LocalDir
-            // 
-            this.txt_LocalDir.Location = new System.Drawing.Point(84, 86);
-            this.txt_LocalDir.Name = "txt_LocalDir";
-            this.txt_LocalDir.Size = new System.Drawing.Size(525, 21);
-            this.txt_LocalDir.TabIndex = 4;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.clb_FileList);
             this.groupBox1.Controls.Add(this.rtb_FileList);
-            this.groupBox1.Location = new System.Drawing.Point(14, 213);
+            this.groupBox1.Location = new System.Drawing.Point(14, 196);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(646, 343);
+            this.groupBox1.Size = new System.Drawing.Size(646, 362);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "文件列表";
+            // 
+            // clb_FileList
+            // 
+            this.clb_FileList.CheckOnClick = true;
+            this.clb_FileList.FormattingEnabled = true;
+            this.clb_FileList.Location = new System.Drawing.Point(6, 223);
+            this.clb_FileList.Name = "clb_FileList";
+            this.clb_FileList.Size = new System.Drawing.Size(634, 132);
+            this.clb_FileList.TabIndex = 1;
             // 
             // rtb_FileList
             // 
@@ -110,7 +105,7 @@
             // 
             // btn_CheckOut
             // 
-            this.btn_CheckOut.Location = new System.Drawing.Point(276, 566);
+            this.btn_CheckOut.Location = new System.Drawing.Point(98, 567);
             this.btn_CheckOut.Name = "btn_CheckOut";
             this.btn_CheckOut.Size = new System.Drawing.Size(61, 23);
             this.btn_CheckOut.TabIndex = 6;
@@ -120,7 +115,7 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(600, 564);
+            this.btn_Cancel.Location = new System.Drawing.Point(600, 566);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(54, 23);
             this.btn_Cancel.TabIndex = 7;
@@ -130,7 +125,7 @@
             // 
             // btn_CheckIn
             // 
-            this.btn_CheckIn.Location = new System.Drawing.Point(530, 565);
+            this.btn_CheckIn.Location = new System.Drawing.Point(480, 567);
             this.btn_CheckIn.Name = "btn_CheckIn";
             this.btn_CheckIn.Size = new System.Drawing.Size(58, 23);
             this.btn_CheckIn.TabIndex = 8;
@@ -138,20 +133,12 @@
             this.btn_CheckIn.UseVisualStyleBackColor = true;
             this.btn_CheckIn.Click += new System.EventHandler(this.btn_CheckIn_Click);
             // 
-            // txt_vssUrl
-            // 
-            this.txt_vssUrl.Location = new System.Drawing.Point(85, 11);
-            this.txt_vssUrl.Name = "txt_vssUrl";
-            this.txt_vssUrl.ReadOnly = true;
-            this.txt_vssUrl.Size = new System.Drawing.Size(525, 21);
-            this.txt_vssUrl.TabIndex = 9;
-            // 
             // txt_comment
             // 
             this.txt_comment.Location = new System.Drawing.Point(7, 20);
             this.txt_comment.Multiline = true;
             this.txt_comment.Name = "txt_comment";
-            this.txt_comment.Size = new System.Drawing.Size(633, 62);
+            this.txt_comment.Size = new System.Drawing.Size(633, 44);
             this.txt_comment.TabIndex = 10;
             // 
             // groupBox2
@@ -159,14 +146,14 @@
             this.groupBox2.Controls.Add(this.txt_comment);
             this.groupBox2.Location = new System.Drawing.Point(14, 117);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(646, 94);
+            this.groupBox2.Size = new System.Drawing.Size(646, 73);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "注释";
             // 
             // btn_Diff
             // 
-            this.btn_Diff.Location = new System.Drawing.Point(350, 566);
+            this.btn_Diff.Location = new System.Drawing.Point(355, 567);
             this.btn_Diff.Name = "btn_Diff";
             this.btn_Diff.Size = new System.Drawing.Size(61, 23);
             this.btn_Diff.TabIndex = 12;
@@ -176,7 +163,7 @@
             // 
             // btn_UndoCheckOut
             // 
-            this.btn_UndoCheckOut.Location = new System.Drawing.Point(421, 565);
+            this.btn_UndoCheckOut.Location = new System.Drawing.Point(203, 568);
             this.btn_UndoCheckOut.Name = "btn_UndoCheckOut";
             this.btn_UndoCheckOut.Size = new System.Drawing.Size(97, 23);
             this.btn_UndoCheckOut.TabIndex = 13;
@@ -184,31 +171,46 @@
             this.btn_UndoCheckOut.UseVisualStyleBackColor = true;
             this.btn_UndoCheckOut.Click += new System.EventHandler(this.btn_UndoCheckOut_Click);
             // 
-            // clb_FileList
+            // cb_VssUrl
             // 
-            this.clb_FileList.CheckOnClick = true;
-            this.clb_FileList.FormattingEnabled = true;
-            this.clb_FileList.Location = new System.Drawing.Point(6, 208);
-            this.clb_FileList.Name = "clb_FileList";
-            this.clb_FileList.Size = new System.Drawing.Size(634, 132);
-            this.clb_FileList.TabIndex = 1;
+            this.cb_VssUrl.FormattingEnabled = true;
+            this.cb_VssUrl.Location = new System.Drawing.Point(85, 12);
+            this.cb_VssUrl.Name = "cb_VssUrl";
+            this.cb_VssUrl.Size = new System.Drawing.Size(524, 20);
+            this.cb_VssUrl.TabIndex = 14;
+            // 
+            // cb_VssDir
+            // 
+            this.cb_VssDir.FormattingEnabled = true;
+            this.cb_VssDir.Location = new System.Drawing.Point(85, 47);
+            this.cb_VssDir.Name = "cb_VssDir";
+            this.cb_VssDir.Size = new System.Drawing.Size(524, 20);
+            this.cb_VssDir.TabIndex = 15;
+            // 
+            // cb_LocalDir
+            // 
+            this.cb_LocalDir.FormattingEnabled = true;
+            this.cb_LocalDir.Location = new System.Drawing.Point(84, 86);
+            this.cb_LocalDir.Name = "cb_LocalDir";
+            this.cb_LocalDir.Size = new System.Drawing.Size(524, 20);
+            this.cb_LocalDir.TabIndex = 16;
             // 
             // CheckForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 598);
+            this.Controls.Add(this.cb_LocalDir);
+            this.Controls.Add(this.cb_VssDir);
+            this.Controls.Add(this.cb_VssUrl);
             this.Controls.Add(this.btn_UndoCheckOut);
             this.Controls.Add(this.btn_Diff);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.txt_vssUrl);
             this.Controls.Add(this.btn_CheckIn);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_CheckOut);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.txt_LocalDir);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txt_VssDir);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "CheckForm";
@@ -225,19 +227,19 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txt_VssDir;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txt_LocalDir;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RichTextBox rtb_FileList;
         private System.Windows.Forms.Button btn_CheckOut;
         private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.Button btn_CheckIn;
-        private System.Windows.Forms.TextBox txt_vssUrl;
         private System.Windows.Forms.TextBox txt_comment;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btn_Diff;
         private System.Windows.Forms.Button btn_UndoCheckOut;
         private System.Windows.Forms.CheckedListBox clb_FileList;
+        private System.Windows.Forms.ComboBox cb_VssUrl;
+        private System.Windows.Forms.ComboBox cb_VssDir;
+        private System.Windows.Forms.ComboBox cb_LocalDir;
     }
 }

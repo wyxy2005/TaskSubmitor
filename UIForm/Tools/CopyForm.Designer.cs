@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rtb_FileList = new System.Windows.Forms.RichTextBox();
             this.btn_OK = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
-            this.rtb_FileList = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txt_SourceDir = new System.Windows.Forms.TextBox();
-            this.txt_DestDir = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.cb_SourceDir = new System.Windows.Forms.ComboBox();
+            this.cb_DestDir = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +49,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "文件列表";
+            // 
+            // rtb_FileList
+            // 
+            this.rtb_FileList.Location = new System.Drawing.Point(6, 15);
+            this.rtb_FileList.Name = "rtb_FileList";
+            this.rtb_FileList.Size = new System.Drawing.Size(509, 254);
+            this.rtb_FileList.TabIndex = 0;
+            this.rtb_FileList.Text = "";
             // 
             // btn_OK
             // 
@@ -70,14 +78,6 @@
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
-            // rtb_FileList
-            // 
-            this.rtb_FileList.Location = new System.Drawing.Point(6, 15);
-            this.rtb_FileList.Name = "rtb_FileList";
-            this.rtb_FileList.Size = new System.Drawing.Size(509, 254);
-            this.rtb_FileList.TabIndex = 0;
-            this.rtb_FileList.Text = "";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -96,20 +96,6 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "目的工作区";
             // 
-            // txt_SourceDir
-            // 
-            this.txt_SourceDir.Location = new System.Drawing.Point(96, 15);
-            this.txt_SourceDir.Name = "txt_SourceDir";
-            this.txt_SourceDir.Size = new System.Drawing.Size(435, 21);
-            this.txt_SourceDir.TabIndex = 5;
-            // 
-            // txt_DestDir
-            // 
-            this.txt_DestDir.Location = new System.Drawing.Point(96, 48);
-            this.txt_DestDir.Name = "txt_DestDir";
-            this.txt_DestDir.Size = new System.Drawing.Size(435, 21);
-            this.txt_DestDir.TabIndex = 6;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -120,14 +106,30 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "请确保对需要复制的文件具有读写权限，如果目的文件是vss控制文件，请先checkout文件";
             // 
+            // cb_SourceDir
+            // 
+            this.cb_SourceDir.FormattingEnabled = true;
+            this.cb_SourceDir.Location = new System.Drawing.Point(96, 16);
+            this.cb_SourceDir.Name = "cb_SourceDir";
+            this.cb_SourceDir.Size = new System.Drawing.Size(435, 20);
+            this.cb_SourceDir.TabIndex = 15;
+            // 
+            // cb_DestDir
+            // 
+            this.cb_DestDir.FormattingEnabled = true;
+            this.cb_DestDir.Location = new System.Drawing.Point(96, 49);
+            this.cb_DestDir.Name = "cb_DestDir";
+            this.cb_DestDir.Size = new System.Drawing.Size(435, 20);
+            this.cb_DestDir.TabIndex = 16;
+            // 
             // CopyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(562, 434);
+            this.Controls.Add(this.cb_DestDir);
+            this.Controls.Add(this.cb_SourceDir);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txt_DestDir);
-            this.Controls.Add(this.txt_SourceDir);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_Cancel);
@@ -149,8 +151,8 @@
         private System.Windows.Forms.RichTextBox rtb_FileList;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txt_SourceDir;
-        private System.Windows.Forms.TextBox txt_DestDir;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cb_SourceDir;
+        private System.Windows.Forms.ComboBox cb_DestDir;
     }
 }

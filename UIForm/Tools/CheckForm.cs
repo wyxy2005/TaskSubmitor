@@ -20,15 +20,50 @@ namespace UIForm.Tools
             InitializeComponent();
 
             InitData();
+            InitUI();
         }
 
+        /// <summary>
+        /// 界面初始化设置
+        /// </summary>
+        private void InitUI()
+        {
+            cb_VssUrl.Enabled = false;
+        }
+
+        /// <summary>
+        /// 数据初始化设置
+        /// </summary>
         private void InitData()
         {
-            //
-            txt_vssUrl.Text = sys.Default.safeIniSrc;
-            txt_VssDir.Text = sys.Default.vssProjectG;
-            txt_LocalDir.Text = sys.Default.localProjectG;
+            //绑定数据
+            BindComboxData();
+            //初始化数据
+            //下拉框默认选中第一个
+            cb_VssUrl.SelectedIndex = 0;
+            cb_VssDir.SelectedIndex = 0;
+            cb_LocalDir.SelectedIndex = 0;
         }
+
+        private void BindComboxData()
+        {
+            //vss
+            cb_VssUrl.Items.Add(sys.Default.safeIniSrc);
+            cb_VssUrl.Items.Add(sys.Default.safeIniDoc);
+
+            //vss project
+            cb_VssDir.Items.Add(sys.Default.vssProjectG);
+            cb_VssDir.Items.Add(sys.Default.vssProjectP);
+            cb_VssDir.Items.Add(sys.Default.vssOnlineG);
+            cb_VssDir.Items.Add(sys.Default.vssOnlineP);
+            
+            //local project
+            cb_LocalDir.Items.Add(sys.Default.localProjectG);
+            cb_LocalDir.Items.Add(sys.Default.localProjectP);
+            cb_LocalDir.Items.Add(sys.Default.localOnlineG);
+            cb_LocalDir.Items.Add(sys.Default.localOnlineP);
+        }
+
 
         private void btn_CheckOut_Click(object sender, EventArgs e)
         {
@@ -53,12 +88,12 @@ namespace UIForm.Tools
 
         private bool ValidateInput(ref string msg)
         {
-            if (string.IsNullOrEmpty(txt_VssDir.Text.Trim()))
+            if (string.IsNullOrEmpty(cb_VssDir.Text.Trim()))
             {
                 msg = "请输入vss工作区";
                 return false;
             }
-            if (string.IsNullOrEmpty(txt_LocalDir.Text.Trim()))
+            if (string.IsNullOrEmpty(cb_LocalDir.Text.Trim()))
             {
                 msg = "请输入本地工作区";
                 return false;
@@ -164,7 +199,7 @@ namespace UIForm.Tools
             string[] files = text.Split('\n');
 
             CheckBLL check = new CheckBLL(sys.Default.username, sys.Default.password,
-                sys.Default.safeIniSrc, txt_VssDir.Text.Trim(), txt_LocalDir.Text.Trim());
+                sys.Default.safeIniSrc, cb_VssDir.Text.Trim(), cb_LocalDir.Text.Trim());
             check.CheckOut(files, txt_comment.Text.Trim());
             
             foreach(string f in files)
@@ -182,7 +217,7 @@ namespace UIForm.Tools
             string[] files = text.Split('\n');
 
             CheckBLL check = new CheckBLL(sys.Default.username, sys.Default.password,
-                sys.Default.safeIniSrc, txt_VssDir.Text.Trim(), txt_LocalDir.Text.Trim());
+                sys.Default.safeIniSrc, cb_VssDir.Text.Trim(), cb_LocalDir.Text.Trim());
             check.CheckIn(files, txt_comment.Text.Trim());
 
 
@@ -198,7 +233,7 @@ namespace UIForm.Tools
             string[] files = text.Split('\n');
             //string file = files[0];
             CheckBLL check = new CheckBLL(sys.Default.username, sys.Default.password,
-                sys.Default.safeIniSrc, txt_VssDir.Text.Trim(), txt_LocalDir.Text.Trim());
+                sys.Default.safeIniSrc, cb_VssDir.Text.Trim(), cb_LocalDir.Text.Trim());
             check.UndoCheckOut(files, txt_comment.Text.Trim());
         }
 
@@ -217,9 +252,9 @@ namespace UIForm.Tools
                 UiUtil.CreateTempDir();
 
             CheckBLL check = new CheckBLL(sys.Default.username, sys.Default.password,
-                sys.Default.safeIniSrc, txt_VssDir.Text.Trim(), txt_LocalDir.Text.Trim());
+                sys.Default.safeIniSrc, cb_VssDir.Text.Trim(), cb_LocalDir.Text.Trim());
             //工作区文件
-            string localFilePath = txt_LocalDir.Text.Trim() + @"\" + file;
+            string localFilePath = cb_LocalDir.Text.Trim() + @"\" + file;
             //服务器文件版本
             string tempFileName = Guid.NewGuid().ToString();
             string tempFilePath = sys.Default.TempDir + @"\~" + tempFileName;

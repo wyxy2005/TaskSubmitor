@@ -29,8 +29,20 @@ namespace UIForm.Tools
         /// </summary>
         private void InitData()
         {
-            txt_SourceDir.Text = sys.Default.localProjectG;
-            txt_DestDir.Text = sys.Default.localOnlineG;
+            BindComboxData();
+            // init ui data
+            cb_SourceDir.SelectedIndex = 0;
+            cb_DestDir.SelectedIndex = 0;
+        }
+
+        private void BindComboxData()
+        {
+            //bind data
+            cb_SourceDir.Items.Add(sys.Default.localProjectG);
+            cb_SourceDir.Items.Add(sys.Default.localProjectP);
+
+            cb_DestDir.Items.Add(sys.Default.localOnlineG);
+            cb_DestDir.Items.Add(sys.Default.localOnlineP);
         }
 
 
@@ -67,22 +79,22 @@ namespace UIForm.Tools
         /// </summary>
         private bool ValidateInput(ref string msg)
         {
-            if (string.IsNullOrEmpty(txt_SourceDir.Text.Trim()))
+            if (string.IsNullOrEmpty(cb_SourceDir.Text.Trim()))
             {
                 msg = "请输入源工作区";
                 return false;
             }
-            if (!Directory.Exists(txt_SourceDir.Text.Trim()))
+            if (!Directory.Exists(cb_SourceDir.Text.Trim()))
             {
                 msg = "源工作区目录不存在";
                 return false;
             }
-            if (string.IsNullOrEmpty(txt_DestDir.Text.Trim()))
+            if (string.IsNullOrEmpty(cb_DestDir.Text.Trim()))
             {
                 msg = "请输入目的工作区";
                 return false;
             }
-            if (!Directory.Exists(txt_DestDir.Text.Trim()))
+            if (!Directory.Exists(cb_DestDir.Text.Trim()))
             {
                 msg = "目的工作区目录不存在";
                 return false;
@@ -99,7 +111,7 @@ namespace UIForm.Tools
         private void CopyFile()
         {
             //从输入获取文件列表
-            ToOnline copyer = new ToOnline(txt_SourceDir.Text.Trim(), txt_DestDir.Text.Trim());
+            ToOnline copyer = new ToOnline(cb_SourceDir.Text.Trim(), cb_DestDir.Text.Trim());
             string text = rtb_FileList.Text.Trim();
             string[] files = text.Split('\n');
             copyer.CopyFile(files);
