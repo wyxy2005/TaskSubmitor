@@ -120,6 +120,7 @@ namespace UIForm.Tools
                 try
                 {
                     CheckIn();
+                    ClearCheckOutFile();
                     MessageBox.Show("检入成功");
                 }
                 catch (Exception ex)
@@ -176,6 +177,7 @@ namespace UIForm.Tools
                 try
                 {
                     UndoCheckOut();
+                    ClearCheckOutFile();
                     MessageBox.Show("取消检出成功");
                 }
                 catch (Exception ex)
@@ -269,6 +271,15 @@ namespace UIForm.Tools
             Thread.Sleep(5000);
             //删除临时文件
             File.Delete(tempFilePath);
+        }
+
+
+        /// <summary>
+        /// clear check out file list
+        /// </summary>
+        private void ClearCheckOutFile()
+        {
+            clb_FileList.Items.Clear();
         }
     }
 }
