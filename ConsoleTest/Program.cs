@@ -20,8 +20,9 @@ namespace ConsoleTest
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            OfficeHelperTest.Test();
             //TestCopy();
-            GitTest.Test();
+            //GitTest.Test();
             //string templatePath = AppDomain.CurrentDomain.BaseDirectory + SysData.FileName.TEMPLATE_PATH;
             ////设计文档
             //File.Copy(templatePath + SysData.FileName.DESIGN,
