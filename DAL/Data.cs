@@ -20,7 +20,9 @@ namespace DAL
             Task task = new Task();
             try
             {
-                task.No = int.Parse(taskNode.Attributes["id"].Value);
+                task.Id = int.Parse(taskNode.Attributes["id"].Value);
+                task.No = int.Parse(taskNode.Attributes["no"].Value);
+                task.Prefix = taskNode.Attributes["prefix"].Value;
                 task.Description = taskNode.Attributes["name"].Value;
                 task.Sys = (Model.Enum.SysEnum)int.Parse(taskNode.Attributes["sys"].Value);
                 task.Phase = (Model.Enum.PhaseEnum)int.Parse(taskNode.Attributes["phase"].Value);
@@ -39,8 +41,9 @@ namespace DAL
         public static XmlNode ToNode(Task task, XmlDocument xmlDoc)
         {
             XmlElement taskNode = xmlDoc.CreateElement(TASK);
-
-            taskNode.SetAttribute("id", ((int)task.No).ToString());
+            taskNode.SetAttribute("id", ((int)task.Id).ToString());
+            taskNode.SetAttribute("no", ((int)task.No).ToString());
+            taskNode.SetAttribute("prefix", task.Prefix);
             taskNode.SetAttribute("chanl", ((int)task.Channel).ToString());
             taskNode.SetAttribute("sys", ((int)task.Sys).ToString());
             taskNode.SetAttribute("phase", ((int)task.Phase).ToString());

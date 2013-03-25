@@ -534,7 +534,10 @@ namespace UIForm
             TreeNode currentNode = this.tv_TaskList.SelectedNode;
             //需要上线的任务编号
             string taskNo = currentNode.Name;
-            GotoJira(taskNo);
+            TaskBLL bll = new TaskBLL();
+            Task currentTask = bll.GetTask(int.Parse(taskNo));
+            string taskPrefix = currentTask.Prefix;
+            GotoJira(taskNo, taskPrefix);
         }
 
 
@@ -548,8 +551,15 @@ namespace UIForm
         /// <param name="jiraId"></param>
         private void GotoJira(string jiraId)
         {
+            GotoJira(jiraId, sys.Default.TaskPrex);
+        }
+
+        private void GotoJira(string jiraId, string jiraPrefix)
+        {
             log.Info("打开浏览器转到jira");
-            string url = sys.Default.JiraUrl + sys.Default.TaskPrex + "-" + jiraId;
+            if (string.IsNullOrEmpty(jiraPrefix))
+                jiraPrefix = sys.Default.TaskPrex;
+            string url = sys.Default.JiraUrl + jiraPrefix + "-" + jiraId;
             //调用浏览器打开
             SysUtil.BrowseURL(url);
         }

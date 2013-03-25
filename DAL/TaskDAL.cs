@@ -17,6 +17,7 @@ namespace DAL
 
         private const string ROOT = "Tasks";
         private const string TASK = "task";
+        private const string CNT = "count";
         public TaskDAL()
         {
             data.Load(dataFilePath);
@@ -29,7 +30,7 @@ namespace DAL
         /// <returns></returns>
         public Task GetTask(int taskNo)
         {
-            string xpath = "/Tasks/task[@id='" + taskNo + "']";
+            string xpath = "/Tasks/task[@no='" + taskNo + "']";
             XmlNode taskNode = data.SelectSingleNode(xpath);
             Task task = Data.ToTask(taskNode);
             return task;
@@ -42,7 +43,7 @@ namespace DAL
         public DataTable GetTaskTable()
         { 
             DataTable dtb = new DataTable("tast");
-            DataColumn dc = new DataColumn("id",Type.GetType("System.Int32"));
+            DataColumn dc = new DataColumn("no",Type.GetType("System.Int32"));
             DataColumn dc1 = new DataColumn("descrb",Type.GetType("System.String"));
             dtb.Columns.Add(dc);
             dtb.Columns.Add(dc1);
@@ -51,7 +52,7 @@ namespace DAL
             foreach (XmlNode task in tasklist)
             {
                 DataRow dr = dtb.NewRow();
-                dr[0] = task.Attributes["id"].Value;
+                dr[0] = task.Attributes["no"].Value;
                 dr[1] = task.Attributes["name"].Value;
                 dtb.Rows.Add(dr);
             }
@@ -78,10 +79,32 @@ namespace DAL
         public int Insert(Task task)
         {
             XmlNode root = data.SelectSingleNode(ROOT);
+            task.Id = NextId();
             XmlNode taskNode = Data.ToNode(task, data);
             root.AppendChild(taskNode);
             data.Save(dataFilePath);
             return 0;
+        }
+
+        private int NextId()
+        {
+            XmlNode root = data.SelectSingleNode(ROOT);
+            int count = 0;
+            string cnt = root.Attributes[CNT].Value;
+            if (string.IsNullOrEmpty(cnt))
+            {
+                count = root.ChildNodes.Count + 1;
+            }
+            else
+                count = int.Parse(cnt) + 1;
+
+            root.Attributes[CNT].Value = count.ToString();
+
+            return count;
+        }
+
+        private void SetNextId()
+        { 
         }
 
         public int Update(Task task)

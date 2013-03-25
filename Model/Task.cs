@@ -12,6 +12,7 @@ namespace Model
     public class Task
     {
         private string prefix;
+        private int id;
         private int no;
         private string name;
         private string description;
@@ -97,6 +98,15 @@ namespace Model
         {
             get { return no; }
             set { no = value; }
+        }
+
+        /// <summary>
+        /// 主键编号
+        /// </summary>
+        public int Id
+        {
+            get { return this.id; }
+            set { this.id = value; }
         }
 
         /// <summary>
