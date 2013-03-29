@@ -80,6 +80,11 @@ namespace BLL
                         color = Color.Red;
                         break;
                     }
+                case Model.Enum.PhaseEnum.CLOSE://银色显示
+                    {
+                        color = Color.Silver;
+                        break;
+                    }
                 default:
                     {
                         break;
@@ -104,7 +109,7 @@ namespace BLL
         }
 
         /// <summary>
-        /// 
+        /// 需要保证目的目录的上级目录存在,此处不做处理
         /// </summary>
         /// <param name="task"></param>
         /// <param name="destPath"></param>
@@ -114,6 +119,9 @@ namespace BLL
                 return false;
             try
             {
+                //项目中移动的父目录，由程序启动的时候保证其存在，否则移动的时候发现上级目录不在会出错
+                //if (!Directory.Exists(destPath))
+                //    //Directory.CreateDirectory(destPath);
                 Directory.Move(task.Dir, destPath);
             }
             catch (Exception ex)

@@ -61,7 +61,11 @@ namespace Model.Enum
         /// <summary>
         /// 上线
         /// </summary>
-        RUN = 5
+        RUN = 5,
+        /// <summary>
+        /// 废弃，关闭，不在跟踪
+        /// </summary>
+        CLOSE = 9
     }
 
     /// <summary>

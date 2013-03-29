@@ -13,7 +13,8 @@ namespace UIForm
         [STAThread]
         static void Main()
         {
-            InitApp.Init();
+            InitApp initapp = new InitApp();
+            initapp.Init();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new TaskSubmitor());

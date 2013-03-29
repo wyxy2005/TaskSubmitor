@@ -84,6 +84,7 @@
             this.treeNodeRightKeyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tnMenu_Refresh = new System.Windows.Forms.ToolStripMenuItem();
             this.tnMenu_Open = new System.Windows.Forms.ToolStripMenuItem();
+            this.tnMenu_GotoJira = new System.Windows.Forms.ToolStripMenuItem();
             this.tnMenu_ToDAT = new System.Windows.Forms.ToolStripMenuItem();
             this.tnMenu_ToOnline = new System.Windows.Forms.ToolStripMenuItem();
             this.lbl_Workspace = new System.Windows.Forms.Label();
@@ -112,7 +113,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tnMenu_GotoJira = new System.Windows.Forms.ToolStripMenuItem();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tnMenu_Close = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -587,9 +589,10 @@
             this.tnMenu_Open,
             this.tnMenu_GotoJira,
             this.tnMenu_ToDAT,
-            this.tnMenu_ToOnline});
+            this.tnMenu_ToOnline,
+            this.tnMenu_Close});
             this.treeNodeRightKeyMenu.Name = "contextMenuStrip1";
-            this.treeNodeRightKeyMenu.Size = new System.Drawing.Size(153, 136);
+            this.treeNodeRightKeyMenu.Size = new System.Drawing.Size(153, 158);
             // 
             // tnMenu_Refresh
             // 
@@ -604,6 +607,13 @@
             this.tnMenu_Open.Size = new System.Drawing.Size(152, 22);
             this.tnMenu_Open.Text = "本地打开";
             this.tnMenu_Open.Click += new System.EventHandler(this.tnMenu_Open_Click);
+            // 
+            // tnMenu_GotoJira
+            // 
+            this.tnMenu_GotoJira.Name = "tnMenu_GotoJira";
+            this.tnMenu_GotoJira.Size = new System.Drawing.Size(152, 22);
+            this.tnMenu_GotoJira.Text = "转到JIRA";
+            this.tnMenu_GotoJira.Click += new System.EventHandler(this.tnMenu_GotoJira_Click);
             // 
             // tnMenu_ToDAT
             // 
@@ -871,12 +881,23 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "测试中";
             // 
-            // tnMenu_GotoJira
+            // label6
             // 
-            this.tnMenu_GotoJira.Name = "tnMenu_GotoJira";
-            this.tnMenu_GotoJira.Size = new System.Drawing.Size(152, 22);
-            this.tnMenu_GotoJira.Text = "转到JIRA";
-            this.tnMenu_GotoJira.Click += new System.EventHandler(this.tnMenu_GotoJira_Click);
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.ForeColor = System.Drawing.Color.Silver;
+            this.label6.Location = new System.Drawing.Point(297, 31);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 12);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "不跟踪";
+            // 
+            // tnMenu_Close
+            // 
+            this.tnMenu_Close.Name = "tnMenu_Close";
+            this.tnMenu_Close.Size = new System.Drawing.Size(152, 22);
+            this.tnMenu_Close.Text = "关闭(不跟踪)";
+            this.tnMenu_Close.Click += new System.EventHandler(this.tnMenu_Close_Click);
             // 
             // TaskSubmitor
             // 
@@ -884,6 +905,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1063, 740);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -1005,6 +1027,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem tnMenu_Refresh;
         private System.Windows.Forms.ToolStripMenuItem tnMenu_GotoJira;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripMenuItem tnMenu_Close;
     }
 }
 

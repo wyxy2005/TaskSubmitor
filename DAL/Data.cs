@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Model;
 using System.Xml;
+
+using Model;
+using Model.Enum;
 
 namespace DAL
 {

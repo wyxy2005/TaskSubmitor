@@ -20,12 +20,13 @@ namespace UIForm
         /// <summary>
         /// 初始化应用程序
         /// </summary>
-        public static void Init()
+        public void Init()
         {
             InitTemplate();
+            InitFolder();
         }
 
-        public static void InitTemplate()
+        public void InitTemplate()
         {
             if (!Directory.Exists(@"..\Template"))
                 Directory.CreateDirectory(@"..\Template");
@@ -34,6 +35,19 @@ namespace UIForm
                 SysUtil.CreateDataFile();
             }
             InitLog();
+        }
+
+        private void InitFolder()
+        {
+            InitFolder(sys.Default.OnlineDir);
+            
+            InitFolder(sys.Default.CloseTaskDir);
+        }
+
+        private void InitFolder(string folder)
+        {
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
         }
 
         private static void InitLog()

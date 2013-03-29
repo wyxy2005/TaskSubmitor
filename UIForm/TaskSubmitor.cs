@@ -86,7 +86,7 @@ namespace UIForm
             //var sortedTask = tasks.OrderBy(x => x.Phase).ThenByDescending(x => x.No).ToList();
             //linq sort
             var sortedTask = from t in tasks
-                             orderby t.Phase ascending, t.No descending
+                             orderby t.Phase ascending,t.Prefix ascending, t.No descending
                              select t;
             foreach (Task t in sortedTask)
             {
@@ -375,6 +375,39 @@ namespace UIForm
         }
 
 
+        private void tnMenu_Close_Click(object sender, EventArgs e)
+        {
+            TreeNode currentNode = this.tv_TaskList.SelectedNode;
+            //需要上线的任务编号
+            string taskNo = currentNode.Name;
+            TaskBLL bll = new TaskBLL();
+            Task currentTask = bll.GetTask(int.Parse(taskNo));
+            currentTask.Phase = Model.Enum.PhaseEnum.CLOSE;
+            //移动工作区进入已上线
+            string destDir = sys.Default.CloseTaskDir + @"\" + currentTask.Description;
+            string msg = "";
+            if (bll.MoveTaskDir(currentTask, destDir))
+            {
+                currentTask.Dir = destDir;
+                int ire = bll.Update(currentTask);
+                if (ire > 0)
+                {
+                    currentNode.ForeColor = TaskBLL.GetTaskColor(currentTask);
+                    BindTreeNode();
+                    msg = @"任务关闭成功";
+                }
+                else
+                    msg = @"任务关闭失败,请手动";
+            }
+            else
+            {
+                msg = @"任务关闭失败,请手动";
+            }
+
+            //反馈结果
+            MessageBox.Show(msg);
+        }
+
         #endregion
 
         #region CheckListBox_FileList
@@ -563,6 +596,7 @@ namespace UIForm
             //调用浏览器打开
             SysUtil.BrowseURL(url);
         }
+
 
 
 

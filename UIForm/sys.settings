@@ -65,5 +65,8 @@
     <Setting Name="TortoiseGitRootPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\Program Files\TortoiseGit</Value>
     </Setting>
+    <Setting Name="CloseTaskDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Work\Task\已关闭</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
