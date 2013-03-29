@@ -113,7 +113,7 @@ namespace DAL
                 return 0;
             try
             {
-                string xpath = "/Tasks/task[@id='" + task.No + "']";
+                string xpath = "/Tasks/task[@no='" + task.No + "']";
                 XmlNode root = data.SelectSingleNode(ROOT);
                 XmlNode taskEle = root.SelectSingleNode(xpath);
                 Data.UpdateNode(task, ref taskEle);
