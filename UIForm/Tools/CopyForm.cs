@@ -113,6 +113,7 @@ namespace UIForm.Tools
             //从输入获取文件列表
             ToOnline copyer = new ToOnline(cb_SourceDir.Text.Trim(), cb_DestDir.Text.Trim());
             string text = rtb_FileList.Text.Trim();
+            //修改为使用正则表达式的\s截断,空字符截断，这样即可排除每行多余的空格tab等
             string[] files = text.Split('\n');
             copyer.CopyFile(files);
         }
