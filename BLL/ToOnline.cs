@@ -42,7 +42,7 @@ namespace BLL
         {
             foreach (string filename in fileFullNameList)
             {
-                CopyFile(filename);
+                CopyFile(filename.Trim());
             }
         }
     }
