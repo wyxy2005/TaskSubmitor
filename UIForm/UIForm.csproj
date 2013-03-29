@@ -172,6 +172,11 @@
     <Compile Include="UI\ToDATForm.Designer.cs">
       <DependentUpon>ToDATForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="User.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>User.settings</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -243,6 +248,10 @@
     <None Include="Template\TEST" />
     <None Include="Template\XLS" />
     <None Include="UIForm_TemporaryKey.pfx" />
+    <None Include="User.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>User.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
