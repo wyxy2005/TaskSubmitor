@@ -82,7 +82,7 @@ namespace DAL
             xmlNode.SetAttribute("name", task.Description);
 
             //xmlNode.GetElementsByTagName("content")[0].InnerText = task.Name;
-            //xmlNode.GetElementsByTagName("dir")[0].InnerText = task.Dir;
+            xmlNode.GetElementsByTagName("dir")[0].InnerText = task.Dir;
 
             //XmlElement files = xmlDoc.CreateElement("files");
             //foreach (TaskFile file in task.Files)
