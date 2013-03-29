@@ -109,7 +109,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("程宁")]
+        [global::System.Configuration.DefaultSettingValueAttribute("***")]
         public string Author {
             get {
                 return ((string)(this["Author"]));
@@ -121,7 +121,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://jira.abic.com/browse/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("***")]
         public string JiraUrl {
             get {
                 return ((string)(this["JiraUrl"]));
@@ -133,7 +133,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("chengning")]
+        [global::System.Configuration.DefaultSettingValueAttribute("***")]
         public string username {
             get {
                 return ((string)(this["username"]));
@@ -145,7 +145,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("chengning")]
+        [global::System.Configuration.DefaultSettingValueAttribute("***")]
         public string password {
             get {
                 return ((string)(this["password"]));
@@ -157,7 +157,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\\\10.10.134.71\\lisvss_src\\srcsafe.ini")]
+        [global::System.Configuration.DefaultSettingValueAttribute("***")]
         public string safeIniSrc {
             get {
                 return ((string)(this["safeIniSrc"]));
@@ -169,7 +169,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\\\10.10.134.71\\lisvss_doc\\srcsafe.ini")]
+        [global::System.Configuration.DefaultSettingValueAttribute("***")]
         public string safeIniDoc {
             get {
                 return ((string)(this["safeIniDoc"]));

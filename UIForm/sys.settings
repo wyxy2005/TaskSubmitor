@@ -24,22 +24,22 @@
       <Value Profile="(Default)">ABLREQUEST</Value>
     </Setting>
     <Setting Name="Author" Type="System.String" Scope="User">
-      <Value Profile="(Default)">程宁</Value>
+      <Value Profile="(Default)">***</Value>
     </Setting>
     <Setting Name="JiraUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://jira.abic.com/browse/</Value>
+      <Value Profile="(Default)">***</Value>
     </Setting>
     <Setting Name="username" Type="System.String" Scope="User">
-      <Value Profile="(Default)">chengning</Value>
+      <Value Profile="(Default)">***</Value>
     </Setting>
     <Setting Name="password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">chengning</Value>
+      <Value Profile="(Default)">***</Value>
     </Setting>
     <Setting Name="safeIniSrc" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\\10.10.134.71\lisvss_src\srcsafe.ini</Value>
+      <Value Profile="(Default)">***</Value>
     </Setting>
     <Setting Name="safeIniDoc" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\\10.10.134.71\lisvss_doc\srcsafe.ini</Value>
+      <Value Profile="(Default)">***</Value>
     </Setting>
     <Setting Name="localOnlineP" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\AB-P-Pro</Value>
