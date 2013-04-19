@@ -87,6 +87,7 @@
             this.tnMenu_GotoJira = new System.Windows.Forms.ToolStripMenuItem();
             this.tnMenu_ToDAT = new System.Windows.Forms.ToolStripMenuItem();
             this.tnMenu_ToOnline = new System.Windows.Forms.ToolStripMenuItem();
+            this.tnMenu_Close = new System.Windows.Forms.ToolStripMenuItem();
             this.lbl_Workspace = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cbx_RecordAll = new System.Windows.Forms.CheckBox();
@@ -114,7 +115,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.tnMenu_Close = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -586,13 +588,15 @@
             // 
             this.treeNodeRightKeyMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tnMenu_Refresh,
+            this.tnMenu_Close,
+            this.toolStripSeparator9,
             this.tnMenu_Open,
             this.tnMenu_GotoJira,
+            this.toolStripSeparator10,
             this.tnMenu_ToDAT,
-            this.tnMenu_ToOnline,
-            this.tnMenu_Close});
+            this.tnMenu_ToOnline});
             this.treeNodeRightKeyMenu.Name = "contextMenuStrip1";
-            this.treeNodeRightKeyMenu.Size = new System.Drawing.Size(153, 158);
+            this.treeNodeRightKeyMenu.Size = new System.Drawing.Size(153, 170);
             // 
             // tnMenu_Refresh
             // 
@@ -628,6 +632,13 @@
             this.tnMenu_ToOnline.Size = new System.Drawing.Size(152, 22);
             this.tnMenu_ToOnline.Text = "上线";
             this.tnMenu_ToOnline.Click += new System.EventHandler(this.tnMenu_ToOnline_Click);
+            // 
+            // tnMenu_Close
+            // 
+            this.tnMenu_Close.Name = "tnMenu_Close";
+            this.tnMenu_Close.Size = new System.Drawing.Size(152, 22);
+            this.tnMenu_Close.Text = "关闭(不跟踪)";
+            this.tnMenu_Close.Click += new System.EventHandler(this.tnMenu_Close_Click);
             // 
             // lbl_Workspace
             // 
@@ -892,12 +903,15 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "不跟踪";
             // 
-            // tnMenu_Close
+            // toolStripSeparator9
             // 
-            this.tnMenu_Close.Name = "tnMenu_Close";
-            this.tnMenu_Close.Size = new System.Drawing.Size(152, 22);
-            this.tnMenu_Close.Text = "关闭(不跟踪)";
-            this.tnMenu_Close.Click += new System.EventHandler(this.tnMenu_Close_Click);
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(149, 6);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(149, 6);
             // 
             // TaskSubmitor
             // 
@@ -1029,6 +1043,8 @@
         private System.Windows.Forms.ToolStripMenuItem tnMenu_GotoJira;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStripMenuItem tnMenu_Close;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
     }
 }
 
