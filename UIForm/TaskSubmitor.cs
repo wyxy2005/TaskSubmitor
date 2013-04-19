@@ -321,6 +321,12 @@ namespace UIForm
             string taskNo = currentNode.Name;
             TaskBLL bll = new TaskBLL();
             Task currentTask = bll.GetTask(int.Parse(taskNo));
+            //已经上线不能再提交上线
+            if (currentTask.Phase == Model.Enum.PhaseEnum.RUN)
+            {
+                MessageBox.Show("已经上线");
+                return;
+            }
             currentTask.Phase = Model.Enum.PhaseEnum.RUN;
             //移动工作区进入已上线
             string destDir = sys.Default.OnlineDir + @"\" + currentTask.Description;
@@ -360,6 +366,11 @@ namespace UIForm
             string taskNo = currentNode.Name;
             TaskBLL bll = new TaskBLL();
             Task currentTask = bll.GetTask(int.Parse(taskNo));
+            if (currentTask.Phase == Model.Enum.PhaseEnum.DAT)
+            {
+                MessageBox.Show("已经是DAT状态");
+                return;
+            }
 
             //调用用户控件进行处理
             ToDATForm toDatForm = new ToDATForm();
