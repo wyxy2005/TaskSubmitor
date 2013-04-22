@@ -28,6 +28,7 @@ namespace UIForm
         private bool logWatching = true;
         private log4net.Appender.MemoryAppender logger;
         private Thread logWatcher;
+        private Task currentTask;
 
 
         public TaskSubmitor()
@@ -291,9 +292,12 @@ namespace UIForm
 
             TaskBLL taskBll = new TaskBLL();
             Task t = taskBll.GetTask(int.Parse(e.Node.Name));
-            //Task t = 
+
+            this.currentTask = t;
+ 
             Bind_clb_FileList(t);
             Bind_clb_srcList(t);
+            ShowDetailInfo(t);
             //设置工作区目录
             if ( t.Channel == Model.Enum.ChannelEnum.P)
                 lbl_Workspace.Text = sys.Default.localProjectP;
@@ -301,6 +305,19 @@ namespace UIForm
                 lbl_Workspace.Text = sys.Default.localProjectG;
             else
                 lbl_Workspace.Text = "...";
+        }
+
+        private void ShowDetailInfo(Task task)
+        { 
+            StringBuilder sb = new StringBuilder();
+            sb.Append(task.Prefix + "-" + task.No.ToString() + Environment.NewLine);
+            sb.Append(task.Description + Environment.NewLine);
+            sb.Append("系统：" + task.Sys.ToString() + Environment.NewLine);
+            sb.Append("渠道：" + task.Channel.ToString() + Environment.NewLine);
+            sb.Append("模块：" + task.Module.ToString() + Environment.NewLine);
+            sb.Append("SVN-message: " + task.Prefix + "-" + task.No.ToString() + "  " + task.Name + sys.Default.Author + Environment.NewLine);
+
+            rtx_logOutput.Text = sb.ToString();
         }
 
         private void tnMenu_Open_Click(object sender, EventArgs e)
@@ -425,8 +442,10 @@ namespace UIForm
 
         private void clb_FileList_DoubleClick(object sender, EventArgs e)
         {
-            
-            MessageBox.Show("打开文件");
+            string fileDir = clb_FileList.SelectedValue.ToString();
+            string fileName = clb_FileList.SelectedItem.ToString();
+            string fileFullName = fileDir.Trim() + Path.DirectorySeparatorChar + fileName.Trim();
+            SysUtil.OpenFile(fileFullName);
         }
 
 
@@ -564,8 +583,8 @@ namespace UIForm
                 DirectoryInfo dir = Directory.CreateDirectory(xpath);
                 FileInfo[] fileList = dir.GetFiles();
                 clb_FileList.DataSource = fileList;
-                clb_FileList.DisplayMember = "文件";
-                clb_FileList.ValueMember = "Name";
+                clb_FileList.DisplayMember = "Name";
+                clb_FileList.ValueMember = "DirectoryName";
             }
             else
             {
