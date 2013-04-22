@@ -25,7 +25,7 @@ namespace DAL
                 task.Id = int.Parse(taskNode.Attributes["id"].Value);
                 task.No = int.Parse(taskNode.Attributes["no"].Value);
                 task.Prefix = taskNode.Attributes["prefix"].Value;
-                task.Description = taskNode.Attributes["name"].Value;
+                //task.Description = taskNode.Attributes["name"].Value;
                 task.Sys = (Model.Enum.SysEnum)int.Parse(taskNode.Attributes["sys"].Value);
                 task.Phase = (Model.Enum.PhaseEnum)int.Parse(taskNode.Attributes["phase"].Value);
                 task.Module = (Model.Enum.ModuleEnum)int.Parse(taskNode.Attributes["module"].Value);

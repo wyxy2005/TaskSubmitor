@@ -17,6 +17,7 @@ namespace Model
         private string name;
         private string description;
         private string dir;
+        private string seq;
 
         public string Dir
         {
@@ -77,9 +78,16 @@ namespace Model
                 else
                     return description;
             }
-            set
+        }
+
+        /// <summary>
+        /// 任务序号，前缀+编号
+        /// </summary>
+        public string Seq
+        {
+            get 
             {
-                description = value;
+                return this.prefix + "-" + this.no.ToString();
             }
         }
 

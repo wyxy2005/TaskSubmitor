@@ -119,7 +119,10 @@ namespace BLL
                         CreateTextFile(templatePath, destDirName, fileName);
                     }
                     if (file.Type == TaskFileEnum.README)
-                        CreateTextFile(templatePath, destDirName, "readme.txt");
+                    {
+                        string content = task.Seq + " " + task.Name + " " + this.author;
+                        CreateTextFile(templatePath, destDirName, "readme.txt", content);
+                    }
                 }
             }
             catch (Exception ex)
@@ -275,6 +278,19 @@ namespace BLL
             string sourceFile = templatePath + SysData.FileName.DEV;
             string destFile = destDirName + fileName;
             File.Copy(sourceFile, destFile);
+            //有需要写入文件的内容
+            if (!string.IsNullOrEmpty(content))
+            {
+                using (FileStream fs = new FileStream(destFile, FileMode.Append))
+                {
+                    StreamWriter sw = new StreamWriter(fs);
+                    sw.Write(content + Environment.NewLine);
+                    sw.Flush();
+                    sw.Close();
+                    fs.Close();
+                }
+
+            }
             log.Info(fileName + "创建成功");
         }
 
