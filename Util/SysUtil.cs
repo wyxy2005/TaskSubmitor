@@ -27,6 +27,11 @@ namespace Util
             System.Diagnostics.Process.Start("explorer.exe", path);
         }
 
+        public static void OpenFile(string fileName)
+        {
+            System.Diagnostics.Process.Start(fileName);
+        }
+
         /// <summary>
         /// 使用浏览器打开指定的链接
         /// </summary>

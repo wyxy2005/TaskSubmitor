@@ -267,6 +267,11 @@ namespace BLL
         /// <param name="fileName"></param>
         private void CreateTextFile(string templatePath, string destDirName,string fileName)
         {
+            CreateTextFile(templatePath, destDirName, fileName, null);
+        }
+
+        private void CreateTextFile(string templatePath, string destDirName, string fileName, string content)
+        {
             string sourceFile = templatePath + SysData.FileName.DEV;
             string destFile = destDirName + fileName;
             File.Copy(sourceFile, destFile);
