@@ -83,11 +83,13 @@
             this.tv_TaskList = new System.Windows.Forms.TreeView();
             this.treeNodeRightKeyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tnMenu_Refresh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tnMenu_Close = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.tnMenu_Open = new System.Windows.Forms.ToolStripMenuItem();
             this.tnMenu_GotoJira = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.tnMenu_ToDAT = new System.Windows.Forms.ToolStripMenuItem();
             this.tnMenu_ToOnline = new System.Windows.Forms.ToolStripMenuItem();
-            this.tnMenu_Close = new System.Windows.Forms.ToolStripMenuItem();
             this.lbl_Workspace = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cbx_RecordAll = new System.Windows.Forms.CheckBox();
@@ -115,8 +117,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.txt_DetailInfo = new System.Windows.Forms.TextBox();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -561,6 +562,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Panel2.Controls.Add(this.txt_DetailInfo);
             this.splitContainer1.Panel2.Controls.Add(this.lbl_Workspace);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Panel2.Controls.Add(this.cbx_RecordAll);
@@ -596,49 +598,59 @@
             this.tnMenu_ToDAT,
             this.tnMenu_ToOnline});
             this.treeNodeRightKeyMenu.Name = "contextMenuStrip1";
-            this.treeNodeRightKeyMenu.Size = new System.Drawing.Size(153, 170);
+            this.treeNodeRightKeyMenu.Size = new System.Drawing.Size(143, 148);
             // 
             // tnMenu_Refresh
             // 
             this.tnMenu_Refresh.Name = "tnMenu_Refresh";
-            this.tnMenu_Refresh.Size = new System.Drawing.Size(152, 22);
+            this.tnMenu_Refresh.Size = new System.Drawing.Size(142, 22);
             this.tnMenu_Refresh.Text = "刷新";
             this.tnMenu_Refresh.Click += new System.EventHandler(this.tnMenu_Refresh_Click);
+            // 
+            // tnMenu_Close
+            // 
+            this.tnMenu_Close.Name = "tnMenu_Close";
+            this.tnMenu_Close.Size = new System.Drawing.Size(142, 22);
+            this.tnMenu_Close.Text = "关闭(不跟踪)";
+            this.tnMenu_Close.Click += new System.EventHandler(this.tnMenu_Close_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(139, 6);
             // 
             // tnMenu_Open
             // 
             this.tnMenu_Open.Name = "tnMenu_Open";
-            this.tnMenu_Open.Size = new System.Drawing.Size(152, 22);
+            this.tnMenu_Open.Size = new System.Drawing.Size(142, 22);
             this.tnMenu_Open.Text = "本地打开";
             this.tnMenu_Open.Click += new System.EventHandler(this.tnMenu_Open_Click);
             // 
             // tnMenu_GotoJira
             // 
             this.tnMenu_GotoJira.Name = "tnMenu_GotoJira";
-            this.tnMenu_GotoJira.Size = new System.Drawing.Size(152, 22);
+            this.tnMenu_GotoJira.Size = new System.Drawing.Size(142, 22);
             this.tnMenu_GotoJira.Text = "转到JIRA";
             this.tnMenu_GotoJira.Click += new System.EventHandler(this.tnMenu_GotoJira_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(139, 6);
             // 
             // tnMenu_ToDAT
             // 
             this.tnMenu_ToDAT.Name = "tnMenu_ToDAT";
-            this.tnMenu_ToDAT.Size = new System.Drawing.Size(152, 22);
+            this.tnMenu_ToDAT.Size = new System.Drawing.Size(142, 22);
             this.tnMenu_ToDAT.Text = "提交DAT";
             this.tnMenu_ToDAT.Click += new System.EventHandler(this.tnMenu_ToDAT_Click);
             // 
             // tnMenu_ToOnline
             // 
             this.tnMenu_ToOnline.Name = "tnMenu_ToOnline";
-            this.tnMenu_ToOnline.Size = new System.Drawing.Size(152, 22);
+            this.tnMenu_ToOnline.Size = new System.Drawing.Size(142, 22);
             this.tnMenu_ToOnline.Text = "上线";
             this.tnMenu_ToOnline.Click += new System.EventHandler(this.tnMenu_ToOnline_Click);
-            // 
-            // tnMenu_Close
-            // 
-            this.tnMenu_Close.Name = "tnMenu_Close";
-            this.tnMenu_Close.Size = new System.Drawing.Size(152, 22);
-            this.tnMenu_Close.Text = "关闭(不跟踪)";
-            this.tnMenu_Close.Click += new System.EventHandler(this.tnMenu_Close_Click);
             // 
             // lbl_Workspace
             // 
@@ -704,7 +716,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(617, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(168, 751);
+            this.panel1.Size = new System.Drawing.Size(168, 747);
             this.panel1.TabIndex = 1;
             // 
             // gb_Top
@@ -773,9 +785,9 @@
             // 
             // rtx_logOutput
             // 
-            this.rtx_logOutput.Location = new System.Drawing.Point(0, 569);
+            this.rtx_logOutput.Location = new System.Drawing.Point(0, 622);
             this.rtx_logOutput.Name = "rtx_logOutput";
-            this.rtx_logOutput.Size = new System.Drawing.Size(617, 182);
+            this.rtx_logOutput.Size = new System.Drawing.Size(617, 125);
             this.rtx_logOutput.TabIndex = 0;
             this.rtx_logOutput.Text = "";
             // 
@@ -903,15 +915,13 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "不跟踪";
             // 
-            // toolStripSeparator9
+            // txt_DetailInfo
             // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(149, 6);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(149, 6);
+            this.txt_DetailInfo.Location = new System.Drawing.Point(0, 520);
+            this.txt_DetailInfo.Multiline = true;
+            this.txt_DetailInfo.Name = "txt_DetailInfo";
+            this.txt_DetailInfo.Size = new System.Drawing.Size(611, 96);
+            this.txt_DetailInfo.TabIndex = 14;
             // 
             // TaskSubmitor
             // 
@@ -1045,6 +1055,7 @@
         private System.Windows.Forms.ToolStripMenuItem tnMenu_Close;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.TextBox txt_DetailInfo;
     }
 }
 

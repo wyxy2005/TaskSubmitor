@@ -317,7 +317,8 @@ namespace UIForm
             sb.Append("模块：" + task.Module.ToString() + Environment.NewLine);
             sb.Append("SVN-message: " + task.Prefix + "-" + task.No.ToString() + "  " + task.Name + sys.Default.Author + Environment.NewLine);
 
-            rtx_logOutput.Text = sb.ToString();
+            //rtx_logOutput.Text = sb.ToString();
+            txt_DetailInfo.Text = sb.ToString();
         }
 
         private void tnMenu_Open_Click(object sender, EventArgs e)
