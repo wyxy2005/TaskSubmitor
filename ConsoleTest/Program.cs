@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using Model;
 using GitHelper;
+using SvnHelper;
 
 namespace ConsoleTest
 {
@@ -20,7 +21,7 @@ namespace ConsoleTest
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            OfficeHelperTest.Test();
+            SvnTest.Test();
             //TestCopy();
             //GitTest.Test();
             //string templatePath = AppDomain.CurrentDomain.BaseDirectory + SysData.FileName.TEMPLATE_PATH;

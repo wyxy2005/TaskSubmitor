@@ -76,6 +76,10 @@
       <Project>{6600CD58-DB53-4B3A-B37C-00F65374162A}</Project>
       <Name>OfficeHelper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SvnHelper\SvnHelper.csproj">
+      <Project>{37424DFD-71DA-43DB-8E97-1C928DB15696}</Project>
+      <Name>SvnHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Util\Util.csproj">
       <Project>{2D0F237B-9896-48C6-919B-D03FE3F9A6F8}</Project>
       <Name>Util</Name>
@@ -106,6 +110,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

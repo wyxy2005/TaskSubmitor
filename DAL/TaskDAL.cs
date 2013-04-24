@@ -42,7 +42,7 @@ namespace DAL
         /// <returns></returns>
         public DataTable GetTaskTable()
         { 
-            DataTable dtb = new DataTable("tast");
+            DataTable dtb = new DataTable("task");
             DataColumn dc = new DataColumn("no",Type.GetType("System.Int32"));
             DataColumn dc1 = new DataColumn("descrb",Type.GetType("System.String"));
             dtb.Columns.Add(dc);
