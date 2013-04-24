@@ -18,6 +18,8 @@ namespace UIForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new TaskSubmitor());
+            
+            //多线程用来检查数据备份
 
         }
     }
