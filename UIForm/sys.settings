@@ -30,16 +30,16 @@
       <Value Profile="(Default)">http://jira.abic.com/browse/</Value>
     </Setting>
     <Setting Name="username" Type="System.String" Scope="User">
-      <Value Profile="(Default)">chengning</Value>
+      <Value Profile="(Default)">******</Value>
     </Setting>
     <Setting Name="password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">chengning</Value>
+      <Value Profile="(Default)">******</Value>
     </Setting>
     <Setting Name="safeIniSrc" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\\10.10.134.71\lisvss_src\srcsafe.ini</Value>
+      <Value Profile="(Default)">******</Value>
     </Setting>
     <Setting Name="safeIniDoc" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\\10.10.134.71\lisvss_doc\srcsafe.ini</Value>
+      <Value Profile="(Default)">******</Value>
     </Setting>
     <Setting Name="localOnlineP" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\AB-P-Pro</Value>
@@ -67,6 +67,9 @@
     </Setting>
     <Setting Name="CloseTaskDir" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\Work\Task\已关闭</Value>
+    </Setting>
+    <Setting Name="BackupDay" Type="System.String" Scope="User">
+      <Value Profile="(Default)">7</Value>
     </Setting>
   </Settings>
 </SettingsFile>

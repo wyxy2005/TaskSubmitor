@@ -17,6 +17,11 @@ namespace UIForm
     /// </summary>
     public class InitApp
     {
+
+        private const string TEMPLATE_DIR = @"Template";
+        private const string DATA_PATH = @"data\data.xml";
+
+
         /// <summary>
         /// 初始化应用程序
         /// </summary>
@@ -28,9 +33,9 @@ namespace UIForm
 
         public void InitTemplate()
         {
-            if (!Directory.Exists(@"..\Template"))
-                Directory.CreateDirectory(@"..\Template");
-            if (!File.Exists(@"data\data.xml"))
+            if (!Directory.Exists(TEMPLATE_DIR))
+                Directory.CreateDirectory(TEMPLATE_DIR);
+            if (!File.Exists(DATA_PATH))
             {
                 SysUtil.CreateDataFile();
             }
@@ -40,7 +45,7 @@ namespace UIForm
         private void InitFolder()
         {
             InitFolder(sys.Default.OnlineDir);
-            
+
             InitFolder(sys.Default.CloseTaskDir);
         }
 

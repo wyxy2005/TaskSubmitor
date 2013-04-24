@@ -109,7 +109,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("***")]
+        [global::System.Configuration.DefaultSettingValueAttribute("程宁")]
         public string Author {
             get {
                 return ((string)(this["Author"]));
@@ -121,7 +121,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("***")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://jira.abic.com/browse/")]
         public string JiraUrl {
             get {
                 return ((string)(this["JiraUrl"]));
@@ -133,7 +133,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("***")]
+        [global::System.Configuration.DefaultSettingValueAttribute("******")]
         public string username {
             get {
                 return ((string)(this["username"]));
@@ -145,7 +145,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("***")]
+        [global::System.Configuration.DefaultSettingValueAttribute("******")]
         public string password {
             get {
                 return ((string)(this["password"]));
@@ -157,7 +157,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("***")]
+        [global::System.Configuration.DefaultSettingValueAttribute("******")]
         public string safeIniSrc {
             get {
                 return ((string)(this["safeIniSrc"]));
@@ -169,7 +169,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("***")]
+        [global::System.Configuration.DefaultSettingValueAttribute("******")]
         public string safeIniDoc {
             get {
                 return ((string)(this["safeIniDoc"]));
@@ -284,6 +284,18 @@ namespace UIForm {
             }
             set {
                 this["CloseTaskDir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public string BackupDay {
+            get {
+                return ((string)(this["BackupDay"]));
+            }
+            set {
+                this["BackupDay"] = value;
             }
         }
     }

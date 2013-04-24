@@ -247,7 +247,6 @@
     <None Include="Template\PDM" />
     <None Include="Template\TEST" />
     <None Include="Template\XLS" />
-    <None Include="UIForm_TemporaryKey.pfx" />
     <None Include="User.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>User.Designer.cs</LastGenOutput>
