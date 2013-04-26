@@ -298,5 +298,17 @@ namespace UIForm {
                 this["BackupDay"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#Prefix#-#No#  #Content#  #Author#  #Remark#")]
+        public string SvnMessage {
+            get {
+                return ((string)(this["SvnMessage"]));
+            }
+            set {
+                this["SvnMessage"] = value;
+            }
+        }
     }
 }

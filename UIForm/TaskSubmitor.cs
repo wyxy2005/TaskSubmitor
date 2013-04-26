@@ -315,7 +315,14 @@ namespace UIForm
             sb.Append("系统：" + task.Sys.ToString() + Environment.NewLine);
             sb.Append("渠道：" + task.Channel.ToString() + Environment.NewLine);
             sb.Append("模块：" + task.Module.ToString() + Environment.NewLine);
-            sb.Append("SVN-message: " + task.Prefix + "-" + task.No.ToString() + "  " + task.Name + sys.Default.Author + Environment.NewLine);
+            //#Prefix#-#No#  #Content#  #Author#  #Remark#
+            string svnMsg = sys.Default.SvnMessage.ToUpper().
+                Replace("#PREFIX#",task.Prefix).
+                Replace("#NO#",task.No.ToString()).
+                Replace("#CONTENT#", task.Name).
+                Replace("#AUTHOR#", sys.Default.Author).
+                Replace("#REMARK#",null);
+            sb.Append("SVN-message: " + svnMsg + Environment.NewLine);
 
             //rtx_logOutput.Text = sb.ToString();
             txt_DetailInfo.Text = sb.ToString();
