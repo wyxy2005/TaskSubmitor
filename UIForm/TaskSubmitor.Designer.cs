@@ -30,6 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskSubmitor));
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,14 +95,20 @@
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.tnMenu_ToDAT = new System.Windows.Forms.ToolStripMenuItem();
             this.tnMenu_ToOnline = new System.Windows.Forms.ToolStripMenuItem();
+            this.lv_SrcList = new System.Windows.Forms.ListView();
+            this.filePath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txt_DetailInfo = new System.Windows.Forms.TextBox();
             this.lbl_Workspace = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cbx_RecordAll = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.clb_srcList = new System.Windows.Forms.CheckedListBox();
             this.clb_FileList = new System.Windows.Forms.CheckedListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gb_Top = new System.Windows.Forms.GroupBox();
+            this.btn_SvnLog = new System.Windows.Forms.Button();
+            this.btn_SvnUpdate = new System.Windows.Forms.Button();
+            this.btn_SvnSubmit = new System.Windows.Forms.Button();
             this.btn_Copy = new System.Windows.Forms.Button();
             this.btn_checkout = new System.Windows.Forms.Button();
             this.btn_NewTask = new System.Windows.Forms.Button();
@@ -117,7 +128,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txt_DetailInfo = new System.Windows.Forms.TextBox();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -309,8 +319,7 @@
             // 
             this.copyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem.Image")));
             this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            //this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            //this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.copyToolStripMenuItem.Text = "复制(&C)";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.CopyToolStripMenuItem_Click);
@@ -319,8 +328,7 @@
             // 
             this.pasteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripMenuItem.Image")));
             this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            //this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            //this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.pasteToolStripMenuItem.Text = "粘贴(&P)";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.PasteToolStripMenuItem_Click);
@@ -562,12 +570,12 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Panel2.Controls.Add(this.lv_SrcList);
             this.splitContainer1.Panel2.Controls.Add(this.txt_DetailInfo);
             this.splitContainer1.Panel2.Controls.Add(this.lbl_Workspace);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Panel2.Controls.Add(this.cbx_RecordAll);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
-            this.splitContainer1.Panel2.Controls.Add(this.clb_srcList);
             this.splitContainer1.Panel2.Controls.Add(this.clb_FileList);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.rtx_logOutput);
@@ -652,6 +660,40 @@
             this.tnMenu_ToOnline.Text = "上线";
             this.tnMenu_ToOnline.Click += new System.EventHandler(this.tnMenu_ToOnline_Click);
             // 
+            // lv_SrcList
+            // 
+            this.lv_SrcList.CheckBoxes = true;
+            this.lv_SrcList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.filePath,
+            this.Status});
+            listViewItem1.StateImageIndex = 0;
+            listViewItem2.StateImageIndex = 0;
+            this.lv_SrcList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2});
+            this.lv_SrcList.Location = new System.Drawing.Point(3, 275);
+            this.lv_SrcList.Name = "lv_SrcList";
+            this.lv_SrcList.Size = new System.Drawing.Size(613, 239);
+            this.lv_SrcList.TabIndex = 15;
+            this.lv_SrcList.UseCompatibleStateImageBehavior = false;
+            this.lv_SrcList.View = System.Windows.Forms.View.List;
+            // 
+            // filePath
+            // 
+            this.filePath.Text = "Path";
+            // 
+            // Status
+            // 
+            this.Status.Text = "Status";
+            // 
+            // txt_DetailInfo
+            // 
+            this.txt_DetailInfo.Location = new System.Drawing.Point(0, 520);
+            this.txt_DetailInfo.Multiline = true;
+            this.txt_DetailInfo.Name = "txt_DetailInfo";
+            this.txt_DetailInfo.Size = new System.Drawing.Size(616, 96);
+            this.txt_DetailInfo.TabIndex = 14;
+            // 
             // lbl_Workspace
             // 
             this.lbl_Workspace.AutoSize = true;
@@ -690,15 +732,6 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "修改列表";
             // 
-            // clb_srcList
-            // 
-            this.clb_srcList.CheckOnClick = true;
-            this.clb_srcList.FormattingEnabled = true;
-            this.clb_srcList.Location = new System.Drawing.Point(0, 270);
-            this.clb_srcList.Name = "clb_srcList";
-            this.clb_srcList.Size = new System.Drawing.Size(616, 244);
-            this.clb_srcList.TabIndex = 4;
-            // 
             // clb_FileList
             // 
             this.clb_FileList.CheckOnClick = true;
@@ -721,6 +754,9 @@
             // 
             // gb_Top
             // 
+            this.gb_Top.Controls.Add(this.btn_SvnLog);
+            this.gb_Top.Controls.Add(this.btn_SvnUpdate);
+            this.gb_Top.Controls.Add(this.btn_SvnSubmit);
             this.gb_Top.Controls.Add(this.btn_Copy);
             this.gb_Top.Controls.Add(this.btn_checkout);
             this.gb_Top.Controls.Add(this.btn_NewTask);
@@ -728,10 +764,40 @@
             this.gb_Top.Controls.Add(this.btn_CopyToOnline);
             this.gb_Top.Location = new System.Drawing.Point(3, 3);
             this.gb_Top.Name = "gb_Top";
-            this.gb_Top.Size = new System.Drawing.Size(163, 324);
+            this.gb_Top.Size = new System.Drawing.Size(163, 417);
             this.gb_Top.TabIndex = 0;
             this.gb_Top.TabStop = false;
             this.gb_Top.Text = "开发者工具箱";
+            // 
+            // btn_SvnLog
+            // 
+            this.btn_SvnLog.Location = new System.Drawing.Point(7, 303);
+            this.btn_SvnLog.Name = "btn_SvnLog";
+            this.btn_SvnLog.Size = new System.Drawing.Size(65, 23);
+            this.btn_SvnLog.TabIndex = 7;
+            this.btn_SvnLog.Text = "SVN日志";
+            this.btn_SvnLog.UseVisualStyleBackColor = true;
+            this.btn_SvnLog.Click += new System.EventHandler(this.btn_SvnLog_Click);
+            // 
+            // btn_SvnUpdate
+            // 
+            this.btn_SvnUpdate.Location = new System.Drawing.Point(7, 266);
+            this.btn_SvnUpdate.Name = "btn_SvnUpdate";
+            this.btn_SvnUpdate.Size = new System.Drawing.Size(65, 23);
+            this.btn_SvnUpdate.TabIndex = 6;
+            this.btn_SvnUpdate.Text = "SVN更新";
+            this.btn_SvnUpdate.UseVisualStyleBackColor = true;
+            this.btn_SvnUpdate.Click += new System.EventHandler(this.btn_SvnUpdate_Click);
+            // 
+            // btn_SvnSubmit
+            // 
+            this.btn_SvnSubmit.Location = new System.Drawing.Point(7, 231);
+            this.btn_SvnSubmit.Name = "btn_SvnSubmit";
+            this.btn_SvnSubmit.Size = new System.Drawing.Size(65, 23);
+            this.btn_SvnSubmit.TabIndex = 5;
+            this.btn_SvnSubmit.Text = "SVN提交";
+            this.btn_SvnSubmit.UseVisualStyleBackColor = true;
+            this.btn_SvnSubmit.Click += new System.EventHandler(this.btn_SvnSubmit_Click);
             // 
             // btn_Copy
             // 
@@ -915,14 +981,6 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "不跟踪";
             // 
-            // txt_DetailInfo
-            // 
-            this.txt_DetailInfo.Location = new System.Drawing.Point(0, 520);
-            this.txt_DetailInfo.Multiline = true;
-            this.txt_DetailInfo.Name = "txt_DetailInfo";
-            this.txt_DetailInfo.Size = new System.Drawing.Size(611, 96);
-            this.txt_DetailInfo.TabIndex = 14;
-            // 
             // TaskSubmitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1046,7 +1104,6 @@
         private System.Windows.Forms.ToolStripMenuItem tnMenu_ToOnline;
         private System.Windows.Forms.CheckBox cbx_RecordAll;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckedListBox clb_srcList;
         private System.Windows.Forms.Label lbl_Workspace;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem tnMenu_Refresh;
@@ -1056,6 +1113,12 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.TextBox txt_DetailInfo;
+        private System.Windows.Forms.Button btn_SvnLog;
+        private System.Windows.Forms.Button btn_SvnUpdate;
+        private System.Windows.Forms.Button btn_SvnSubmit;
+        private System.Windows.Forms.ListView lv_SrcList;
+        private System.Windows.Forms.ColumnHeader filePath;
+        private System.Windows.Forms.ColumnHeader Status;
     }
 }
 

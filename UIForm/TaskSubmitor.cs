@@ -298,6 +298,7 @@ namespace UIForm
             Bind_clb_FileList(t);
             Bind_clb_srcList(t);
             ShowDetailInfo(t);
+
             //设置工作区目录
             if ( t.Channel == Model.Enum.ChannelEnum.P)
                 lbl_Workspace.Text = sys.Default.localProjectP;
@@ -580,6 +581,21 @@ namespace UIForm
         private void Bind_clb_srcList(Task task)
         { 
             //从gitlog中获取当前的编号的文件
+            IList<string> changlist = new List<string>();
+                
+            string xpath = task.Dir;
+            if (Directory.Exists(xpath))
+            {
+                DirectoryInfo dir = Directory.CreateDirectory(xpath);
+                FileInfo[] fileList = dir.GetFiles();
+                //lv_SrcList.DataBindings = fileList;
+                //lv_SrcList.DisplayMember = "Name";
+                //lv_SrcList.ValueMember = "DirectoryName";
+            }
+            else
+            {
+                MessageBox.Show("此任务对应的目录不存在于" + xpath);
+            }
 
         }
 
@@ -611,11 +627,6 @@ namespace UIForm
             GotoJira(taskNo, taskPrefix);
         }
 
-
-
-
-
-
         /// <summary>
         /// goto jira
         /// </summary>
@@ -633,6 +644,21 @@ namespace UIForm
             string url = sys.Default.JiraUrl + jiraPrefix + "-" + jiraId;
             //调用浏览器打开
             SysUtil.BrowseURL(url);
+        }
+
+        private void btn_SvnSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_SvnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_SvnLog_Click(object sender, EventArgs e)
+        {
+
         }
 
 
