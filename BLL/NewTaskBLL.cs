@@ -17,6 +17,12 @@ namespace BLL
     /// </summary>
     public class NewTaskBLL
     {
+        //这些标签都移动到配置文件中???
+        private readonly static string OFFICE_TAG_DATE = "Date";
+        private readonly static string OFFICE_TAG_NAME = "Name";
+        private readonly static string OFFICE_TAG_TASKNO = "TaskNo";
+        private readonly static string OFFICE_TAG_AUTHOR = "Author";
+
         private Task task;
         private string path;
         private string author;
@@ -173,27 +179,7 @@ namespace BLL
             foreach (Microsoft.Office.Interop.Word.Bookmark bm in bookMarks)
             {
                 bm.Select();
-                switch (bm.Name)
-                {
-                    case "Date":
-                        bm.Range.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                        break;
-                    case "Name":
-                    case "Name1":
-                        bm.Range.Text = this.task.Name;
-                        break;
-                    case "TaskNo":
-                    case "TaskNo1":
-                    case "TaskNo2":
-                        bm.Range.Text = this.task.No.ToString();
-                        break;
-                    case "Author":
-                    case "Author1":
-                        bm.Range.Text = this.author;
-                        break;
-                    default:
-                        break;
-                }
+                bm.Range.Text = GetContentFromTag(bm.Name);
             }
 
             object filename = destFile;
@@ -230,24 +216,7 @@ namespace BLL
             foreach (Microsoft.Office.Interop.Word.Bookmark bm in bookMarks)
             {
                 bm.Select();
-                switch (bm.Name)
-                {
-                    case "Date":
-                        bm.Range.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                        break;
-                    case "Name":
-                    case "Name1":
-                        bm.Range.Text = this.task.Name;
-                        break;
-                    case "TaskNo":
-                        bm.Range.Text = this.task.No.ToString();
-                        break;
-                    case "Author":
-                        bm.Range.Text = this.author;
-                        break;
-                    default:
-                        break;
-                }
+                bm.Range.Text = GetContentFromTag(bm.Name);
             }
 
             object filename = destFile;
@@ -260,6 +229,33 @@ namespace BLL
             {
                 wHelper.Close(oDoc);
             }
+        }
+
+        /// <summary>
+        /// 根据office标签得到需要设置的内容
+        /// </summary>
+        /// <param name="officeBookMark">标签名称</param>
+        /// <returns>表单代表的内容</returns>
+        private string GetContentFromTag(string officeBookMark)
+        {
+            string content = "";
+            if (officeBookMark.Contains(OFFICE_TAG_DATE))
+            {
+                content = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            else if (officeBookMark.Contains(OFFICE_TAG_NAME))
+            {
+                content = this.task.Name;
+            }
+            else if (officeBookMark.Contains(OFFICE_TAG_TASKNO))
+            {
+                content = this.task.Seq;
+            }
+            else if (officeBookMark.Contains(OFFICE_TAG_AUTHOR))
+            {
+                content = this.author;
+            }
+            return content;
         }
 
         /// <summary>
