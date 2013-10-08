@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskSubmitor));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -128,6 +128,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.txt_OpenLocalDir = new System.Windows.Forms.Button();
+            this.txt_OpenJira = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -666,11 +668,11 @@
             this.lv_SrcList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.filePath,
             this.Status});
-            listViewItem1.StateImageIndex = 0;
-            listViewItem2.StateImageIndex = 0;
+            listViewItem3.StateImageIndex = 0;
+            listViewItem4.StateImageIndex = 0;
             this.lv_SrcList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
+            listViewItem3,
+            listViewItem4});
             this.lv_SrcList.Location = new System.Drawing.Point(3, 275);
             this.lv_SrcList.Name = "lv_SrcList";
             this.lv_SrcList.Size = new System.Drawing.Size(613, 239);
@@ -754,6 +756,8 @@
             // 
             // gb_Top
             // 
+            this.gb_Top.Controls.Add(this.txt_OpenJira);
+            this.gb_Top.Controls.Add(this.txt_OpenLocalDir);
             this.gb_Top.Controls.Add(this.btn_SvnLog);
             this.gb_Top.Controls.Add(this.btn_SvnUpdate);
             this.gb_Top.Controls.Add(this.btn_SvnSubmit);
@@ -981,6 +985,28 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "不跟踪";
             // 
+            // txt_OpenLocalDir
+            // 
+            this.txt_OpenLocalDir.Location = new System.Drawing.Point(7, 365);
+            this.txt_OpenLocalDir.Name = "txt_OpenLocalDir";
+            this.txt_OpenLocalDir.Size = new System.Drawing.Size(65, 23);
+            this.txt_OpenLocalDir.TabIndex = 8;
+            this.txt_OpenLocalDir.Text = "本  地";
+            this.toolTip.SetToolTip(this.txt_OpenLocalDir, "从资源管理器打开本地的任务");
+            this.txt_OpenLocalDir.UseVisualStyleBackColor = true;
+            this.txt_OpenLocalDir.Click += new System.EventHandler(this.txt_OpenLocalDir_Click);
+            // 
+            // txt_OpenJira
+            // 
+            this.txt_OpenJira.Location = new System.Drawing.Point(7, 394);
+            this.txt_OpenJira.Name = "txt_OpenJira";
+            this.txt_OpenJira.Size = new System.Drawing.Size(65, 23);
+            this.txt_OpenJira.TabIndex = 9;
+            this.txt_OpenJira.Text = "JIRA";
+            this.toolTip.SetToolTip(this.txt_OpenJira, "通过浏览器打开jira中的任务");
+            this.txt_OpenJira.UseVisualStyleBackColor = true;
+            this.txt_OpenJira.Click += new System.EventHandler(this.txt_OpenJira_Click);
+            // 
             // TaskSubmitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1119,6 +1145,8 @@
         private System.Windows.Forms.ListView lv_SrcList;
         private System.Windows.Forms.ColumnHeader filePath;
         private System.Windows.Forms.ColumnHeader Status;
+        private System.Windows.Forms.Button txt_OpenJira;
+        private System.Windows.Forms.Button txt_OpenLocalDir;
     }
 }
 

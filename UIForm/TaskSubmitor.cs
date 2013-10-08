@@ -619,7 +619,7 @@ namespace UIForm
         private void tnMenu_GotoJira_Click(object sender, EventArgs e)
         {
             TreeNode currentNode = this.tv_TaskList.SelectedNode;
-            //需要上线的任务编号
+            //任务编号
             string taskNo = currentNode.Name;
             TaskBLL bll = new TaskBLL();
             Task currentTask = bll.GetTask(int.Parse(taskNo));
@@ -660,6 +660,37 @@ namespace UIForm
         {
 
         }
+
+        /// <summary>
+        /// 本地打开
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txt_OpenLocalDir_Click(object sender, EventArgs e)
+        {
+            if (this.currentTask == null) {
+                MessageBox.Show("界面没有任务显示");
+                return;
+            }
+            string xpath = sys.Default.localWorkspace + @"\" + this.currentTask.Description;
+            SysUtil.BrowseURL(xpath);
+        }
+
+        /// <summary>
+        /// 打开jira
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txt_OpenJira_Click(object sender, EventArgs e)
+        {
+            if (this.currentTask == null)
+            {
+                MessageBox.Show("界面没有任务显示");
+                return;
+            }
+            GotoJira(this.currentTask.No.ToString(),this.currentTask.Prefix);
+        }
+
 
 
 
