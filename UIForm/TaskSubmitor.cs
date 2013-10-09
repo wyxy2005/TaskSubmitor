@@ -332,7 +332,7 @@ namespace UIForm
         private void tnMenu_Open_Click(object sender, EventArgs e)
         {
             string xpath = sys.Default.localWorkspace + @"\" + this.tv_TaskList.SelectedNode.Text;
-            SysUtil.BrowseURL(xpath);
+            SysUtil.OpenDir(xpath);
         }
 
         /// <summary>
@@ -673,7 +673,7 @@ namespace UIForm
                 return;
             }
             string xpath = sys.Default.localWorkspace + @"\" + this.currentTask.Description;
-            SysUtil.BrowseURL(xpath);
+            SysUtil.OpenDir(xpath);
         }
 
         /// <summary>
