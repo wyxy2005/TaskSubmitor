@@ -331,8 +331,15 @@ namespace UIForm
 
         private void tnMenu_Open_Click(object sender, EventArgs e)
         {
-            string xpath = sys.Default.localWorkspace + @"\" + this.tv_TaskList.SelectedNode.Text;
-            SysUtil.OpenDir(xpath);
+            string taskNo = this.tv_TaskList.SelectedNode.Name;
+            if (string.IsNullOrEmpty(taskNo))
+            {
+                MessageBox.Show("没有绑定对应的任务，请查看程序异常");
+                return;
+            }
+            TaskBLL bll = new TaskBLL();
+            Task task = bll.GetTask(int.Parse(taskNo));
+            OpenTaskDir(task);
         }
 
         /// <summary>
@@ -672,8 +679,9 @@ namespace UIForm
                 MessageBox.Show("界面没有任务显示");
                 return;
             }
-            string xpath = sys.Default.localWorkspace + @"\" + this.currentTask.Description;
-            SysUtil.OpenDir(xpath);
+            OpenTaskDir(this.currentTask);
+            //string xpath = sys.Default.localWorkspace + @"\" + this.currentTask.Description;
+            //SysUtil.OpenDir(xpath);
         }
 
         /// <summary>
@@ -689,6 +697,12 @@ namespace UIForm
                 return;
             }
             GotoJira(this.currentTask.No.ToString(),this.currentTask.Prefix);
+        }
+
+        public void OpenTaskDir(Task task)
+        {
+            string xpath = task.Dir;
+            SysUtil.OpenDir(xpath);
         }
 
 
