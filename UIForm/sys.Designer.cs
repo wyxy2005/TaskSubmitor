@@ -310,5 +310,41 @@ namespace UIForm {
                 this["SvnMessage"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-")]
+        public string PrefixSep {
+            get {
+                return ((string)(this["PrefixSep"]));
+            }
+            set {
+                this["PrefixSep"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("jira.abic.com")]
+        public string JiraDomain {
+            get {
+                return ((string)(this["JiraDomain"]));
+            }
+            set {
+                this["JiraDomain"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://jira.abic.com/rest/api/1.0/issues/#taskUID#/watchers")]
+        public string JiraWatchUrl {
+            get {
+                return ((string)(this["JiraWatchUrl"]));
+            }
+            set {
+                this["JiraWatchUrl"] = value;
+            }
+        }
     }
 }

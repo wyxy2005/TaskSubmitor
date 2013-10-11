@@ -147,6 +147,7 @@
     <Compile Include="Control\ToOnlineCtrl.Designer.cs">
       <DependentUpon>ToOnlineCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Template.cs" />
     <Compile Include="Tools\CheckForm.cs">
       <SubType>Form</SubType>
     </Compile>

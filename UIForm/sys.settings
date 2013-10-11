@@ -74,5 +74,14 @@
     <Setting Name="SvnMessage" Type="System.String" Scope="User">
       <Value Profile="(Default)">#Prefix#-#No#  #Content#  #Author#  #Remark#</Value>
     </Setting>
+    <Setting Name="PrefixSep" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-</Value>
+    </Setting>
+    <Setting Name="JiraDomain" Type="System.String" Scope="User">
+      <Value Profile="(Default)">jira.abic.com</Value>
+    </Setting>
+    <Setting Name="JiraWatchUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://jira.abic.com/rest/api/1.0/issues/#taskUID#/watchers</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

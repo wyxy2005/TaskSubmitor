@@ -6,6 +6,7 @@ using System.IO;
 using Model;
 using GitHelper;
 using SvnHelper;
+using BLL;
 
 namespace ConsoleTest
 {
@@ -21,7 +22,7 @@ namespace ConsoleTest
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            SvnTest.Test();
+            //SvnTest.Test();
             //TestCopy();
             //GitTest.Test();
             //string templatePath = AppDomain.CurrentDomain.BaseDirectory + SysData.FileName.TEMPLATE_PATH;
@@ -34,7 +35,7 @@ namespace ConsoleTest
 
             //
             //OfficeHelperTest.Test();
-
+            TestWeb();
 
 
 
@@ -49,5 +50,22 @@ namespace ConsoleTest
             //file.
             file.CopyTo(@"D:\AB-P-Pro\ui\sys\GrpPolDetailQuery.js", true);
         }
+
+        private static void TestWeb()
+        {
+            //string taskUrl = @"http://jira.abic.com/browse/ABLREQUEST-2150";
+            //WebBll web = new WebBll(taskUrl);
+            //string html = web.Browser();
+            ////string xpath = @"/html[1]/body[1]/div[4]/div[1]/div[1]/div[1]/div[6]/div[1]/form[1]";
+            ////string xpath = @"//form[@id='add_comment']";
+            //string xpath = @"//input[@name='id']";
+            //string taskUid = web.HtmlInputValue(html, xpath);
+            string watchAjaxUrl = "http://jira.abic.com/rest/api/1.0/issues/210970/watchers";//@"http://jira.abic.com/rest/api/1.0/issues/" + taskUid + @"/watchers";
+
+            WebBll web = new WebBll(watchAjaxUrl);
+            //bool sucess = web.Watch(watchAjaxUrl);
+            bool sucess = web.UnWatch(watchAjaxUrl);
+
+         }
     }
 }

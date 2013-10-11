@@ -10,6 +10,7 @@ using Model;
 using Util;
 using BLL;
 using Model.Enum;
+using System.Threading;
 
 namespace UIForm
 {
@@ -20,6 +21,8 @@ namespace UIForm
     {
         //
         private string taskContent;
+        private string taskNo;
+        private string taskPrefix;
 
         /// <summary>
         /// FORM初始化
@@ -60,8 +63,6 @@ namespace UIForm
 
         }
 
-        
-
         /// <summary>
         /// 创建按钮
         /// </summary>
@@ -69,6 +70,13 @@ namespace UIForm
         /// <param name="e"></param>
         private void btn_OK_Click(object sender, EventArgs e)
         {
+            //使用类变量保存界面输入，否则当前窗口关闭其他线程就会得不到输入的数据
+            if (!ValidateInput())
+            {
+                return;
+            }
+            this.taskNo = txt_No.Text.Trim();
+            this.taskPrefix = txt_Prefix.Text.Trim();
             this.taskContent = txt_Prefix.Text.Trim() + "-" + 
                 txt_No.Text.Trim() + "-" + txt_Name.Text.Trim();
 
@@ -80,7 +88,13 @@ namespace UIForm
                 //创建问题
                 CreateTask();
                 //打开资源管理器，显示到问题
-                OpenTaskDir();
+                //OpenTaskDir();
+                //打开资源管理器，显示到问题
+                Thread a = new Thread(new ThreadStart(OpenTaskDir));
+                a.Start();
+                //监视任务管理系统中的本任务
+                Thread b = new Thread(new ThreadStart(WartchTask));
+                b.Start();
             }
             this.Close();
         }
@@ -93,10 +107,16 @@ namespace UIForm
         /// <summary>
         /// 校验输入
         /// </summary>
-        private void ValidateInput()
+        private bool ValidateInput()
         {
             //任务编号不为空且是整数
             //任务名称不为空
+            if (string.IsNullOrEmpty(txt_No.Text.Trim()) || string.IsNullOrEmpty(txt_Prefix.Text.Trim()))
+            {
+                MessageBox.Show("任务标识或者任务编号不能为空");
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -192,6 +212,25 @@ namespace UIForm
         {
             string path = sys.Default.localWorkspace.Trim('\\') + @"\" + this.taskContent;
             SysUtil.OpenDir(path);
+        }
+
+        /// <summary>
+        /// 监视jira任务
+        /// </summary>
+        private void WartchTask()
+        {
+            string taskUrl = sys.Default.JiraUrl + this.taskPrefix + sys.Default.PrefixSep + this.taskNo;
+            //访问页面得到系统中的任务统一编号
+
+            WebBll web = new WebBll(taskUrl);
+            string html = web.Browser();
+
+            //jira系统中得到任务的统一编号
+            string xpath = @"//input[@name='id']";
+            string taskUid = web.HtmlInputValue(html, xpath);
+            string watchAjaxUrl = Template.JiraWatchUrl(taskUid);
+            bool success = web.Watch(watchAjaxUrl);
+
         }
     }
 }

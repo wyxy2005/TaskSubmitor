@@ -11,7 +11,8 @@
     <RootNamespace>ConsoleTest</RootNamespace>
     <AssemblyName>ConsoleTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -64,6 +65,10 @@
     <Compile Include="VssTaskTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{E4EF658F-97CD-4155-93F2-B92BF1C2FAE1}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GitHelper\GitHelper.csproj">
       <Project>{DEA69B8D-6236-46A7-B28C-82E9E138DB30}</Project>
       <Name>GitHelper</Name>
