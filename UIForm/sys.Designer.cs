@@ -37,7 +37,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Work\\Dev\\Workspace\\AB-P-devlis")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Project\\AB-P-devlis\\")]
         public string localProjectP {
             get {
                 return ((string)(this["localProjectP"]));
@@ -49,7 +49,7 @@ namespace UIForm {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Work\\Dev\\Workspace\\AB-G-devlis")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Project\\AB-G-devlis\\")]
         public string localProjectG {
             get {
                 return ((string)(this["localProjectG"]));

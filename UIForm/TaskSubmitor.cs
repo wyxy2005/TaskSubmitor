@@ -50,7 +50,8 @@ namespace UIForm
             InitUI();
             InitData();
 
-
+            Thread zbyThread = new Thread(new ThreadStart(StartZby));
+            zbyThread.Start();
 
         }
 
@@ -71,6 +72,40 @@ namespace UIForm
         private void InitData()
         {
             BindTreeNode();
+        }
+
+        /// <summary>
+        /// zby启动
+        /// </summary>
+        private void StartZby()
+        {
+            string url = @"http://www.icbc.com.cn/ICBCDynamicSite/Charts/TimeLine.aspx?pWidth=1010&pHeight=600&dataType=0&dataId=903&picType=3";
+            int interval = 10;
+            ZbyBLL zby = new ZbyBLL(url);
+            while (true) 
+            {
+                zby.Watch();
+                SetZbyText(zby.WatchData + "  " + DateTime.Now.ToLongTimeString());
+
+                Thread.Sleep(interval * 1000);
+            }
+        }
+        /// <summary>
+        /// 线程间调用设置SetZbyText的委托
+        /// </summary>
+        /// <param name="text"></param>
+        private delegate void SetZbyTextCallBack(string text);
+
+        private void SetZbyText(string text)
+        {
+            if (this.txt_Zby.InvokeRequired)
+            {
+                this.Invoke(new SetZbyTextCallBack(this.SetZbyText), new object[] { text });
+            }
+            else
+            {
+                this.txt_Zby.Text = text;
+            }
         }
 
         /// <summary>
@@ -704,6 +739,23 @@ namespace UIForm
             string xpath = task.Dir;
             SysUtil.OpenDir(xpath);
         }
+
+        private void btn_OpenSvnWorkSpace_Click(object sender, EventArgs e)
+        {
+            if (this.currentTask == null) 
+            {
+                MessageBox.Show("没有选中的任务");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.lbl_Workspace.Text))
+            {
+                MessageBox.Show("无法找到工作区，【工作区目录】无内容");
+                return;
+            }
+            SysUtil.OpenDir(this.lbl_Workspace.Text);
+            
+        }
+
 
 
 

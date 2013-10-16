@@ -84,6 +84,9 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.txt_JiraNo = new System.Windows.Forms.TextBox();
             this.btn_goto = new System.Windows.Forms.Button();
+            this.txt_OpenLocalDir = new System.Windows.Forms.Button();
+            this.txt_OpenJira = new System.Windows.Forms.Button();
+            this.btn_OpenSvnWorkSpace = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tv_TaskList = new System.Windows.Forms.TreeView();
             this.treeNodeRightKeyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -105,6 +108,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.clb_FileList = new System.Windows.Forms.CheckedListBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txt_Zby = new System.Windows.Forms.TextBox();
             this.gb_Top = new System.Windows.Forms.GroupBox();
             this.btn_SvnLog = new System.Windows.Forms.Button();
             this.btn_SvnUpdate = new System.Windows.Forms.Button();
@@ -128,8 +132,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txt_OpenLocalDir = new System.Windows.Forms.Button();
-            this.txt_OpenJira = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -156,7 +158,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1063, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1206, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -522,7 +524,7 @@
             this.toolStripStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 718);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1063, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1206, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -535,7 +537,7 @@
             // txt_JiraNo
             // 
             this.txt_JiraNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_JiraNo.Location = new System.Drawing.Point(925, 26);
+            this.txt_JiraNo.Location = new System.Drawing.Point(1068, 26);
             this.txt_JiraNo.Name = "txt_JiraNo";
             this.txt_JiraNo.Size = new System.Drawing.Size(67, 21);
             this.txt_JiraNo.TabIndex = 4;
@@ -548,13 +550,46 @@
             this.btn_goto.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.btn_goto.BackgroundImage = global::UIForm.Properties.Resources._goto;
             this.btn_goto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_goto.Location = new System.Drawing.Point(992, 24);
+            this.btn_goto.Location = new System.Drawing.Point(1135, 24);
             this.btn_goto.Name = "btn_goto";
             this.btn_goto.Size = new System.Drawing.Size(67, 23);
             this.btn_goto.TabIndex = 5;
             this.toolTip.SetToolTip(this.btn_goto, "转到JIRA中的问题");
             this.btn_goto.UseVisualStyleBackColor = false;
             this.btn_goto.Click += new System.EventHandler(this.btn_goto_Click);
+            // 
+            // txt_OpenLocalDir
+            // 
+            this.txt_OpenLocalDir.Location = new System.Drawing.Point(7, 365);
+            this.txt_OpenLocalDir.Name = "txt_OpenLocalDir";
+            this.txt_OpenLocalDir.Size = new System.Drawing.Size(65, 23);
+            this.txt_OpenLocalDir.TabIndex = 8;
+            this.txt_OpenLocalDir.Text = "本  地";
+            this.toolTip.SetToolTip(this.txt_OpenLocalDir, "从资源管理器打开本地的任务");
+            this.txt_OpenLocalDir.UseVisualStyleBackColor = true;
+            this.txt_OpenLocalDir.Click += new System.EventHandler(this.txt_OpenLocalDir_Click);
+            // 
+            // txt_OpenJira
+            // 
+            this.txt_OpenJira.Location = new System.Drawing.Point(7, 391);
+            this.txt_OpenJira.Name = "txt_OpenJira";
+            this.txt_OpenJira.Size = new System.Drawing.Size(65, 23);
+            this.txt_OpenJira.TabIndex = 9;
+            this.txt_OpenJira.Text = "JIRA";
+            this.toolTip.SetToolTip(this.txt_OpenJira, "通过浏览器打开jira中的任务");
+            this.txt_OpenJira.UseVisualStyleBackColor = true;
+            this.txt_OpenJira.Click += new System.EventHandler(this.txt_OpenJira_Click);
+            // 
+            // btn_OpenSvnWorkSpace
+            // 
+            this.btn_OpenSvnWorkSpace.Location = new System.Drawing.Point(87, 231);
+            this.btn_OpenSvnWorkSpace.Name = "btn_OpenSvnWorkSpace";
+            this.btn_OpenSvnWorkSpace.Size = new System.Drawing.Size(68, 23);
+            this.btn_OpenSvnWorkSpace.TabIndex = 10;
+            this.btn_OpenSvnWorkSpace.Text = "SVN工作区";
+            this.toolTip.SetToolTip(this.btn_OpenSvnWorkSpace, "打开本地的svn工作区");
+            this.btn_OpenSvnWorkSpace.UseVisualStyleBackColor = true;
+            this.btn_OpenSvnWorkSpace.Click += new System.EventHandler(this.btn_OpenSvnWorkSpace_Click);
             // 
             // splitContainer1
             // 
@@ -581,7 +616,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.clb_FileList);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.rtx_logOutput);
-            this.splitContainer1.Size = new System.Drawing.Size(1063, 669);
+            this.splitContainer1.Size = new System.Drawing.Size(1206, 669);
             this.splitContainer1.SplitterDistance = 396;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -747,6 +782,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.txt_Zby);
             this.panel1.Controls.Add(this.gb_Top);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(617, 0);
@@ -754,8 +790,16 @@
             this.panel1.Size = new System.Drawing.Size(168, 747);
             this.panel1.TabIndex = 1;
             // 
+            // txt_Zby
+            // 
+            this.txt_Zby.Location = new System.Drawing.Point(-2, 644);
+            this.txt_Zby.Name = "txt_Zby";
+            this.txt_Zby.Size = new System.Drawing.Size(168, 21);
+            this.txt_Zby.TabIndex = 1;
+            // 
             // gb_Top
             // 
+            this.gb_Top.Controls.Add(this.btn_OpenSvnWorkSpace);
             this.gb_Top.Controls.Add(this.txt_OpenJira);
             this.gb_Top.Controls.Add(this.txt_OpenLocalDir);
             this.gb_Top.Controls.Add(this.btn_SvnLog);
@@ -775,7 +819,7 @@
             // 
             // btn_SvnLog
             // 
-            this.btn_SvnLog.Location = new System.Drawing.Point(7, 303);
+            this.btn_SvnLog.Location = new System.Drawing.Point(7, 288);
             this.btn_SvnLog.Name = "btn_SvnLog";
             this.btn_SvnLog.Size = new System.Drawing.Size(65, 23);
             this.btn_SvnLog.TabIndex = 7;
@@ -785,7 +829,7 @@
             // 
             // btn_SvnUpdate
             // 
-            this.btn_SvnUpdate.Location = new System.Drawing.Point(7, 266);
+            this.btn_SvnUpdate.Location = new System.Drawing.Point(7, 260);
             this.btn_SvnUpdate.Name = "btn_SvnUpdate";
             this.btn_SvnUpdate.Size = new System.Drawing.Size(65, 23);
             this.btn_SvnUpdate.TabIndex = 6;
@@ -805,7 +849,7 @@
             // 
             // btn_Copy
             // 
-            this.btn_Copy.Location = new System.Drawing.Point(7, 174);
+            this.btn_Copy.Location = new System.Drawing.Point(7, 169);
             this.btn_Copy.Name = "btn_Copy";
             this.btn_Copy.Size = new System.Drawing.Size(65, 23);
             this.btn_Copy.TabIndex = 4;
@@ -819,7 +863,7 @@
             this.btn_checkout.Name = "btn_checkout";
             this.btn_checkout.Size = new System.Drawing.Size(65, 23);
             this.btn_checkout.TabIndex = 3;
-            this.btn_checkout.Text = "检出/入";
+            this.btn_checkout.Text = "VSS检出/入";
             this.btn_checkout.UseVisualStyleBackColor = true;
             this.btn_checkout.Click += new System.EventHandler(this.btn_checkout_Click);
             // 
@@ -835,7 +879,7 @@
             // 
             // btn_ToDat
             // 
-            this.btn_ToDat.Location = new System.Drawing.Point(6, 59);
+            this.btn_ToDat.Location = new System.Drawing.Point(6, 57);
             this.btn_ToDat.Name = "btn_ToDat";
             this.btn_ToDat.Size = new System.Drawing.Size(66, 23);
             this.btn_ToDat.TabIndex = 1;
@@ -845,7 +889,7 @@
             // 
             // btn_CopyToOnline
             // 
-            this.btn_CopyToOnline.Location = new System.Drawing.Point(6, 88);
+            this.btn_CopyToOnline.Location = new System.Drawing.Point(6, 85);
             this.btn_CopyToOnline.Name = "btn_CopyToOnline";
             this.btn_CopyToOnline.Size = new System.Drawing.Size(66, 23);
             this.btn_CopyToOnline.TabIndex = 0;
@@ -941,7 +985,7 @@
             this.helpToolStripButton});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1063, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1206, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -985,34 +1029,12 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "不跟踪";
             // 
-            // txt_OpenLocalDir
-            // 
-            this.txt_OpenLocalDir.Location = new System.Drawing.Point(7, 365);
-            this.txt_OpenLocalDir.Name = "txt_OpenLocalDir";
-            this.txt_OpenLocalDir.Size = new System.Drawing.Size(65, 23);
-            this.txt_OpenLocalDir.TabIndex = 8;
-            this.txt_OpenLocalDir.Text = "本  地";
-            this.toolTip.SetToolTip(this.txt_OpenLocalDir, "从资源管理器打开本地的任务");
-            this.txt_OpenLocalDir.UseVisualStyleBackColor = true;
-            this.txt_OpenLocalDir.Click += new System.EventHandler(this.txt_OpenLocalDir_Click);
-            // 
-            // txt_OpenJira
-            // 
-            this.txt_OpenJira.Location = new System.Drawing.Point(7, 394);
-            this.txt_OpenJira.Name = "txt_OpenJira";
-            this.txt_OpenJira.Size = new System.Drawing.Size(65, 23);
-            this.txt_OpenJira.TabIndex = 9;
-            this.txt_OpenJira.Text = "JIRA";
-            this.toolTip.SetToolTip(this.txt_OpenJira, "通过浏览器打开jira中的任务");
-            this.txt_OpenJira.UseVisualStyleBackColor = true;
-            this.txt_OpenJira.Click += new System.EventHandler(this.txt_OpenJira_Click);
-            // 
             // TaskSubmitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(1063, 740);
+            this.ClientSize = new System.Drawing.Size(1206, 740);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -1042,6 +1064,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.treeNodeRightKeyMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.gb_Top.ResumeLayout(false);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
@@ -1147,6 +1170,8 @@
         private System.Windows.Forms.ColumnHeader Status;
         private System.Windows.Forms.Button txt_OpenJira;
         private System.Windows.Forms.Button txt_OpenLocalDir;
+        private System.Windows.Forms.Button btn_OpenSvnWorkSpace;
+        private System.Windows.Forms.TextBox txt_Zby;
     }
 }
 

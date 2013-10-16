@@ -6,10 +6,10 @@
       <Value Profile="(Default)">D:\Work\Task</Value>
     </Setting>
     <Setting Name="localProjectP" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\Work\Dev\Workspace\AB-P-devlis</Value>
+      <Value Profile="(Default)">D:\Project\AB-P-devlis\</Value>
     </Setting>
     <Setting Name="localProjectG" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\Work\Dev\Workspace\AB-G-devlis</Value>
+      <Value Profile="(Default)">D:\Project\AB-G-devlis\</Value>
     </Setting>
     <Setting Name="vssProjectP" Type="System.String" Scope="User">
       <Value Profile="(Default)">$/AB-P-devlis</Value>
