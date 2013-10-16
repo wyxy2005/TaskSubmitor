@@ -1,5 +1,7 @@
 UIForm\app.config
 UIForm\sys.Designer.cs
 UIForm\sys.settings
+UIForm\User.Designer.cs
+UIForm\User.settings
 *\bin
 *\obj
