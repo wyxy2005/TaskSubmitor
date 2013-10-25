@@ -51,6 +51,7 @@ namespace UIForm
             InitData();
 
             Thread zbyThread = new Thread(new ThreadStart(StartZby));
+            zbyThread.IsBackground = true;
             zbyThread.Start();
 
         }
@@ -232,6 +233,16 @@ namespace UIForm
 
         private void TaskSubmitor_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (MessageBox.Show("确定要退出TaskSubmitor?", "", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Dispose();
+                //Application.Exit();
+                System.Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;
+            }
             //logWatching = false;
             //logWatcher.Join();
         }

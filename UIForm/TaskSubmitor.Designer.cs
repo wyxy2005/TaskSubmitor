@@ -708,9 +708,9 @@
             this.lv_SrcList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem3,
             listViewItem4});
-            this.lv_SrcList.Location = new System.Drawing.Point(3, 275);
+            this.lv_SrcList.Location = new System.Drawing.Point(3, 380);
             this.lv_SrcList.Name = "lv_SrcList";
-            this.lv_SrcList.Size = new System.Drawing.Size(613, 239);
+            this.lv_SrcList.Size = new System.Drawing.Size(613, 227);
             this.lv_SrcList.TabIndex = 15;
             this.lv_SrcList.UseCompatibleStateImageBehavior = false;
             this.lv_SrcList.View = System.Windows.Forms.View.List;
@@ -725,7 +725,7 @@
             // 
             // txt_DetailInfo
             // 
-            this.txt_DetailInfo.Location = new System.Drawing.Point(0, 520);
+            this.txt_DetailInfo.Location = new System.Drawing.Point(0, 0);
             this.txt_DetailInfo.Multiline = true;
             this.txt_DetailInfo.Name = "txt_DetailInfo";
             this.txt_DetailInfo.Size = new System.Drawing.Size(616, 96);
@@ -734,7 +734,7 @@
             // lbl_Workspace
             // 
             this.lbl_Workspace.AutoSize = true;
-            this.lbl_Workspace.Location = new System.Drawing.Point(245, 253);
+            this.lbl_Workspace.Location = new System.Drawing.Point(245, 363);
             this.lbl_Workspace.Name = "lbl_Workspace";
             this.lbl_Workspace.Size = new System.Drawing.Size(23, 12);
             this.lbl_Workspace.TabIndex = 13;
@@ -743,7 +743,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(178, 254);
+            this.label5.Location = new System.Drawing.Point(178, 364);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 12;
@@ -752,7 +752,7 @@
             // cbx_RecordAll
             // 
             this.cbx_RecordAll.AutoSize = true;
-            this.cbx_RecordAll.Location = new System.Drawing.Point(91, 253);
+            this.cbx_RecordAll.Location = new System.Drawing.Point(91, 363);
             this.cbx_RecordAll.Name = "cbx_RecordAll";
             this.cbx_RecordAll.Size = new System.Drawing.Size(48, 16);
             this.cbx_RecordAll.TabIndex = 11;
@@ -763,7 +763,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(-2, 255);
+            this.label4.Location = new System.Drawing.Point(-2, 365);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 10;
@@ -773,7 +773,7 @@
             // 
             this.clb_FileList.CheckOnClick = true;
             this.clb_FileList.FormattingEnabled = true;
-            this.clb_FileList.Location = new System.Drawing.Point(0, 0);
+            this.clb_FileList.Location = new System.Drawing.Point(0, 103);
             this.clb_FileList.Name = "clb_FileList";
             this.clb_FileList.Size = new System.Drawing.Size(616, 244);
             this.clb_FileList.TabIndex = 3;
@@ -787,7 +787,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(617, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(168, 747);
+            this.panel1.Size = new System.Drawing.Size(168, 733);
             this.panel1.TabIndex = 1;
             // 
             // txt_Zby
@@ -899,9 +899,9 @@
             // 
             // rtx_logOutput
             // 
-            this.rtx_logOutput.Location = new System.Drawing.Point(0, 622);
+            this.rtx_logOutput.Location = new System.Drawing.Point(0, 614);
             this.rtx_logOutput.Name = "rtx_logOutput";
-            this.rtx_logOutput.Size = new System.Drawing.Size(617, 125);
+            this.rtx_logOutput.Size = new System.Drawing.Size(617, 119);
             this.rtx_logOutput.TabIndex = 0;
             this.rtx_logOutput.Text = "";
             // 
