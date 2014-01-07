@@ -78,6 +78,9 @@
     <Reference Include="log4net">
       <HintPath>..\lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\DLL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -126,6 +129,12 @@
     </Compile>
     <Compile Include="NewTask.Designer.cs">
       <DependentUpon>NewTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OTS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OTS.Designer.cs">
+      <DependentUpon>OTS.cs</DependentUpon>
     </Compile>
     <Compile Include="sys.cs" />
     <Compile Include="sys.Designer.cs">
@@ -195,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewTask.resx">
       <DependentUpon>NewTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OTS.resx">
+      <DependentUpon>OTS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TaskSubmitor.resx">
       <DependentUpon>TaskSubmitor.cs</DependentUpon>

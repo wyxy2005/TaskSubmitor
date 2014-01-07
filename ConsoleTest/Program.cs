@@ -35,7 +35,8 @@ namespace ConsoleTest
 
             //
             //OfficeHelperTest.Test();
-            TestWeb();
+            //TestWeb();
+            OtsAuto.Test();
 
 
 

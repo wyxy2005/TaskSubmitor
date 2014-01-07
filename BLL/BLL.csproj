@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CheckBLL.cs" />
     <Compile Include="NewTaskBLL.cs" />
+    <Compile Include="OtsAuto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShowData.cs" />
     <Compile Include="SubmitDAT.cs" />

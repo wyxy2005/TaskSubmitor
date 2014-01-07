@@ -767,6 +767,12 @@ namespace UIForm
             
         }
 
+        private void btn_ots_Click(object sender, EventArgs e)
+        {
+            OTS newOts = new OTS();
+            newOts.Show();//非模态显示
+        }
+
 
 
 
