@@ -42,12 +42,15 @@
   <ItemGroup>
     <Compile Include="Enum\SysEnum.cs" />
     <Compile Include="Enum\TaskFileEnum.cs" />
+    <Compile Include="ListItem.cs" />
+    <Compile Include="Passager.cs" />
+    <Compile Include="Station.cs" />
     <Compile Include="SysData.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaskFile.cs" />
+    <Compile Include="Train.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

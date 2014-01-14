@@ -136,6 +136,12 @@
     <Compile Include="OTS.Designer.cs">
       <DependentUpon>OTS.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtsLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtsLogin.Designer.cs">
+      <DependentUpon>OtsLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="sys.cs" />
     <Compile Include="sys.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -207,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OTS.resx">
       <DependentUpon>OTS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtsLogin.resx">
+      <DependentUpon>OtsLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TaskSubmitor.resx">
       <DependentUpon>TaskSubmitor.cs</DependentUpon>

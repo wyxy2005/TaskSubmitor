@@ -14,5 +14,12 @@ namespace Util
     /// </summary>
     public class SysLog
     {
+        public SysLog()
+        { 
+        }
+
+        public void Info(string msg)
+        { 
+        }
     }
 }

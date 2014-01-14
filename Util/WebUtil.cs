@@ -71,7 +71,12 @@ namespace Util
                     request.CookieContainer.Add(cookie);
                 }
             }
-            this.response = (HttpWebResponse)request.GetResponse();
+            try
+            {
+                this.response = (HttpWebResponse)request.GetResponse();
+            }
+            catch (Exception ex){ 
+            }
         }
 
         /// <summary>
