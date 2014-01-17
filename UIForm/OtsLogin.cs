@@ -51,6 +51,7 @@ namespace UIForm
             }
         }
 
+
         private void InitLogin()
         {
             ots = new OtsAuto();

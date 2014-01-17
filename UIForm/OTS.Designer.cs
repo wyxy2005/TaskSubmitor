@@ -73,9 +73,9 @@
             this.clb_seatType = new System.Windows.Forms.CheckedListBox();
             this.cbx_autoQuery = new System.Windows.Forms.CheckBox();
             this.cbx_autoOrder = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cb_seatType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_trainNo = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txt_inteval = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -134,9 +134,11 @@
             // lbl_refreshTime
             // 
             this.lbl_refreshTime.AutoSize = true;
-            this.lbl_refreshTime.Location = new System.Drawing.Point(589, 147);
+            this.lbl_refreshTime.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_refreshTime.ForeColor = System.Drawing.Color.Red;
+            this.lbl_refreshTime.Location = new System.Drawing.Point(952, 11);
             this.lbl_refreshTime.Name = "lbl_refreshTime";
-            this.lbl_refreshTime.Size = new System.Drawing.Size(11, 12);
+            this.lbl_refreshTime.Size = new System.Drawing.Size(20, 19);
             this.lbl_refreshTime.TabIndex = 9;
             this.lbl_refreshTime.Text = "0";
             // 
@@ -467,7 +469,7 @@
             this.clb_passger.CheckOnClick = true;
             this.clb_passger.ColumnWidth = 60;
             this.clb_passger.FormattingEnabled = true;
-            this.clb_passger.Location = new System.Drawing.Point(53, 100);
+            this.clb_passger.Location = new System.Drawing.Point(53, 103);
             this.clb_passger.MultiColumn = true;
             this.clb_passger.Name = "clb_passger";
             this.clb_passger.Size = new System.Drawing.Size(737, 16);
@@ -538,18 +540,19 @@
             this.cbx_autoOrder.TabIndex = 35;
             this.cbx_autoOrder.Text = "自动提交";
             this.cbx_autoOrder.UseVisualStyleBackColor = true;
+            this.cbx_autoOrder.CheckedChanged += new System.EventHandler(this.cbx_autoOrder_CheckedChanged);
             // 
-            // comboBox1
+            // cb_seatType
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cb_seatType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_seatType.FormattingEnabled = true;
+            this.cb_seatType.Items.AddRange(new object[] {
             "车次优先",
             "座位优先"});
-            this.comboBox1.Location = new System.Drawing.Point(81, 39);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(61, 20);
-            this.comboBox1.TabIndex = 23;
+            this.cb_seatType.Location = new System.Drawing.Point(81, 39);
+            this.cb_seatType.Name = "cb_seatType";
+            this.cb_seatType.Size = new System.Drawing.Size(61, 20);
+            this.cb_seatType.TabIndex = 23;
             // 
             // label6
             // 
@@ -560,21 +563,21 @@
             this.label6.TabIndex = 36;
             this.label6.Text = "乘客";
             // 
-            // textBox1
+            // txt_trainNo
             // 
-            this.textBox1.Location = new System.Drawing.Point(7, 65);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(279, 21);
-            this.textBox1.TabIndex = 37;
+            this.txt_trainNo.Location = new System.Drawing.Point(7, 65);
+            this.txt_trainNo.Name = "txt_trainNo";
+            this.txt_trainNo.Size = new System.Drawing.Size(279, 21);
+            this.txt_trainNo.TabIndex = 37;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txt_inteval);
             this.groupBox1.Controls.Add(this.cbx_autoQuery);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txt_trainNo);
             this.groupBox1.Controls.Add(this.btn_query);
             this.groupBox1.Controls.Add(this.cbx_autoOrder);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cb_seatType);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Location = new System.Drawing.Point(805, 3);
             this.groupBox1.Name = "groupBox1";
@@ -621,8 +624,6 @@
             // cb_allSeatType
             // 
             this.cb_allSeatType.AutoSize = true;
-            this.cb_allSeatType.Checked = true;
-            this.cb_allSeatType.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb_allSeatType.Location = new System.Drawing.Point(41, 66);
             this.cb_allSeatType.Name = "cb_allSeatType";
             this.cb_allSeatType.Size = new System.Drawing.Size(48, 16);
@@ -657,7 +658,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(892, 30);
+            this.label1.Location = new System.Drawing.Point(892, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 13;
@@ -668,13 +669,14 @@
             this.pic_OrderRandCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pic_OrderRandCode.Location = new System.Drawing.Point(1000, 23);
             this.pic_OrderRandCode.Name = "pic_OrderRandCode";
-            this.pic_OrderRandCode.Size = new System.Drawing.Size(72, 25);
+            this.pic_OrderRandCode.Size = new System.Drawing.Size(72, 30);
             this.pic_OrderRandCode.TabIndex = 11;
             this.pic_OrderRandCode.TabStop = false;
+            this.pic_OrderRandCode.Click += new System.EventHandler(this.pic_OrderRandCode_Click);
             // 
             // txt_OrderRandCode
             // 
-            this.txt_OrderRandCode.Location = new System.Drawing.Point(932, 25);
+            this.txt_OrderRandCode.Location = new System.Drawing.Point(932, 32);
             this.txt_OrderRandCode.Name = "txt_OrderRandCode";
             this.txt_OrderRandCode.Size = new System.Drawing.Size(64, 21);
             this.txt_OrderRandCode.TabIndex = 10;
@@ -693,7 +695,7 @@
             // lbl_queryTimes
             // 
             this.lbl_queryTimes.AutoSize = true;
-            this.lbl_queryTimes.Location = new System.Drawing.Point(646, 40);
+            this.lbl_queryTimes.Location = new System.Drawing.Point(882, 13);
             this.lbl_queryTimes.Name = "lbl_queryTimes";
             this.lbl_queryTimes.Size = new System.Drawing.Size(53, 12);
             this.lbl_queryTimes.TabIndex = 30;
@@ -708,6 +710,7 @@
             this.groupBox3.Controls.Add(this.lbl_queryTimes);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.lbl_serverTime);
+            this.groupBox3.Controls.Add(this.lbl_refreshTime);
             this.groupBox3.Controls.Add(this.pic_OrderRandCode);
             this.groupBox3.Controls.Add(this.txt_OrderRandCode);
             this.groupBox3.Location = new System.Drawing.Point(14, 120);
@@ -731,7 +734,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(646, 17);
+            this.label7.Location = new System.Drawing.Point(647, 30);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 12);
             this.label7.TabIndex = 34;
@@ -752,7 +755,7 @@
             // 
             this.lbl_passagerMsg.AutoSize = true;
             this.lbl_passagerMsg.ForeColor = System.Drawing.Color.Red;
-            this.lbl_passagerMsg.Location = new System.Drawing.Point(803, 105);
+            this.lbl_passagerMsg.Location = new System.Drawing.Point(122, 104);
             this.lbl_passagerMsg.Name = "lbl_passagerMsg";
             this.lbl_passagerMsg.Size = new System.Drawing.Size(23, 12);
             this.lbl_passagerMsg.TabIndex = 42;
@@ -765,17 +768,17 @@
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1108, 748);
             this.Controls.Add(this.lbl_passagerMsg);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.clb_passger);
             this.Controls.Add(this.gv_train);
-            this.Controls.Add(this.lbl_refreshTime);
             this.Controls.Add(this.rtb_log);
+            this.Controls.Add(this.groupBox3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "OTS";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OTS";
             this.Load += new System.EventHandler(this.OTS_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gv_train)).EndInit();
@@ -813,9 +816,9 @@
         private System.Windows.Forms.CheckedListBox clb_seatType;
         private System.Windows.Forms.CheckBox cbx_autoQuery;
         private System.Windows.Forms.CheckBox cbx_autoOrder;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cb_seatType;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_trainNo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;

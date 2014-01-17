@@ -52,7 +52,7 @@ namespace UIForm
 
             Thread zbyThread = new Thread(new ThreadStart(StartZby));
             zbyThread.IsBackground = true;
-            zbyThread.Start();
+            //zbyThread.Start();
 
         }
 
@@ -769,12 +769,12 @@ namespace UIForm
 
         private void btn_ots_Click(object sender, EventArgs e)
         {
-            //OtsLogin otsLogin = new OtsLogin();
-            //otsLogin.Show();
+            OtsLogin otsLogin = new OtsLogin();
+            otsLogin.Show();
 
-            OtsAuto auto = new OtsAuto();
-            OTS ots = new OTS(auto);
-            ots.Show();
+            //OtsAuto auto = new OtsAuto();
+            //OTS ots = new OTS(auto);
+            //ots.Show();
         }
 
 

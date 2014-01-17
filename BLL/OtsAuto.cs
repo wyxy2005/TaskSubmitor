@@ -31,7 +31,10 @@ namespace BLL
         public static readonly string ORDER_RAND = @"https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew.do?module=passenger&rand=randp&";
         public static readonly string TOKEN_RUL = @"https://kyfw.12306.cn/otn/confirmPassenger/initDc";
         public static readonly string CHECK_ORDER_URL = @"https://kyfw.12306.cn/otn/confirmPassenger/checkOrderInfo";
+        public static readonly string AUTO_ORDER_URL = @"https://kyfw.12306.cn/otn/confirmPassenger/autoSubmitOrderRequest";
         public static readonly string QUERY_COUNT_URL = @"https://kyfw.12306.cn/otn/confirmPassenger/getQueueCount";
+        public static readonly string QUERY_COUNT_ASYNC_URL = @"https://kyfw.12306.cn/otn/confirmPassenger/getQueueCountAsync";
+        public static readonly string CONFIRM_SINGLE_FOR_QUEUE_ASYNC_URL = @"https://kyfw.12306.cn/otn/confirmPassenger/confirmSingleForQueueAsys";
         public static readonly string QUERY_ORDER_WAIT = @"https://kyfw.12306.cn/otn/confirmPassenger/queryOrderWaitTime?";
         public static readonly string ORDER_PAY_URL = @"https://kyfw.12306.cn/otn/payOrder/init?";
         public static readonly string ORDER_RESULT_URL = @"https://kyfw.12306.cn/otn/confirmPassenger/resultOrderForDcQueue";
@@ -40,7 +43,9 @@ namespace BLL
         public static readonly string STATION_URL = @"https://kyfw.12306.cn/otn/resources/js/framework/station_name.js";
         public static readonly string PASSER = @"";
         public static readonly string SUBMIT_TOKEN_STR = "globalRepeatSubmitToken";
+        public static readonly string LEFT_TICKETS = "leftTicketStr";
         public static readonly string PASSAGER_STR = "var passengers";
+        public static readonly string TOUR_FLAG = "dc";
         public static readonly string HOT_STATION = @"@bji|北京|BJP|0@sha|上海|SHH|1@tji|天津|TJP|2@cqi|重庆|CQW|3@csh|长沙|CSQ|4@cch|长春|CCT|5@cdu|成都|CDW|6@fzh|福州|FZS|7@gzh|广州|GZQ|8@gya|贵阳|GIW|9@hht|呼和浩特|HHC|10@heb|哈尔滨|HBB|11@hfe|合肥|HFH|12@hzh|杭州|HZH|13@hko|海口|VUQ|14@jna|济南|JNK|15@kmi|昆明|KMM|16@lsa|拉萨|LSO|17@lzh|兰州|LZJ|18@nni|南宁|NNZ|19@nji|南京|NJH|20@nch|南昌|NCG|21@sya|沈阳|SYT|22@sjz|石家庄|SJP|23@tyu|太原|TYV|24@wlq|乌鲁木齐|WMR|25@wha|武汉|WHN|26@xnx|西宁西|XXO|27@xan|西安|XAY|28@ych|银川|YIJ|29@zzh|郑州|ZZF|30@szh|深圳|SZQ|shenzhen|sz|31";
 
         public static readonly int SUBMIT_TOKEN_MAX_LENTH = 100;//token的上限
@@ -48,7 +53,7 @@ namespace BLL
 
 
         public static readonly string ACCEPT = @"image/gif, image/jpeg, image/pjpeg, image/pjpeg, application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, application/xaml+xml, application/x-ms-xbap, application/x-ms-application, */*";
-        public static readonly string USER_AGENT = @"Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 2.0.50727; InfoPath.3; .NET4.0C; .NET4.0E)";
+        public static readonly string USER_AGENT = @"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36";
         private CookieContainer cookies = null;
         public static string[] cookiesName = { "BIGipServerportal", "BIGipServerotn", "JSESSIONID" };
         public static string[] tickets = { "",""};
@@ -56,24 +61,16 @@ namespace BLL
         public static string[] oldpassage = { "***,1,***********,1_" };
         public static string train_date = "Sat Jan 25 2014 00:00:00 GMT+0800 (中国标准时间)";
         public string submit_token = "";
+        public string leftTickets = "";
+        public string trainLocation = "";
 
+        public string OrderId { get; set; }
         //页面输入缓存
         private Dictionary<string, string> cache = new Dictionary<string, string>();
         public Dictionary<string, string> Cache { get; set; }
-        
-
-
-        public static void Test(){
-
-        }
-
-        private string from;
-        private string to;
-        private string date;
-
-        public string From { get; set; }
-        public string To { get; set; }
-        public string Date { get; set; }
+        public List<Passager> Passagers { get; set; }
+        public Train trains { get; set; }
+        public TrainOrder OrderInfo { get; set; }
 
         /// <summary>
         /// 用户登录
@@ -106,7 +103,7 @@ namespace BLL
             msg = "登录成功";
             
             JObject jObj = JObject.Parse(html);
-            if (jObj["data"]["loginCheck"].ToString() =="Y")
+            if (jObj["data"]["loginCheck"] != null && jObj["data"]["loginCheck"].ToString() == "Y")
                 return true;
             else
             {
@@ -302,32 +299,12 @@ namespace BLL
             cookies.Add(web.GetCookie(HOST, "BIGipServerotn"));
             cookies.Add(web.GetCookie(HOST, "BIGipServerportal"));
             cookies.Add(web.GetCookie(HOST, "JSESSIONID"));
-            //HttpWebResponse response = null;
-
-            //HttpWebRequest request = CreateRequest(ROOT_URL);
-            ////request.Connection = "Keep-Alive";
-            ////request.CookieContainer = new CookieContainer();
-            ////cookies = new CookieContainer();
-            //response = (HttpWebResponse)request.GetResponse();
-
-            ////BIGipServerportal
-            //string cookieString = response.Headers["Set-Cookie"].Split(';')[0];
-            //cookies.Add(GetCookie(cookieString,"/"));
-
-            ////BIGipServerotn
-            ////request = CreateRequest(OTN_URL);
-            //////request = (HttpWebRequest)WebRequest.Create(OTN_URL);
-            ////request.CookieContainer = cookies;
-            ////response = (HttpWebResponse)request.GetResponse();
-            ////cookieString = response.Headers["Set-Cookie"].Split(';')[0];
-            ////cookies.Add(GetCookie(cookieString, "/"));
-
-            ////JSESSIONID
-            //request = CreateRequest(OTN_URL_1);
-            //request.CookieContainer = cookies;
-            //response = (HttpWebResponse)request.GetResponse();
-            //cookieString = response.Headers["Set-Cookie"].Split(';')[0];
-            //cookies.Add(GetCookie(cookieString, "/otn"));
+            cookies.Add(web.GetCookie(HOST, "_jc_save_fromStation"));
+            cookies.Add(web.GetCookie(HOST, "_jc_save_toStation"));
+            cookies.Add(web.GetCookie(HOST, "_jc_save_fromDate"));
+            cookies.Add(web.GetCookie(HOST, "_jc_save_toDate"));
+            cookies.Add(web.GetCookie(HOST, "_jc_save_wfdc_flag"));
+ 
         }
 
 
@@ -367,16 +344,16 @@ namespace BLL
         {
             //没有消息是最好的消息
             string msg = "";
-            if (!CheckOrderInfo(rcode, out msg))
-                return msg;
+            //if (!CheckOrderInfo(rcode, out msg))
+            //    return msg;
 
-            GetQueueCount();
+            //GetQueueCount();
 
-            QueryOrderWaitTime();
+            //QueryOrderWaitTime();
 
-            PayOrder();
+            //PayOrder();
 
-            ResultOrderForDcQueue();
+            //ResultOrderForDcQueue();
 
             return "";
         }
@@ -389,22 +366,113 @@ namespace BLL
             HttpWebResponse response = null;
             HttpWebRequest request = CreateRequest(TOKEN_RUL);
             request.Method = WebUtil.RequestMethod.POST;
-            request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
+            request.Accept = "image/gif, image/jpeg, image/pjpeg, image/pjpeg, application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, application/xaml+xml, application/x-ms-xbap, application/x-ms-application, */*";
             request.ContentType = "application/x-www-form-urlencoded";
+            request.Referer = "https://kyfw.12306.cn/otn/leftTicket/init";
             //request.Connection = "Keep-Alive";
             //request.CookieContainer = new CookieContainer();
             //cookies = new CookieContainer();
+            byte[] data = Encoding.UTF8.GetBytes("_json_att=");
+            using (Stream stream = request.GetRequestStream())
+            {
+                stream.Write(data, 0, data.Length);
+            }
+
             response = (HttpWebResponse)request.GetResponse();
             string html = "";
             using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("UTF-8")))
             {
                 html = reader.ReadToEnd();
+                reader.Close();
             }
+            response.Close();
             int i = html.IndexOf(SUBMIT_TOKEN_STR, 0);
             //获取token
             string token = html.Substring(i, SUBMIT_TOKEN_STR.Length + SUBMIT_TOKEN_MAX_LENTH).Split('\'')[1].ToString();
             this.submit_token = token;
+            ////获取leftTickets
+            //i = html.IndexOf(LEFT_TICKETS,0);
+            //string leftTicketsStr = html.Substring(i,LEFT_TICKETS.Length + SUBMIT_TOKEN_MAX_LENTH).Split('\'')[2].ToString();
+            //this.leftTickets = leftTicketsStr;
 
+        }
+
+        /// <summary>
+        /// 组织乘客字符串
+        /// </summary>
+        /// <param name="passengerTicketStr"></param>
+        /// <param name="oldPassengerStr"></param>
+        private void GerPassengerStr(out string passengerTicketStr, out string oldPassengerStr)
+        {
+            passengerTicketStr = "";
+            oldPassengerStr = "";
+            string str = "";
+            string oldStr = "";
+            foreach (Passager p in this.Passagers)
+            {
+                str = "1,0,1,{0},1,{1},{2},N";
+                str = string.Format(str, p.Name, p.IdNo, p.Mobile);
+                passengerTicketStr += str + "_";
+
+                oldStr = "{0},1,{1},1_";
+                oldStr = string.Format(oldStr, p.Name, p.IdNo);
+                oldPassengerStr += oldStr + "_";
+            }
+            passengerTicketStr = passengerTicketStr.Trim('_');
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool AutoSubmitOrder(out string msg)
+        {
+            HttpWebResponse response = null;
+            HttpWebRequest request = CreateRequest(AUTO_ORDER_URL);
+            request.Method = WebUtil.RequestMethod.POST;
+            request.Accept = "*/*";
+            request.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
+
+            Dictionary<string, string> formData = new Dictionary<string, string>();
+            formData.Add("secretStr", this.OrderInfo.SecretStr);
+            formData.Add("train_date", this.OrderInfo.TrainDate);
+            formData.Add("tour_flag", "dc");
+            formData.Add("purpose_codes", "ADULT");
+            formData.Add("query_from_station_name", this.OrderInfo.FromName);
+            formData.Add("query_to_station_name", this.OrderInfo.ToName);
+            formData.Add("cancel_flag", "2");
+            formData.Add("bed_level_order_num", "000000000000000000000000000000");
+            string passengerTicketStr = "";
+            string oldPassengerStr = "";
+            GerPassengerStr(out passengerTicketStr, out oldPassengerStr);
+            formData.Add("passengerTicketStr", passengerTicketStr);
+            formData.Add("oldPassengerStr", oldPassengerStr);
+
+            SetRequestData(ref request, formData);
+
+            response = (HttpWebResponse)request.GetResponse();
+            string html = "";
+            using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("UTF-8")))
+            {
+                html = reader.ReadToEnd();
+                reader.Close();
+            }
+            response.Close();
+            msg = "";
+            JObject jobj = JObject.Parse(html);
+            if (jobj["data"] != null && jobj["data"]["result"] != null && jobj["data"]["result"].ToString() != "")
+            {
+                string token = jobj["data"]["result"].ToString();
+                this.trainLocation = token.Split('#')[0].ToString();
+                this.submit_token = token.Split('#')[1].ToString();
+                this.leftTickets = token.Split('#')[2].ToString();
+                return true;
+            }
+            else
+            {
+                msg = jobj["messages"].ToString();
+                return false;
+            }
         }
 
         /// <summary>
@@ -414,21 +482,25 @@ namespace BLL
         public bool CheckOrderInfo(string rcode,out string msg)
         {
             HttpWebResponse response = null;
-            HttpWebRequest request = CreateRequest(QUERY_URL);
+            HttpWebRequest request = CreateRequest(CHECK_ORDER_URL);
             request.Method = WebUtil.RequestMethod.POST;
             request.Accept = "application/json, text/javascript, */*; q=0.01";
             request.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
 
-            //request.Connection = "Keep-Alive";
-            //request.CookieContainer = new CookieContainer();
-            //cookies = new CookieContainer();
-            string dataString = @"cancel_flag=2&bed_level_order_num=000000000000000000000000000000&passengerTicketStr={0}&oldPassengerStr={1}&tour_flag={2}&randCode={3}&_json_att={4}&REPEAT_SUBMIT_TOKEN="+ this.submit_token;
-            string.Format(dataString, passage[0], oldpassage[0], "dc", rcode, "");
-            byte[] data = Encoding.UTF8.GetBytes(dataString);
-            using (Stream stream = request.GetRequestStream())
-            {
-                stream.Write(data, 0, data.Length);
-            }  
+            Dictionary<string,string> formData = new Dictionary<string,string>();
+            formData.Add("cancel_flag","2");
+            formData.Add("bed_level_order_num", "000000000000000000000000000000");
+            string passengerTicketStr = "";
+            string oldPassengerStr = "";
+            GerPassengerStr(out passengerTicketStr, out oldPassengerStr);
+            formData.Add("passengerTicketStr", passengerTicketStr);
+            formData.Add("oldPassengerStr", oldPassengerStr);
+
+            formData.Add("tour_flag", "dc");
+            formData.Add("randCode", rcode);
+            formData.Add("_json_att", "");
+            formData.Add("REPEAT_SUBMIT_TOKEN", this.submit_token);
+            SetRequestData(ref request, formData);
 
             response = (HttpWebResponse)request.GetResponse();
             string html = "";
@@ -446,30 +518,60 @@ namespace BLL
             }
             else
             {
-                msg = jobj["messages"].ToString();
+                msg += jobj["data"]["errMsg"].ToString() + jobj["messages"].ToString();
                 return false;
             }
         }
 
-        /// <summary>
-        /// 进入排队队列
-        /// </summary>
-        public void GetQueueCount()
+        private void SetRequestData(ref HttpWebRequest request,Dictionary<string,string> formData)
         {
-            HttpWebResponse response = null;
-            HttpWebRequest request = CreateRequest(QUERY_COUNT_URL);
-            request.Method = WebUtil.RequestMethod.POST;
-            request.Accept = "application/json, text/javascript, */*; q=0.01";
-            request.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
-            string[] dataName = { "train_date", "train_no", "stationTrainCode", "seatType", "fromStationTelecode", "toStationTelecode", "leftTicket", "purpose_codes", "_json_att", "REPEAT_SUBMIT_TOKEN" };
-
-            string dataString = @"train_date={0}&train_no={1}&stationTrainCode={2}&seatType={3}&fromStationTelecode={4}&toStationTelecode={5}&_json_att={4}&REPEAT_SUBMIT_TOKEN=" + this.submit_token;
-            string.Format(dataString);
+            string dataString = @"";
+            foreach (string name in formData.Keys)
+            {
+                dataString += (name + "=" + formData[name] + "&");
+            }
+            dataString = dataString.Trim('&');       
             byte[] data = Encoding.UTF8.GetBytes(dataString);
             using (Stream stream = request.GetRequestStream())
             {
                 stream.Write(data, 0, data.Length);
-            }
+            }  
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="trainNo"></param>
+        /// <param name="trainCode"></param>
+        /// <param name="seatType"></param>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public bool QueueCountAsync(out string msg)
+        {
+            HttpWebResponse response = null;
+            HttpWebRequest request = CreateRequest(QUERY_COUNT_ASYNC_URL);
+            request.Method = WebUtil.RequestMethod.POST;
+            request.Accept = "application/json, text/javascript, */*; q=0.01";
+            request.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
+            request.Referer = "https://kyfw.12306.cn/otn/leftTicket/init";
+
+            Dictionary<string, string> formData = new Dictionary<string, string>();
+            //DateTime trainDate = Convert.ToDateTime(this.OrderInfo.TrainDate + " " + DateTime.Now.ToLongTimeString());
+            //string trainDateStr = trainDate.ToString("ddd MMM dd HH:mm:ss UTC+0800  yyyy", CultureInfo.InvariantCulture);
+            string trainDateStr = (Convert.ToDateTime(this.OrderInfo.TrainDate).ToString("ddd MMM dd yyy ", DateTimeFormatInfo.InvariantInfo) +
+  DateTime.Now.ToString("HH:mm:ss").Replace(":", "%3A") + " GMT%2B0800 (China Standard Time)").Replace(' ', '+');
+            formData.Add("train_date", trainDateStr);
+            formData.Add("train_no", this.OrderInfo.TrainNo);
+            formData.Add("stationTrainCode", this.OrderInfo.TrainCode);
+            formData.Add("seatType", this.OrderInfo.SeatType);
+
+            formData.Add("fromStationTelecode", this.OrderInfo.FromCode);
+            formData.Add("toStationTelecode", this.OrderInfo.ToCode);
+            formData.Add("leftTicket", this.leftTickets);
+            formData.Add("purpose_codes", "ADULT");
+            formData.Add("_json_att", "");
+
+            SetRequestData(ref request, formData);
 
             response = (HttpWebResponse)request.GetResponse();
             string html = "";
@@ -479,6 +581,117 @@ namespace BLL
                 reader.Close();
             }
             response.Close();
+            msg = "GetQueueCountAsync success";
+            JObject jobj = JObject.Parse(html);
+            if (jobj["data"]!=null && jobj["data"]["ticket"] != null)
+            {
+                return true;
+            }
+            else
+            {
+                msg = jobj["messages"].ToString();
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 自动提交订单
+        /// </summary>
+        /// <param name="randCode"></param>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public bool ConfirmSingleForQueueAsync(string randCode,out string msg)
+        {
+            HttpWebResponse response = null;
+            HttpWebRequest request = CreateRequest(CONFIRM_SINGLE_FOR_QUEUE_ASYNC_URL);
+            request.Method = WebUtil.RequestMethod.POST;
+            request.Accept = "application/json, text/javascript, */*; q=0.01";
+            request.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
+
+            string passengerTicketStr = "";
+            string oldPassengerStr = "";
+            GerPassengerStr(out passengerTicketStr, out oldPassengerStr);
+
+            Dictionary<string, string> formData = new Dictionary<string, string>();
+            formData.Add("passengerTicketStr", passengerTicketStr);
+            formData.Add("oldPassengerStr", oldPassengerStr);
+            formData.Add("randCode", randCode);
+            formData.Add("purpose_codes", "ADULT");
+
+            formData.Add("key_check_isChange", this.submit_token);
+            formData.Add("leftTicketStr", this.leftTickets);
+            formData.Add("train_location", this.trainLocation);
+            formData.Add("_json_att", "");
+            //formData.Add("REPEAT_SUBMIT_TOKEN", this.submit_token);
+
+            SetRequestData(ref request, formData);
+
+            response = (HttpWebResponse)request.GetResponse();
+            string html = "";
+            using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("UTF-8")))
+            {
+                html = reader.ReadToEnd();
+                reader.Close();
+            }
+            response.Close();
+            msg = "ConfirmSingleForQueueAsync success";
+            JObject jobj = JObject.Parse(html);
+            if (jobj["data"]["submitStatus"] != null && jobj["data"]["submitStatus"].ToString() == "true")
+            {
+                return true;
+            }
+            else
+            {
+                msg = jobj["messages"].ToString();
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 进入排队队列
+        /// </summary>
+        public bool QueueCount(out string msg)
+        {
+            HttpWebResponse response = null;
+            HttpWebRequest request = CreateRequest(QUERY_COUNT_URL);
+            request.Method = WebUtil.RequestMethod.POST;
+            request.Accept = "application/json, text/javascript, */*; q=0.01";
+            request.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
+
+            Dictionary<string, string> formData = new Dictionary<string, string>();
+            formData.Add("train_date", Convert.ToDateTime(this.OrderInfo.TrainDate).ToString("ddd MMM dd yyyy 00:00:00 GMT+0800 (中国标准时间)"));
+            formData.Add("train_no", this.OrderInfo.TrainNo);
+            formData.Add("stationTrainCode", this.OrderInfo.TrainCode);
+            formData.Add("seatType", this.OrderInfo.SeatType);
+
+            formData.Add("fromStationTelecode", this.OrderInfo.FromCode);
+            formData.Add("toStationTelecode", this.OrderInfo.ToCode);
+            formData.Add("leftTicket", this.leftTickets);
+            formData.Add("purpose_codes", "00");
+            formData.Add("_json_att", "");
+            formData.Add("REPEAT_SUBMIT_TOKEN", this.submit_token);
+
+            SetRequestData(ref request, formData);
+
+            response = (HttpWebResponse)request.GetResponse();
+            string html = "";
+            using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("UTF-8")))
+            {
+                html = reader.ReadToEnd();
+                reader.Close();
+            }
+            response.Close();
+            msg = "QueueCount success";
+            JObject jobj = JObject.Parse(html);
+            if (jobj["data"]["ticket"] != null && jobj["data"]["ticket"].ToString() == this.leftTickets)
+            {
+                return true;
+            }
+            else
+            {
+                msg = jobj["messages"].ToString();
+                return false;
+            }
         }
 
         /// <summary>
@@ -492,22 +705,21 @@ namespace BLL
         /// {"validateMessagesShowId":"_validatorMessage","status":true,"httpstatus":200,"data":{"queryOrderWaitTimeStatus":true,"count":0,"waitTime":-1,"requestId":5826225423698547651,"waitCount":0,"tourFlag":"dc","orderId":"E304355504"},"messages":[],"validateMessages":{}}
         /// 
         /// </summary>
-        public void QueryOrderWaitTime()
+        public bool QueryOrderWaitTime(out string msg)
         {
             //random=1389080385831&tourFlag=dc&_json_att=&REPEAT_SUBMIT_TOKEN=8e75c1cb041b14b29770ac59b46f34b4
             HttpWebResponse response = null;
             HttpWebRequest request = CreateRequest(QUERY_ORDER_WAIT);
             request.Method = WebUtil.RequestMethod.GET;
             request.Accept = "application/json, text/javascript, */*; q=0.01";
-            request.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
 
-            string dataString = @"random={0}&tourFlag={1}&_json_att={2}&REPEAT_SUBMIT_TOKEN={3}";
-            string.Format(dataString,"","dc","","");
-            byte[] data = Encoding.UTF8.GetBytes(dataString);
-            using (Stream stream = request.GetRequestStream())
-            {
-                stream.Write(data, 0, data.Length);
-            }
+            Dictionary<string, string> formData = new Dictionary<string, string>();
+            formData.Add("random", this.leftTickets);
+            formData.Add("tourFlag", TOUR_FLAG);
+            formData.Add("_json_att", "");
+            formData.Add("REPEAT_SUBMIT_TOKEN", this.submit_token);
+
+            SetRequestData(ref request, formData);
 
             response = (HttpWebResponse)request.GetResponse();
             string html = "";
@@ -517,6 +729,19 @@ namespace BLL
                 reader.Close();
             }
             response.Close();
+
+            msg = "QueryOrderWaitTime success";
+            JObject jobj = JObject.Parse(html);
+            if (jobj["data"]["queryOrderWaitTimeStatus"] != null && jobj["data"]["queryOrderWaitTimeStatus"].ToString() == "true")
+            {
+                this.OrderId = jobj["data"]["orderId"].ToString();
+                return true;
+            }
+            else
+            {
+                msg = jobj["messages"].ToString();
+                return false;
+            }
         }
 
         /// <summary>

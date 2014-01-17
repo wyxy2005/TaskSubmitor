@@ -7,6 +7,7 @@ namespace Model
 {
     public class Train
     {
-        private string train;
+        public string TrainNo { get; set; }
+        public string TrainCode { get; set; }
     }
 }

@@ -13,6 +13,9 @@ using Model;
 
 namespace UIForm
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class OTS : Form
     {
         private OtsAuto ots;
@@ -29,11 +32,17 @@ namespace UIForm
         private JArray allTrain; //得到的
         private JArray showTrain; //显示的
         private string fromName;
-        //private string fromCode;
+        private string fromTeleCode;
         private string toName;
-        //private string toCode;
+        private string toTeleCode;
         private string date;
+        private string trainCode;
+        private ListItem seatItem;
         public static readonly string ORDER_INFO = @"{0}——>{1} 【{2}】 共计{3}个车次";
+        private TrainOrder orderInfo;
+        private int SUBMIT_TIMES = 10;
+        List<Passager> pList;
+        private Thread logThread;
 
         /// <summary>
         /// 构造Form
@@ -42,6 +51,7 @@ namespace UIForm
         public OTS(OtsAuto ots)
         {
             this.ots = ots;
+            //this.seatItem = new ListItem("硬座", "yz_num", "1");
             InitializeComponent();
         }
 
@@ -107,7 +117,7 @@ namespace UIForm
         }
 
         /// <summary>
-        /// 
+        /// 加载列车类型
         /// </summary>
         private void InitTrainType()
         {
@@ -124,23 +134,28 @@ namespace UIForm
         }
 
         /// <summary>
-        /// 
+        /// 加载座位类型
         /// </summary>
         private void InitSeatType()
         {
             clb_seatType.DisplayMember = "Text";
             clb_seatType.ValueMember = "Value";
-            clb_seatType.Items.Add(new ListItem("商务座", "swz_num"), true);
-            clb_seatType.Items.Add(new ListItem("特等座", "tz_num"), true);
-            clb_seatType.Items.Add(new ListItem("一等座", "zy_num"), true);
-            clb_seatType.Items.Add(new ListItem("二等座", "ze_num"), true);
-            clb_seatType.Items.Add(new ListItem("高软", "gr_num"), true);
-            clb_seatType.Items.Add(new ListItem("软卧", "rw_num"), true);
-            clb_seatType.Items.Add(new ListItem("硬卧", "yw_num"), true);
-            clb_seatType.Items.Add(new ListItem("软座", "rz_num"), true);
-            clb_seatType.Items.Add(new ListItem("硬座", "yz_num"), true);
-            clb_seatType.Items.Add(new ListItem("无座", "wz_num"), true);
-            //SetListChecked(clb_seatType, true);
+            clb_seatType.Items.Add(new ListItem("硬座", "yz_num", "1"), true);
+            clb_seatType.Items.Add(new ListItem("硬卧", "yw_num", "3"), true);
+            clb_seatType.Items.Add(new ListItem("二等座", "ze_num", "9"), true);
+            clb_seatType.Items.Add(new ListItem("商务座", "swz_num",""), false);
+            clb_seatType.Items.Add(new ListItem("特等座", "tz_num", ""), false);
+            clb_seatType.Items.Add(new ListItem("一等座", "zy_num", ""), false);
+            clb_seatType.Items.Add(new ListItem("高软", "gr_num", ""), false);
+            clb_seatType.Items.Add(new ListItem("软卧", "rw_num", ""), false);
+            clb_seatType.Items.Add(new ListItem("软座", "rz_num", ""), false);
+            clb_seatType.Items.Add(new ListItem("无座", "wz_num", ""), false);
+            ////SetListChecked(clb_seatType, true);
+            //cb_seatType.DisplayMember = "Text";
+            //cb_seatType.ValueMember = "Value";
+            //cb_seatType.Items.Add(new ListItem("硬座", "1"));
+            //cb_seatType.Items.Add(new ListItem("硬卧", "3"));
+            //cb_seatType.Items.Add(new ListItem("二等座", "9"));
         }
 
         /// <summary>
@@ -207,7 +222,7 @@ namespace UIForm
         }
 
         /// <summary>
-        /// 
+        /// 适配服务器端数据成本地数据
         /// </summary>
         /// <param name="jtrain"></param>
         /// <returns></returns>
@@ -232,13 +247,24 @@ namespace UIForm
         }
 
         /// <summary>
-        /// 
+        /// 设置需要预定的席别
+        /// </summary>
+        private void SetSeatType()
+        {
+            ListItem seat = (ListItem)clb_seatType.CheckedItems[0];
+            if (seat != null)
+            {
+                this.seatItem = seat;
+            }
+        }
+
+        /// <summary>
+        /// 查询按钮触发
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_query_Click(object sender, EventArgs e)
         {
-
             Log("查询开始........");
             Log("输入条件验证........");
             string msg = ValidInput();
@@ -250,15 +276,38 @@ namespace UIForm
                 return;
             }
             this.date = dtp_date.Text;
-            string fromCode = cbx_from.SelectedValue.ToString();
+            this.fromTeleCode = cbx_from.SelectedValue.ToString();
             this.fromName = cbx_from.Text;
-            string toCode = cbx_To.SelectedValue.ToString();
+            this.toTeleCode = cbx_To.SelectedValue.ToString();
             this.toName = cbx_To.Text;
-            JArray jData = query(this.date, fromCode, toCode);
-            jData = AdapateTrainData(jData);
-            this.allTrain = jData;
-            ShowTrainList();
-            //CheckCanOrder();
+            SetSeatType();
+            //this.seatType = cb_seatType.SelectedValue.ToString();
+            //自动预订
+            if (cbx_autoOrder.Checked)
+            {
+                this.trainCode = txt_trainNo.Text.Trim();
+                //取得指定车次
+                if (this.refresh)
+                {
+                    this.refresh = false;
+                    this.btn_query.Text = "查询";
+                    Log("停止自动查询线程..........");
+                }
+                else
+                {
+                    this.refresh = true;
+                    this.btn_query.Text = "停止";
+                    StartRefresh();
+                }
+            }
+            else
+            {
+                JArray jData = query(this.date, this.fromTeleCode, this.toTeleCode);
+                jData = AdapateTrainData(jData);
+                this.allTrain = jData;
+                ShowTrainList();
+                //CheckCanOrder();
+            }
         }
 
         /// <summary>
@@ -343,10 +392,10 @@ namespace UIForm
         }
 
         /// <summary>
-        /// 
+        /// 指定车次是否可预定
         /// </summary>
-        /// <param name="item"></param>
-        /// <param name="train"></param>
+        /// <param name="item">查询得到的车次信息</param>
+        /// <param name="train">指定的车次</param>
         /// <returns></returns>
         private bool isOrder(JObject item,string train)
         {
@@ -354,12 +403,12 @@ namespace UIForm
             {
                 //yw_num,yz_num 
                 int count= 0;
-                //硬卧优先
-                if (int.TryParse(item["queryLeftNewDTO"]["yw_num"].ToString(), out count) && count > 0)
+                //判断需要预定的席别是否有票
+                string yz = item["queryLeftNewDTO"][this.seatItem.Value].ToString();
+                Log("判断信息:" + train + "==yz_num:" + yz);
+                if (yz == "有" || int.TryParse(yz, out count) && count > 0)
                 {
-                    return true;
-                }
-                if (int.TryParse(item["queryLeftNewDTO"]["yz_num"].ToString(), out count) && count > 0) {
+                    Log("可以预订...........");
                     return true;
                 }
             }
@@ -373,7 +422,7 @@ namespace UIForm
         {
             Log("查询数据........");
             String json = ots.Query(date,from,to);
-            Log("查询数据成功........" + Environment.NewLine + json);
+            Log("查询数据成功........" + Environment.NewLine );
             json = json.Replace("<br/>","");
             JObject jObj = JObject.Parse(json);
             StringBuilder result = new StringBuilder();
@@ -382,17 +431,56 @@ namespace UIForm
 
         }
 
-        private void btn_autoQuery_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 启动自动查询预订
+        /// </summary>
+        private void StartRefresh()
         {
+            Log("开启自动查询线程..........");
+            Thread refreshT = new Thread(new ThreadStart(AutoRefresh));
+            refreshT.Start();
         }
 
-        private void Refresh()
+        /// <summary>
+        /// 自动查询预订
+        /// </summary>
+        private void AutoRefresh()
         {
+            Log("开始自动查询,时间间隔" + this.inteval);
             int time = 0;
+            string fromCode = this.fromTeleCode;
+            string toCode = this.toTeleCode;
+            string trainNo = this.trainCode;
             while (this.refresh)
             {
                 time++;
-                //query();
+                Log("开始第" + time + "次查询=======================================================================================");
+                JArray jData = query(this.date, fromCode, toCode);
+                foreach (JObject jobj in jData)
+                {
+                    if (isOrder(jobj, trainNo))
+                    {
+                        Log("开始预订........");
+                        this.orderInfo = new TrainOrder();
+                        this.orderInfo.TrainDate = dtp_date.Text;
+                        this.orderInfo.TrainNo = jobj["queryLeftNewDTO"]["train_no"].ToString();
+                        this.orderInfo.TrainCode = jobj["queryLeftNewDTO"]["station_train_code"].ToString();
+                        this.orderInfo.FromCode = jobj["queryLeftNewDTO"]["from_station_telecode"].ToString();
+                        this.orderInfo.FromName = jobj["queryLeftNewDTO"]["from_station_name"].ToString();
+                        this.orderInfo.ToCode = jobj["queryLeftNewDTO"]["to_station_telecode"].ToString();
+                        this.orderInfo.ToName = jobj["queryLeftNewDTO"]["to_station_name"].ToString();
+                        this.orderInfo.SeatType = this.seatItem.Code;//默认硬座
+                        this.orderInfo.SecretStr = jobj["secretStr"].ToString();
+
+                        string orderInfoStr = OrderInfoStr();
+                        Log(orderInfoStr);
+                        this.refresh = false;
+                        //开始订票
+                        PreAutoOrder();
+                        break;
+                    }
+                }
+
                 SetRefresh(time.ToString());
                 Thread.Sleep(this.inteval * 1000);
             }
@@ -406,7 +494,6 @@ namespace UIForm
         /// </summary>
         /// <param name="text"></param>
         private delegate void SetRefreshCallBack(string text);
-
         private void SetRefresh(string text)
         {
             if (this.lbl_refreshTime.InvokeRequired)
@@ -429,12 +516,26 @@ namespace UIForm
             string vcode = txt_OrderRandCode.Text.Trim();
             if (vcode.Length == vcodeLength) 
             {
-                string result = "";
-                //result = this.Order(vcode);
-                //MessageBox.Show(result);
+                Log("验证码输入完成，输入验证码为" + txt_OrderRandCode.Text.Trim());
+                Log("跳过验证码校验........");
+                //string result = "";
+                if (cbx_autoOrder.Checked)
+                {
+                    this.AutoOrder(vcode);
+                }
+                else
+                {
+                    string result = this.Order(vcode);
+                    MessageBox.Show(result);
+                }
             }
         }
 
+        /// <summary>
+        /// 界面时间显示器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             //10分钟通过服务器校准一次时间
@@ -452,10 +553,13 @@ namespace UIForm
                     ajustTime = false;
                 lbl_serverTime.Text = serverTime.AddSeconds(1).ToLongTimeString();
             }
-
-
         }
 
+        /// <summary>
+        /// 发站输入
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbx_from_KeyUp(object sender, KeyEventArgs e)
         {
             string str = cbx_from.Text;
@@ -471,7 +575,7 @@ namespace UIForm
         }
 
         /// <summary>
-        /// 
+        /// 只显示可预订车次选择框触发
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -486,6 +590,8 @@ namespace UIForm
         /// </summary>
         private void CheckCanOrder()
         {
+            if (this.allTrain == null || this.allTrain.Count == 0)
+                return;
             if (cbx_showCanOrder.Checked)
             {
                 Log("只显示可预订车次........");
@@ -499,7 +605,7 @@ namespace UIForm
         }
 
         /// <summary>
-        /// 
+        /// 从查询结果中获取只能预订的车次
         /// </summary>
         /// <param name="trainList"></param>
         /// <returns></returns>
@@ -516,12 +622,22 @@ namespace UIForm
             return orderTrain;
         }
 
+        /// <summary>
+        /// 全部车次点击
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cb_allTrainType_Click(object sender, EventArgs e)
         {
             Log("点击全部车次........");
             SetListChecked(clb_trainType, cb_allTrainType.Checked);
         }
 
+        /// <summary>
+        /// 全部席别点击
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cb_allSeatType_Click(object sender, EventArgs e)
         {
             Log("点击全部席别.......");
@@ -531,12 +647,11 @@ namespace UIForm
 
 
         /// <summary>
-        /// 线程间调用设置SetZbyText的委托
+        /// 线程间调用设置SetLogText的委托
         /// </summary>
         /// <param name="text"></param>
         private delegate void SetLog(string text);
-
-        private void SetLogText(string text)
+        private void SetLogText(object text)
         {
             if (this.rtb_log.InvokeRequired)
             {
@@ -561,14 +676,42 @@ namespace UIForm
             }
         }
 
-        public void Log(string msg)
+        /// <summary>
+        /// 多线程验证码操作
+        /// </summary>
+        /// <param name="img"></param>
+        private delegate void SetThreadRandCode(Image img);
+        private void SetThreadRandCodeContent(Image img)
         {
-            SetLogText(msg);
-
+            if (this.pic_OrderRandCode.InvokeRequired)
+            {
+                this.Invoke(new SetThreadRandCode(this.SetThreadRandCodeContent), new object[] { img });
+            }
+            else
+            {
+                pic_OrderRandCode.Image = img;
+                txt_OrderRandCode.Focus();
+            }
         }
 
         /// <summary>
-        /// /
+        /// 日志记录
+        /// </summary>
+        /// <param name="msg"></param>
+        public void Log(string msg)
+        {
+            //if (this.logThread == null)
+            //{
+            //    this.logThread = new Thread(new ParameterizedThreadStart(SetLogText));
+            //    logThread.Start(msg);
+            //}
+            //else
+            //    this.logThread.Start(msg);
+           SetLogText(msg);
+        }
+
+        /// <summary>
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -579,16 +722,26 @@ namespace UIForm
             {
                 string trainCode = gv_train.Rows[e.RowIndex].Cells["train"].Value.ToString();
                 Log("开始预订车票" + trainCode + ".......");
-                string name = "";
-                List<Passager> pList = new List<Passager>();
-                if (!GetSelectedPassager(out pList,out name))
+                if (!GetSelectedPassager())
                 {
                     Log("乘客信息提取失败........");
                     MessageBox.Show("请选择乘车人");
                     return;
                 }
-                string orderInfo = name;
-                if (MessageBox.Show("订票确认", "车次信息", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                ots.Passagers = this.pList;
+                //生成订单信息
+                this.orderInfo = new TrainOrder();
+                this.orderInfo.TrainDate = dtp_date.Text;
+                this.orderInfo.TrainNo = gv_train.Rows[e.RowIndex].Cells["train"].Value.ToString();
+                this.orderInfo.TrainCode = gv_train.Rows[e.RowIndex].Cells["trainNo"].Value.ToString();
+                this.orderInfo.FromCode = gv_train.Rows[e.RowIndex].Cells["fromCode"].Value.ToString();
+                this.orderInfo.FromName = gv_train.Rows[e.RowIndex].Cells["from"].Value.ToString();
+                this.orderInfo.ToCode = gv_train.Rows[e.RowIndex].Cells["toCode"].Value.ToString();
+                this.orderInfo.ToName = gv_train.Rows[e.RowIndex].Cells["to"].Value.ToString();
+                this.orderInfo.SeatType = "1";//默认硬座
+
+                string orderInfoStr = OrderInfoStr();
+                if (MessageBox.Show(orderInfoStr,"订票确认", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                 {
                     PreOrder();
                 }
@@ -596,22 +749,110 @@ namespace UIForm
             }
         }
 
-        private bool GetSelectedPassager(out List<Passager> pList, out string name)
+        /// <summary>
+        /// 预订车票信息串 
+        /// </summary>
+        /// <returns></returns>
+        private string OrderInfoStr()
+        {
+            return this.orderInfo.TrainCode + "  " + this.orderInfo.TrainDate + Environment.NewLine +
+                this.orderInfo.FromName + "[" + this.orderInfo.FromCode + "]" + "====>>>>" + this.orderInfo.ToName + "[" + this.orderInfo.ToCode + "]" + Environment.NewLine +
+                this.orderInfo.SeatType;
+        }
+
+        /// <summary>
+        /// 设置选择的乘客
+        /// </summary>
+        /// <returns></returns>
+        private bool GetSelectedPassager()
         {
             Log("提取乘客信息........");
-            name = "";
-            pList = null;
-            if (clb_passger.SelectedItems.Count == 0)
+            List<Passager> pList = new List<Passager>();
+            if (clb_passger.CheckedItems.Count == 0)
                 return false;
-            foreach (Passager p in clb_passger.SelectedItems)
+            foreach (Passager p in clb_passger.CheckedItems)
             {
                 pList.Add(p);
-                name += (p.Name + ",");
             }
-            name.Trim(',');
+            this.pList = pList;
             return true;
         }
 
+        /// <summary>
+        /// 加载验证码
+        /// </summary>
+        private void LoadRandCode()
+        {
+            Log("加载验证码......");
+            Image img = this.ots.GetRandImage();
+            SetThreadRandCodeContent(img);
+            Log("验证码加载完成");
+        }
+
+        /// <summary>
+        /// 自动订票准备提交
+        /// </summary>
+        private void PreAutoOrder()
+        {
+            Log("预订试算........");
+            this.ots.OrderInfo = this.orderInfo;
+            this.ots.Passagers = this.pList;
+            Log("Token获取........");
+            string msg = "";
+            if (!this.ots.AutoSubmitOrder(out msg))
+            {
+                Log("Token获取失败：" + msg);
+                return;
+            }
+            Log("订单进入排队........");
+            this.ots.OrderInfo = this.orderInfo;
+            if (!this.ots.QueueCountAsync(out msg))
+            {
+                Log(msg);
+                return;
+            }
+            Log("验证码获取........");
+            LoadRandCode();
+        }
+
+        /// <summary>
+        /// 自动提交订单
+        /// </summary>
+        /// <param name="randCode"></param>
+        private void AutoOrder(string randCode)
+        {
+            Log("开始订票，强势插入>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            //没有消息是最好的消息
+            string msg = "";
+            Log("====1/1====提交订单.........");
+            //此处如果失败则重复提交，线程等待
+            if (this.ots.ConfirmSingleForQueueAsync(randCode,out msg))
+            {
+                Log(msg);
+                return;
+            }
+
+            //Log("====2/2====开始订单生成.........");
+            //if (!this.ots.QueryOrderWaitTime(out msg))
+            //{
+            //    Log(msg);
+            //    return;
+            //}
+            //int times = 0;
+            ////等待提交，获取订单编号
+            //while (string.IsNullOrEmpty(this.ots.OrderId) && times < SUBMIT_TIMES)
+            //{
+            //    this.ots.QueryOrderWaitTime(out msg);
+            //    Log(msg);
+            //}
+
+            Log("恭喜，完成订单,赶紧去支付吧<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+
+        }
+
+        /// <summary>
+        /// 手动预订，准备动作
+        /// </summary>
         private void PreOrder()
         {
             Log("预订试算........");
@@ -624,37 +865,84 @@ namespace UIForm
         }
 
         /// <summary>
-        /// Template
+        /// 手动预订
         /// </summary>
         public string Order(string rcode)
         {
             Log("开始订票，强势插入>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             //没有消息是最好的消息
             string msg = "";
-            Log("====1/5====提交订单.........");
+            Log("====1/3====提交订单.........");
             if (!this.ots.CheckOrderInfo(rcode, out msg))
             {
                 Log(msg);
                 return msg;
             }
 
-            Log("====2/5====进入订单队列.........");
-            this.ots.GetQueueCount();
+            Log("====2/3====进入订单队列.........");
+            if (!this.ots.QueueCount(out msg))
+            {
+                Log(msg);
+                return msg;
+            }
 
-            Log("====3/5====开始订单生成.........");
-            this.ots.QueryOrderWaitTime();
+            Log("====3/3====开始订单生成.........");
+            if (!this.ots.QueryOrderWaitTime(out msg))
+            {
+                Log(msg);
+                return msg;
+            }
+            int times = 0;
+            //等待提交，获取订单编号
+            while(string.IsNullOrEmpty(this.ots.OrderId) && times < SUBMIT_TIMES)
+            {
+                this.ots.QueryOrderWaitTime(out msg);
+                Log(msg);
+            }
 
-            Log("====4/5====开始支付.........");
-            this.ots.PayOrder();
+            //Log("====4/5====开始支付.........");
+            //this.ots.PayOrder();
 
-            Log("====5/5====订单结果.........");
-            this.ots.ResultOrderForDcQueue();
+            //Log("====5/5====订单结果.........");
+            //this.ots.ResultOrderForDcQueue();
 
-            Log("恭喜，完成订单<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            Log("恭喜，完成订单,赶紧去支付吧<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
             return "";
         }
 
+        /// <summary>
+        /// 自动提交 选择框触发事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbx_autoOrder_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbx_autoOrder.Checked)
+            {
+                if(string.IsNullOrEmpty(txt_trainNo.Text.Trim())){
+                    cbx_autoOrder.Checked = false;
+                    MessageBox.Show("请先输入车次");
+                    return;
+                }
+                if (!GetSelectedPassager())
+                {
+                    Log("乘客信息提取失败........");
+                    MessageBox.Show("请选择乘车人");
+                    return;
+                }
+                Log("开启自动预订,预订车次为 " + txt_trainNo.Text.Trim());
+            }
+        }
 
+        /// <summary>
+        /// 重新加载验证码事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pic_OrderRandCode_Click(object sender, EventArgs e)
+        {
+            LoadRandCode();
+        }
 
 
     }

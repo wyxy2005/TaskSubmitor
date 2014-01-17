@@ -97,7 +97,7 @@
             this.pic_code.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pic_code.Location = new System.Drawing.Point(223, 115);
             this.pic_code.Name = "pic_code";
-            this.pic_code.Size = new System.Drawing.Size(67, 23);
+            this.pic_code.Size = new System.Drawing.Size(67, 30);
             this.pic_code.TabIndex = 6;
             this.pic_code.TabStop = false;
             this.pic_code.Click += new System.EventHandler(this.pic_code_Click);
@@ -135,6 +135,7 @@
             // 
             // toolStripMsg
             // 
+            this.toolStripMsg.ForeColor = System.Drawing.Color.Red;
             this.toolStripMsg.Name = "toolStripMsg";
             this.toolStripMsg.Size = new System.Drawing.Size(0, 22);
             // 

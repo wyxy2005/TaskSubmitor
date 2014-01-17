@@ -7,6 +7,7 @@ using Model;
 using GitHelper;
 using SvnHelper;
 using BLL;
+using System.Globalization;
 
 namespace ConsoleTest
 {
@@ -22,6 +23,13 @@ namespace ConsoleTest
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            string s = (Convert.ToDateTime(DateTime.Now).ToString("ddd MMM dd yyy ", DateTimeFormatInfo.InvariantInfo) +
+　　DateTime.Now.ToString("HH:mm:ss").Replace(":", "%3A") + " GMT%2B0800 (China Standard Time)").Replace(' ', '+');
+            ///ddd, d MMM yyyy HH:mm:ss GMT
+            DateTime trainDate = Convert.ToDateTime("2014-01-04" + " " + DateTime.Now.ToLongTimeString());
+            //DateTime.ParseExact(this.date, "ddd MMM dd HH:mm:ss UTC+0800  yyyy", CultureInfo.InvariantCulture);
+            string trainDateStr = trainDate.ToString("ddd MMM dd HH:mm:ss UTC+0800 yyyy", CultureInfo.InvariantCulture);
+
             //SvnTest.Test();
             //TestCopy();
             //GitTest.Test();
@@ -36,9 +44,6 @@ namespace ConsoleTest
             //
             //OfficeHelperTest.Test();
             //TestWeb();
-            OtsAuto.Test();
-
-
 
             //==============================================
             Console.WriteLine("Please enter any key to continue!");
